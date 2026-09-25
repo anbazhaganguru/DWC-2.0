@@ -1,0 +1,67 @@
+@import './variables.css';
+
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  background-color: var(--color-bg-black);
+  color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--color-bg-black);
+  color: var(--color-white);
+  line-height: 1.4;
+}
+
+/* Layout Utilities */
+.dwc-container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+/* Minimal Next Section Shell to demonstrate unpinning scroll progression */
+.dwc-next-section {
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--color-bg-black);
+  border-top: 1px solid var(--color-border-subtle);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl) var(--spacing-md);
+  text-align: center;
+  z-index: 5;
+}
+
+.dwc-next-section__tag {
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+  margin-bottom: var(--spacing-sm);
+}
+
+.dwc-next-section__title {
+  font-size: var(--font-size-2xl);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+  max-width: 680px;
+}
