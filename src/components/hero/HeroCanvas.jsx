@@ -1,10 +1,14 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 
 /**
  * HeroCanvas Component.
- * Renders exactly ONE discrete sequence PNG frame at a time on HTML5 Canvas without alpha blending or crossfade.
+ * Directly renders exactly ONE discrete sequence PNG frame at a time on HTML5 Canvas.
+ * No alpha blending, no crossfade, no temporal smoothing delay.
  */
 export function HeroCanvas({ canvasRef, images, frameIndexRef, isLoaded }) {
+  const lastRenderedIndexRef = useRef(-1);
+  const needsRedrawRef = useRef(true);
+
   const drawCover = useCallback((ctx, img, width, height) => {
     if (!img || !img.complete || img.naturalWidth === 0) return;
     const imgWidth = img.naturalWidth;
@@ -29,21 +33,33 @@ export function HeroCanvas({ canvasRef, images, frameIndexRef, isLoaded }) {
     ctx.drawImage(img, drawX, drawY, drawW, drawH);
   }, []);
 
-  const renderFrame = useCallback(() => {
+  const renderFrame = useCallback((frameIndex) => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) return false;
 
     const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    if (!ctx) return false;
+
+    const totalFrames = images.length || 61;
+    const safeIndex = Math.min(Math.max(frameIndex, 0), totalFrames - 1);
+    const activeImg = images[safeIndex];
+
+    // Ensure image is ready and valid before drawing
+    if (!activeImg || !activeImg.complete || activeImg.naturalWidth === 0) {
+      return false;
+    }
 
     const width = canvas.parentElement ? canvas.parentElement.clientWidth : window.innerWidth;
     const height = canvas.parentElement ? canvas.parentElement.clientHeight : window.innerHeight;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
+    const targetWidth = Math.round(width * dpr);
+    const targetHeight = Math.round(height * dpr);
+
     // Update backing store resolution if resized
-    if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
+    if (canvas.width !== targetWidth || canvas.height !== targetHeight) {
+      canvas.width = targetWidth;
+      canvas.height = targetHeight;
     }
 
     ctx.save();
@@ -53,34 +69,44 @@ export function HeroCanvas({ canvasRef, images, frameIndexRef, isLoaded }) {
     ctx.imageSmoothingQuality = 'high';
     ctx.globalAlpha = 1.0;
 
-    const totalFrames = images.length || 16;
-    const currentIndex = Math.min(
-      Math.max(frameIndexRef.current || 0, 0),
-      totalFrames - 1
-    );
-
-    const activeImg = images[currentIndex];
-
-    // Render ONLY the single target frame
-    if (activeImg && activeImg.complete && activeImg.naturalWidth > 0) {
-      drawCover(ctx, activeImg, width, height);
-    }
+    // Render ONLY the single active frame - no duplicate frames, no ghosting
+    drawCover(ctx, activeImg, width, height);
 
     ctx.restore();
-  }, [canvasRef, images, frameIndexRef, drawCover]);
+    return true;
+  }, [canvasRef, images, drawCover]);
+
+  // Request redraw when image set updates or loading finishes
+  useEffect(() => {
+    needsRedrawRef.current = true;
+    lastRenderedIndexRef.current = -1;
+  }, [images, isLoaded]);
 
   useEffect(() => {
     let animationFrameId;
 
     const renderLoop = () => {
-      renderFrame();
+      const totalFrames = images.length || 61;
+      const targetIndex = typeof frameIndexRef.current === 'number'
+        ? Math.min(Math.max(frameIndexRef.current, 0), totalFrames - 1)
+        : 0;
+
+      // Direct frame response: only redraw when the discrete frame index changes or redraw is flagged
+      if (targetIndex !== lastRenderedIndexRef.current || needsRedrawRef.current) {
+        const drawn = renderFrame(targetIndex);
+        if (drawn) {
+          lastRenderedIndexRef.current = targetIndex;
+          needsRedrawRef.current = false;
+        }
+      }
+
       animationFrameId = requestAnimationFrame(renderLoop);
     };
 
     animationFrameId = requestAnimationFrame(renderLoop);
 
     const handleResize = () => {
-      requestAnimationFrame(renderFrame);
+      needsRedrawRef.current = true;
     };
 
     window.addEventListener('resize', handleResize);
@@ -89,7 +115,7 @@ export function HeroCanvas({ canvasRef, images, frameIndexRef, isLoaded }) {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
     };
-  }, [renderFrame]);
+  }, [images, frameIndexRef, renderFrame]);
 
   return (
     <canvas 

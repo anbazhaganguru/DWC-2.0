@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "interpolate": "node scripts/generate_interpolated_frames.js all"
   },
   "dependencies": {
     "gsap": "^3.15.0",

@@ -7,15 +7,20 @@ if (typeof window !== 'undefined') {
 
 /**
  * Initializes GSAP ScrollTrigger sequence binding for the Hero canvas component.
- * Pins the hero section and maps scroll progress to discrete frame index (0..15).
+ * Directly maps scroll progress to discrete frame index (0..15).
+ * The chair follows the user's scroll directly with a tight, physical 0.25s scrub.
  * 
  * @param {Object} params
  * @param {HTMLElement} params.triggerRef - Element to pin
- * @param {number} params.totalFrames - Total number of sequence frames (16)
+ * @param {number} [params.totalFrames=16] - Total number of sequence frames (16)
  * @param {Function} params.onUpdateFrame - Callback delivering discrete target frame index
  * @returns {ScrollTrigger|null} Active ScrollTrigger instance
  */
-export function initHeroSequenceAnimation({ triggerRef, totalFrames = 16, onUpdateFrame }) {
+export function initHeroSequenceAnimation({
+  triggerRef,
+  totalFrames = 61,
+  onUpdateFrame
+}) {
   if (!triggerRef || !onUpdateFrame) return null;
 
   // Respect prefers-reduced-motion accessibility rule
@@ -32,13 +37,16 @@ export function initHeroSequenceAnimation({ triggerRef, totalFrames = 16, onUpda
   const trigger = ScrollTrigger.create({
     trigger: triggerRef,
     start: 'top top',
-    end: '+=150%',
+    end: '+=180%',
     pin: true,
-    scrub: 0.7,
+    scrub: 0.2,
     anticipatePin: 1,
+    ease: 'none',
     onUpdate: (self) => {
-      // Calculate discrete frame index based on scroll progress
-      const framePosition = self.progress * (totalFrames - 1);
+      // Direct frame mapping without extra temporal smoothing lag:
+      // framePosition = progress * (frameCount - 1)
+      const progress = Math.min(Math.max(self.progress, 0), 1);
+      const framePosition = progress * (totalFrames - 1);
       const frameIndex = Math.min(
         Math.max(Math.round(framePosition), 0),
         totalFrames - 1

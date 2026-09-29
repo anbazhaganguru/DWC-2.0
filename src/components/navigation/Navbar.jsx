@@ -8,8 +8,8 @@ export function Navbar() {
   return (
     <header className="dwc-navbar">
       <a href="#hero" className="dwc-navbar__logo">
-        <span className="dwc-navbar__logo-main">DWC</span>
-        <span className="dwc-navbar__logo-sub">DANIEL WELLNESS CENTER</span>
+        <span className="dwc-navbar__logo-main">{siteConfig.shortName}</span>
+        <span className="dwc-navbar__logo-sub">{siteConfig.name}</span>
       </a>
 
       <nav>

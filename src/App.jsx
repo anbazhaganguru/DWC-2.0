@@ -1,15 +1,14 @@
 import React from 'react';
-import Navbar from './components/navigation/Navbar';
 import Hero from './components/hero/Hero';
 
 /**
  * Main Application Root.
- * Renders Navbar, Hero 360° scroll turntable section, and section transition architecture.
+ * Renders Hero with integrated Swiss International Style UI and 360° scroll turntable,
+ * followed by next section release architecture.
  */
 export function App() {
   return (
     <div className="dwc-app">
-      <Navbar />
       <main>
         <Hero />
         

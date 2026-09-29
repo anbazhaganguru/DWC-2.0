@@ -24,17 +24,22 @@ export function useHeroSequence() {
 
     activeFramePaths.forEach((src, index) => {
       const img = new Image();
+      img.decoding = 'async';
       img.src = src;
       
       const checkCompletion = () => {
         if (!isMounted) return;
         loadedCount += 1;
+        if (index === 0) {
+          // Immediately notify that the hero initial frame is ready
+          setImages([...imageCache]);
+        }
         if (loadedCount === totalFrames) {
           setIsLoaded(true);
         }
       };
 
-      if (img.complete) {
+      if (img.complete && img.naturalWidth > 0) {
         checkCompletion();
       } else {
         img.onload = checkCompletion;
@@ -49,7 +54,7 @@ export function useHeroSequence() {
     return () => {
       isMounted = false;
     };
-  }, [isMobile]);
+  }, [activeFramePaths]);
 
   return {
     isMobile,

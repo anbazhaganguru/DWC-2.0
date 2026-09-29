@@ -1,90 +1,23 @@
 /**
- * Daniel Wellness Center (DWC 2.0) - Hero & Navbar Styles
- * Swiss Minimalist Luxury Aesthetic
+ * Daniel Wellness Center (DWC 2.0) - Hero Section Styles
+ * Strict Swiss International Style Typographic & 12-Column Grid System
+ * 
+ * - Distinctive Swiss brand identity with restrained red accent
+ * - Bold main headline in RED + BLACK + WHITE composition:
+ *   "OUR" (solid black)
+ *   "WELLNESS" (vivid red)
+ *   "SERVICES" (solid black)
+ * - Solid black rectangular panel for supporting copy
+ * - High-contrast right-side editorial content
+ * - Improved bottom secondary goal statement
+ * - Protected chair safe zone across all 16 sequence frames
+ * - Spatially static UI during GSAP ScrollTrigger rotation
  */
 
-/* Navbar Overlay */
-.dwc-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: var(--navbar-height);
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--container-padding);
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
-  pointer-events: auto;
-}
+/* ==========================================================================
+   Hero Section Base & Canvas
+   ========================================================================== */
 
-.dwc-navbar__logo {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: var(--color-white);
-}
-
-.dwc-navbar__logo-main {
-  font-size: var(--font-size-base);
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.dwc-navbar__logo-sub {
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  font-weight: 400;
-  margin-top: 1px;
-}
-
-.dwc-navbar__nav {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-md);
-  list-style: none;
-}
-
-.dwc-navbar__link {
-  font-size: var(--font-size-xs);
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-.dwc-navbar__link:hover {
-  color: var(--color-white);
-}
-
-.dwc-navbar__cta {
-  font-size: var(--font-size-xs);
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--color-white);
-  background: transparent;
-  border: 1px solid var(--color-border);
-  padding: 0.6rem 1.4rem;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  text-decoration: none;
-}
-
-.dwc-navbar__cta:hover {
-  background: var(--color-white);
-  color: var(--color-bg-black);
-  border-color: var(--color-white);
-}
-
-/* Hero Main Section */
 .hero-section {
   position: relative;
   width: 100%;
@@ -93,7 +26,6 @@
   background-color: var(--color-bg-black);
 }
 
-/* Hero HTML5 Canvas */
 .hero-canvas {
   position: absolute;
   top: 0;
@@ -105,143 +37,542 @@
   pointer-events: none;
 }
 
-/* Hero Content Overlay */
-.hero-content {
+/* ==========================================================================
+   Swiss UI Overlay Container (Static on top of canvas)
+   ========================================================================== */
+
+.hero-ui-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: calc(var(--navbar-height) + var(--spacing-sm)) var(--container-padding) var(--spacing-md);
+  z-index: 10;
   pointer-events: none;
   box-sizing: border-box;
 }
 
-/* Top Hero Subtitle */
-.hero-content__header {
-  text-align: left;
-  max-width: 480px;
-}
-
-.hero-content__badge {
-  display: inline-block;
-  font-size: var(--font-size-xs);
-  font-weight: 500;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--color-text-dim);
-  margin-bottom: var(--spacing-xs);
-}
-
-.hero-content__title {
-  font-size: clamp(2.5rem, 5vw, var(--font-size-hero));
-  font-weight: 300;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  color: var(--color-white);
-  text-transform: uppercase;
-}
-
-.hero-content__title span {
-  display: block;
-  font-weight: 600;
-  color: var(--color-off-white);
-}
-
-/* Hero Bottom Bar */
-.hero-content__footer {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+.hero-swiss-container {
   width: 100%;
+  height: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 2rem var(--container-padding) 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 
-.hero-content__spec {
-  max-width: 320px;
+/* ==========================================================================
+   Header: Brand, Navigation, Action
+   LEFT: DANIEL WELLNESS CENTER (Distinctive Swiss Typographic Lockup)
+   CENTER: ABOUT / THERAPY / RECOVERY
+   RIGHT: BOOK APPOINTMENT (Outlined rectangular button linking to #cta)
+   ========================================================================== */
+
+.hero-header {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 1.5rem;
+  align-items: flex-start;
+  width: 100%;
+  z-index: 20;
 }
 
-.hero-content__spec-label {
-  font-size: var(--font-size-xs);
+/* Distinctive Left Brand Lockup (Cols 1 - 4) */
+.hero-header__brand {
+  grid-column: 1 / 4;
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.hero-header__brand-accent {
+  width: 3px;
+  background-color: var(--color-accent-red);
+  flex-shrink: 0;
+}
+
+.hero-header__brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero-header__brand-primary {
+  font-family: var(--font-family-primary);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.hero-header__brand-sub {
+  font-family: var(--font-family-primary);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  color: #1a1c1b;
+}
+
+/* Center Navigation: ABOUT, THERAPY, RECOVERY (Cols 5 - 9) */
+.hero-header__nav {
+  grid-column: 5 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  padding-top: 0.35rem;
+}
+
+.hero-header__nav-list {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-header__link {
+  font-family: var(--font-family-primary);
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-text-dim);
-  margin-bottom: 4px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
-.hero-content__spec-value {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
-  font-weight: 300;
-  letter-spacing: 0.05em;
+.hero-header__link:hover {
+  color: #ffffff;
 }
 
-/* Floating Scroll Indicator */
-.hero-content__scroll-indicator {
+/* Right Action: BOOK APPOINTMENT (Cols 10 - 12) */
+.hero-header__actions {
+  grid-column: 10 / 13;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  pointer-events: auto;
+  padding-top: 0.15rem;
+}
+
+.hero-header__cta {
+  font-family: var(--font-family-primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  padding: 0.65rem 1.4rem;
+  border-radius: 0;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.hero-header__cta:hover {
+  background-color: #ffffff;
+  color: #0a0a0a;
+  border-color: #ffffff;
+}
+
+/* ==========================================================================
+   Middle Row:
+   Cols 1 - 4: LEFT CONTENT ZONE (Bold Headline + Black Rectangular Panel)
+   Cols 4 - 9: CHAIR SAFE ZONE (Protected, No Text Overlap in any frame)
+   Cols 10 - 12: RIGHT CONTENT ZONE (Personalized Needs Editorial Block)
+   ========================================================================== */
+
+.hero-middle-body {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 1.5rem;
+  align-items: center;
+  flex: 1;
+  margin: 1.25rem 0;
+  width: 100%;
+}
+
+/* --- Left Content Zone (Cols 1 - 4) --- */
+.hero-left-content {
+  grid-column: 1 / 4;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 8px;
+  max-width: 380px;
+  pointer-events: auto;
 }
 
-.hero-content__scroll-text {
-  font-size: 0.7rem;
-  letter-spacing: 0.25em;
+/* Main Dominant Headline: Impactful Bold Swiss Typography (Black + Vivid Red + Black) */
+.hero-left-content__title {
+  font-family: var(--font-family-primary);
+  font-size: clamp(3.15rem, 4.85vw, 5.1rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.038em;
+  margin: 0 0 1.75rem 0;
   text-transform: uppercase;
-  color: var(--color-text-dim);
+}
+
+.hero-left-content__title-line {
+  display: block;
+  font-weight: 700;
+}
+
+.hero-left-content__title-line--black {
+  color: #000000;
+}
+
+.hero-left-content__title-line--red {
+  color: var(--color-accent-red);
+}
+
+/* Supporting Content inside Solid Black Rectangular Panel */
+.hero-left-content__panel {
+  background-color: #000000;
+  border-left: 3px solid var(--color-accent-red);
+  border-radius: 0;
+  padding: 1.15rem 1.4rem;
+  max-width: 360px;
+  box-sizing: border-box;
+}
+
+.hero-left-content__panel-text {
+  font-family: var(--font-family-primary);
+  font-size: 0.9375rem;
   font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0.015em;
+  color: #ffffff;
+  margin: 0;
+  text-align: left;
 }
 
-.hero-content__scroll-line {
-  width: 1px;
-  height: 36px;
-  background: linear-gradient(to bottom, var(--color-white), transparent);
-  animation: scrollPulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+/* --- Chair Safe Zone (Cols 4 - 9) --- */
+.hero-chair-safe-zone {
+  grid-column: 4 / 10;
+  pointer-events: none;
 }
 
-@keyframes scrollPulse {
+/* --- Right Content Zone (Cols 10 - 12) --- */
+.hero-right-content {
+  grid-column: 10 / 13;
+  display: flex;
+  flex-direction: column;
+  max-width: 310px;
+  justify-self: end;
+  pointer-events: auto;
+}
+
+.hero-right-content__rule {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 1.25rem;
+}
+
+.hero-right-content__heading {
+  font-family: var(--font-family-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 0.85rem 0;
+}
+
+.hero-right-content__heading-line {
+  display: block;
+}
+
+.hero-right-content__text {
+  font-family: var(--font-family-primary);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.015em;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Bottom Row: Lower Safe Area
+   Left: Secondary Goal Content (Cols 1 - 8)
+   Right: Scroll Indicator (Cols 9 - 12)
+   ========================================================================== */
+
+.hero-bottom-row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 1.5rem;
+  align-items: flex-end;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 1.25rem;
+  z-index: 20;
+}
+
+/* Secondary Goal Content (Cols 1 - 8) */
+.hero-secondary-content {
+  grid-column: 1 / 8;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  pointer-events: auto;
+  max-width: 540px;
+}
+
+.hero-secondary-content__accent {
+  width: 3px;
+  height: 16px;
+  background-color: var(--color-accent-red);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.hero-secondary-content__text {
+  font-family: var(--font-family-primary);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0.015em;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+/* Scroll To Rotate Indicator (Cols 9 - 12) */
+.hero-scroll-indicator {
+  grid-column: 9 / 13;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  pointer-events: auto;
+  white-space: nowrap;
+}
+
+.hero-scroll-indicator__text {
+  font-family: var(--font-family-primary);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+}
+
+.hero-scroll-indicator__hairline {
+  width: 36px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.4);
+  animation: hairlinePulse 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  flex-shrink: 0;
+}
+
+@keyframes hairlinePulse {
   0% {
-    transform: scaleY(0);
-    transform-origin: top;
-    opacity: 0;
+    transform: scaleX(0.4);
+    transform-origin: left;
+    opacity: 0.3;
   }
   50% {
-    transform: scaleY(1);
-    transform-origin: top;
-    opacity: 1;
+    transform: scaleX(1);
+    transform-origin: left;
+    opacity: 0.9;
   }
   100% {
-    transform: scaleY(0);
-    transform-origin: bottom;
-    opacity: 0;
+    transform: scaleX(0.4);
+    transform-origin: right;
+    opacity: 0.3;
   }
 }
 
-/* Responsive Media Queries */
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+/* Tablet (<= 1024px) */
+@media (max-width: 1024px) {
+  .hero-header__brand {
+    grid-column: 1 / 4;
+  }
+
+  .hero-header__nav {
+    grid-column: 4 / 9;
+  }
+
+  .hero-header__nav-list {
+    gap: 1.5rem;
+  }
+
+  .hero-header__actions {
+    grid-column: 9 / 13;
+  }
+
+  .hero-left-content {
+    grid-column: 1 / 5;
+    max-width: 340px;
+  }
+
+  .hero-left-content__title {
+    font-size: 3.25rem;
+  }
+
+  .hero-chair-safe-zone {
+    grid-column: 5 / 9;
+  }
+
+  .hero-right-content {
+    grid-column: 9 / 13;
+    max-width: 270px;
+  }
+
+  .hero-secondary-content {
+    grid-column: 1 / 7;
+  }
+
+  .hero-scroll-indicator {
+    grid-column: 7 / 13;
+  }
+}
+
+/* Dedicated Mobile Swiss Layout (<= 768px) */
 @media (max-width: 768px) {
-  .dwc-navbar__nav {
+  .hero-swiss-container {
+    padding: 1.25rem 1.25rem 1rem;
+    justify-content: flex-start;
+    position: relative;
+  }
+
+  .hero-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-header__brand-accent {
+    width: 2px;
+  }
+
+  .hero-header__brand-primary {
+    font-size: 0.8125rem;
+    letter-spacing: 0.14em;
+  }
+
+  .hero-header__brand-sub {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+  }
+
+  .hero-header__nav {
     display: none;
   }
 
-  .hero-content {
-    padding-bottom: var(--spacing-sm);
+  .hero-header__cta {
+    font-size: 0.625rem;
+    letter-spacing: 0.14em;
+    padding: 0.4rem 0.85rem;
   }
 
-  .hero-content__title {
-    font-size: 2.25rem;
-  }
-
-  .hero-content__footer {
+  /* Place typography strictly in upper negative space above chair */
+  .hero-middle-body {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-sm);
+    justify-content: flex-start;
+    margin: 1.15rem 0 0 0;
+    flex: none;
+    max-width: 290px;
   }
 
-  .hero-content__scroll-indicator {
-    align-self: center;
+  .hero-left-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-left-content__title {
+    font-size: clamp(1.85rem, 7.2vw, 2.45rem);
+    font-weight: 700;
+    line-height: 0.92;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-left-content__panel {
+    padding: 0.75rem 1rem;
+    border-left: 2px solid var(--color-accent-red);
+    max-width: 280px;
+  }
+
+  .hero-left-content__panel-text {
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+
+  .hero-chair-safe-zone {
+    display: none;
+  }
+
+  .hero-right-content {
+    display: none;
+  }
+
+  /* Anchor secondary statement and scroll indicator cleanly to the bottom floor */
+  .hero-bottom-row {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .hero-secondary-content {
+    max-width: 100%;
+    gap: 8px;
+  }
+
+  .hero-secondary-content__accent {
+    width: 2px;
+    height: 12px;
+    margin-top: 2px;
+  }
+
+  .hero-secondary-content__text {
+    font-size: 0.65rem;
+    line-height: 1.35;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .hero-scroll-indicator {
+    justify-content: flex-end;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .hero-scroll-indicator__text {
+    font-size: 0.5625rem;
+    letter-spacing: 0.16em;
+  }
+
+  .hero-scroll-indicator__hairline {
+    width: 18px;
   }
 }
