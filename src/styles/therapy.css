@@ -22,18 +22,18 @@
 
 .therapy-section {
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
   background-color: #EBEBE6;
   color: #000000;
   font-family: var(--font-family-primary);
   position: relative;
-  overflow-x: hidden;
 }
 
 .therapy-container {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* ==========================================================================
@@ -129,11 +129,15 @@
 }
 
 .therapy-header__subtag {
+  display: block;
   font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.24em;
   color: rgba(0, 0, 0, 0.5);
   text-transform: uppercase;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* Right Philosophy Block (Cols 8 - 12) */
@@ -215,6 +219,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   margin-bottom: 2.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -223,6 +229,7 @@
 .therapy-apparatus__badge-row {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
@@ -250,6 +257,9 @@
   letter-spacing: 0.2em;
   color: rgba(255, 255, 255, 0.4);
   text-transform: uppercase;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .therapy-apparatus__grid {
@@ -814,6 +824,9 @@
     grid-column: 1 / -1;
     padding-left: 0;
     border-left: none;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
   }
 
   .therapy-apparatus__grid {
@@ -824,10 +837,16 @@
   .therapy-apparatus__info,
   .therapy-apparatus__media-box {
     grid-column: 1 / -1;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .therapy-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    max-width: 100%;
   }
 
   .therapy-grid__column {
@@ -841,21 +860,29 @@
   .therapy-card--05 { order: 5; }
   .therapy-card--06 { order: 6; }
 
+  .therapy-card,
   .therapy-card--large,
   .therapy-card--small,
   .therapy-card--standard {
     min-height: auto;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
     padding: 2rem 1.5rem;
+    box-sizing: border-box;
   }
 
   .therapy-card--large .therapy-card__img-box,
   .therapy-card--small .therapy-card__img-box,
-  .therapy-card--standard .therapy-card__img-box {
-    height: 240px;
+  .therapy-card--standard .therapy-card__img-box,
+  .therapy-card__img-box {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     aspect-ratio: 16 / 9;
+    box-sizing: border-box;
   }
 }
-
 
 @media (max-width: 768px) {
   .therapy-top-bar,
@@ -866,18 +893,28 @@
     gap: 0.5rem;
   }
 
-  .therapy-top-bar__right {
-    gap: 1rem;
+  .therapy-top-bar__left,
+  .therapy-top-bar__right,
+  .therapy-footer-bar__left,
+  .therapy-footer-bar__right {
+    max-width: 100%;
     flex-wrap: wrap;
+    gap: 0.75rem;
+    word-break: break-word;
   }
 
   .therapy-header-zone,
   .therapy-apparatus-section,
   .therapy-directory-header {
     padding: 2rem 1.25rem;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
-  .therapy-card {
+  .therapy-card,
+  .therapy-card--large,
+  .therapy-card--small,
+  .therapy-card--standard {
     padding: 1.5rem 1.25rem;
   }
 
@@ -885,6 +922,11 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
+  }
+
+  .therapy-apparatus__media-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .therapy-apparatus__spec-row {
@@ -922,29 +964,60 @@
 
   .therapy-header__title {
     font-size: clamp(2rem, 7vw, 3rem);
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
-  .therapy-card {
-    padding: 1.25rem 1rem;
+  .therapy-apparatus__title {
+    font-size: clamp(2rem, 7vw, 2.75rem);
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
+  .therapy-apparatus__media-box {
+    padding: 1rem;
+  }
+
+  .therapy-card,
   .therapy-card--large,
   .therapy-card--small,
   .therapy-card--standard {
     padding: 1.25rem 1rem;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .therapy-card__title {
-    font-size: clamp(1.4rem, 5.5vw, 2rem);
+    font-size: clamp(1.35rem, 5.5vw, 1.85rem);
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
+  .therapy-card--large .therapy-card__img-box,
+  .therapy-card--small .therapy-card__img-box,
+  .therapy-card--standard .therapy-card__img-box,
   .therapy-card__img-box {
-    height: 200px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
     margin-bottom: 1.25rem;
+    box-sizing: border-box;
   }
 
   .therapy-card__watermark {
-    font-size: 3rem;
+    font-size: 2.75rem;
+  }
+
+  .therapy-card__tag-row {
+    gap: 0.5rem;
+  }
+
+  .therapy-card__action-text {
+    font-size: 0.625rem;
+    letter-spacing: 0.15em;
   }
 
   .therapy-apparatus__spec-row {
@@ -959,7 +1032,44 @@
   }
 
   .therapy-apparatus__img-container {
-    height: 240px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 360px) {
+  .therapy-top-bar,
+  .therapy-footer-bar,
+  .therapy-header-zone,
+  .therapy-apparatus-section,
+  .therapy-directory-header {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .therapy-card,
+  .therapy-card--large,
+  .therapy-card--small,
+  .therapy-card--standard {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .therapy-apparatus__spec-row {
+    grid-template-columns: 85px 1fr;
+    font-size: 0.65rem;
+  }
+
+  .therapy-card__title {
+    font-size: 1.25rem;
+  }
+
+  .therapy-card__watermark {
+    font-size: 2.2rem;
+  }
+
+  .therapy-card__action-text {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
   }
 }
 

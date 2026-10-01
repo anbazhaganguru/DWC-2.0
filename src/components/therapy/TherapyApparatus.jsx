@@ -64,11 +64,15 @@ export function TherapyApparatus() {
           </div>
 
           <div className="therapy-apparatus__img-container">
-            <img 
-              src="/images/cinematic/hero/interpolated/desktop/frame_001.png" 
-              alt="iROBO Massage Chair Perspective" 
-              className="therapy-apparatus__img" 
+            <img
+              src="/images/therapy/irobo_chair_studio_original.png"
+              alt="iROBO Massage Chair Perspective"
+              className="therapy-apparatus__img"
               loading="lazy"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = '/images/cinematic/hero/interpolated/desktop/frame_001.png';
+              }}
             />
           </div>
 

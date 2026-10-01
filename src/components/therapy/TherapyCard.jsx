@@ -38,6 +38,9 @@ export function TherapyCard({
           alt={title} 
           className="therapy-card__img" 
           loading="lazy" 
+          onError={(_e) => {
+            console.error(`[TherapyCard] Failed to load image: ${image} for ${title}`);
+          }}
         />
         <div className="therapy-card__img-overlay-tag">
           {imageTag}

@@ -23,7 +23,7 @@ const modalitiesData = [
     badge: 'NEURO-RESTORATIVE',
     title: 'REFLEXOLOGY',
     subtitle: '“Restore Balance. Relax Deeply. Feel Refreshed.”',
-    image: '/images/therapy/reflexology.jpg',
+    image: '/images/therapy/modality_01_reflexology_original.png',
     imageTag: 'REFLEX STIMULATION // SOLE & ACUPOINTS',
     isDark: false,
     size: 'large'
@@ -33,7 +33,7 @@ const modalitiesData = [
     badge: 'KINESIOLOGY',
     title: 'TAPING THERAPY',
     subtitle: '“Support Your Movement. Stay Active With Confidence.”',
-    image: '/images/therapy/taping.jpg',
+    image: '/images/therapy/modality_02_taping_original.png',
     imageTag: 'MYOFASCIAL STABILITY PROTOCOL',
     isDark: false,
     size: 'small'
@@ -43,7 +43,7 @@ const modalitiesData = [
     badge: 'CRYOTHERMIC',
     title: 'ICE CUPPING THERAPY',
     subtitle: '“Cryogenic Suction Modality”',
-    image: '/images/therapy/ice_cupping.jpg',
+    image: '/images/therapy/modality_03_ice_cupping_original.png',
     imageTag: 'THERMAL GRADIENT // SUB-ZERO VACUUM',
     isDark: false,
     size: 'small'
@@ -53,7 +53,7 @@ const modalitiesData = [
     badge: 'HYDRO-THERMAL',
     title: 'STEAM BATH',
     subtitle: '“Step Into Warmth. Leave Feeling Relaxed.”',
-    image: '/images/therapy/steam_bath.jpg',
+    image: '/images/therapy/modality_04_steam_bath_original.png',
     imageTag: 'ATMOSPHERIC MIST // ARCHITECTURAL CALM',
     isDark: true,
     size: 'large'
@@ -63,7 +63,7 @@ const modalitiesData = [
     badge: 'ORGANIC TACTILE',
     title: 'BAMBOO THERAPY',
     subtitle: '“Experience the Natural Power of Bamboo. Deep Relaxation Starts Here.”',
-    image: '/images/therapy/bamboo.jpg',
+    image: '/images/therapy/modality_05_bamboo_original.png',
     imageTag: 'WARM HOLLOW STALKS // DEEP TISSUE RELEASE',
     isDark: false,
     size: 'standard'
@@ -73,7 +73,7 @@ const modalitiesData = [
     badge: 'DECOMPRESSION',
     title: 'CUPPING THERAPY',
     subtitle: '“Release Tension. Relax Your Body. Support Your Wellness.”',
-    image: '/images/therapy/cupping.jpg',
+    image: '/images/therapy/modality_06_cupping_original.png',
     imageTag: 'MYOFASCIAL DECOMPRESSION // SUCTION MATRIX',
     isDark: false,
     size: 'standard'
