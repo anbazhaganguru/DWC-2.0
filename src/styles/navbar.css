@@ -1,0 +1,661 @@
+/**
+ * Daniel Wellness Center (DWC 2.0) - Sterling Gate Kinetic Navigation Stylesheet
+ * Strict Swiss International Typographic & Editorial Design
+ *
+ * - Minimalist closed navbar bar (Brand Left, Kinetic MENU/CLOSE Right)
+ * - Multi-layered staggered monochrome backdrop panels (#1f1f21, #121214, #070708)
+ * - Restrained DWC red accent (#e62217)
+ * - Large responsive editorial typography in IBM Plex Sans
+ * - Precision hover motion & line reveal
+ */
+
+/* ==========================================================================
+   1. Fixed Top Navbar Bar
+   ========================================================================== */
+.dwc-kinetic-nav-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.dwc-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: clamp(64px, 8vh, 88px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  background: transparent;
+  transition: background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              backdrop-filter 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+/* Sticky black state: Active when user reaches the About section and beyond */
+.dwc-navbar--sticky:not(.dwc-navbar--menu-open),
+.dwc-navbar--scrolled:not(.dwc-navbar--menu-open) {
+  background: rgba(8, 8, 8, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.dwc-navbar__inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 3.5vw, 6rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Left Brand Lockup */
+.dwc-navbar__brand {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(8px, 0.7vw, 16px);
+  text-decoration: none;
+  pointer-events: auto;
+  user-select: none;
+  transition: opacity 0.2s ease;
+}
+
+.dwc-navbar__brand:hover {
+  opacity: 0.85;
+}
+
+.dwc-navbar__brand-accent {
+  width: clamp(3px, 0.2vw, 5px);
+  background-color: var(--color-accent-red, #e62217);
+  flex-shrink: 0;
+}
+
+.dwc-navbar__brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Default state over Hero: Left half of Hero is white, so text is bold black */
+.dwc-navbar__brand-primary {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: clamp(0.8125rem, 0.9vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: #000000;
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dwc-navbar__brand-sub {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: clamp(0.5625rem, 0.62vw, 0.95rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  color: #1a1c1b;
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* When menu is open or in sticky/scrolled state past Hero, brand text turns crisp white */
+.dwc-navbar--menu-open .dwc-navbar__brand-primary,
+.dwc-navbar--sticky .dwc-navbar__brand-primary,
+.dwc-navbar--scrolled .dwc-navbar__brand-primary {
+  color: #ffffff;
+}
+
+.dwc-navbar--menu-open .dwc-navbar__brand-sub,
+.dwc-navbar--sticky .dwc-navbar__brand-sub,
+.dwc-navbar--scrolled .dwc-navbar__brand-sub {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Detail Page Center Navigation & Actions (Section 4) */
+.dwc-navbar__center-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 2.5vw, 3.5rem);
+  pointer-events: auto;
+}
+
+.dwc-navbar__center-link {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: clamp(0.75rem, 0.82vw, 0.875rem);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.dwc-navbar__center-link:hover {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.dwc-navbar__right-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: auto;
+}
+
+.dwc-navbar__book-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--color-accent-red, #e62217);
+  color: #ffffff;
+  border: none;
+  padding: clamp(6px, 0.8vh, 10px) clamp(12px, 1.2vw, 18px);
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: clamp(0.6875rem, 0.72vw, 0.8125rem);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.dwc-navbar__book-btn:hover {
+  background-color: #ff3326;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 820px) {
+  .dwc-navbar__center-links {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .dwc-navbar__book-btn {
+    display: none;
+  }
+}
+
+/* Right Menu Toggle Trigger */
+.dwc-navbar__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: clamp(6px, 0.8vh, 10px) clamp(12px, 1.1vw, 18px);
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(18, 18, 18, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  cursor: pointer;
+  pointer-events: auto;
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  transition: all var(--transition-fast, 0.2s cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.dwc-navbar__toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+}
+
+.dwc-navbar__toggle:focus-visible {
+  outline: 2px solid var(--color-accent-red, #e62217);
+  outline-offset: 2px;
+}
+
+.dwc-navbar__toggle--open {
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Animated Label Text Container: MENU <-> CLOSE */
+.dwc-navbar__toggle-text {
+  position: relative;
+  overflow: hidden;
+  height: 1.15em;
+  width: 48px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.dwc-navbar__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-size: clamp(0.6875rem, 0.75vw, 0.8125rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffffff;
+  display: block;
+  line-height: 1.15;
+  text-align: left;
+}
+
+/* Rotating Icon: + <-> × */
+.dwc-navbar__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: #ffffff;
+  transform-origin: center center;
+}
+
+.dwc-navbar__icon svg {
+  display: block;
+}
+
+/* ==========================================================================
+   2. Fullscreen Kinetic Menu Overlay
+   ========================================================================== */
+.dwc-kinetic-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 950;
+  overflow: hidden;
+  visibility: hidden;
+  box-sizing: border-box;
+}
+
+/* Staggered Background Panels */
+.dwc-nav-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.dwc-nav-layer--1 {
+  background-color: #1f1f21;
+  z-index: 1;
+}
+
+.dwc-nav-layer--2 {
+  background-color: #121214;
+  z-index: 2;
+}
+
+.dwc-nav-layer--main {
+  background-color: #070708;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* Subtle Swiss Grid Lines */
+.dwc-nav-grid-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dwc-nav-grid-line--vert {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 58%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dwc-nav-grid-line--horiz {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Menu Content Container */
+.dwc-nav-menu-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(5.5rem, 11vh, 8.5rem) clamp(1.5rem, 3.5vw, 6rem) clamp(2rem, 5vh, 4rem);
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  column-gap: clamp(2rem, 5vw, 6rem);
+  row-gap: 3rem;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   3. Menu Links (5 Exact Targets: HOME, ABOUT, THERAPY, RECOVERY, CTA)
+   ========================================================================== */
+.dwc-nav-menu-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.dwc-nav-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.8vh, 1.75rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dwc-nav-menu-item {
+  display: block;
+}
+
+.dwc-nav-menu-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: clamp(12px, 1.5vw, 24px);
+  text-decoration: none;
+  position: relative;
+  padding: 4px 0;
+  user-select: none;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s ease;
+}
+
+.dwc-nav-menu-link:focus-visible {
+  outline: 2px solid var(--color-accent-red, #e62217);
+  outline-offset: 4px;
+}
+
+/* Hover Treatment: dim non-hovered, shift hovered, expand red hairline */
+.dwc-nav-menu-list:hover .dwc-nav-menu-link {
+  opacity: 0.35;
+}
+
+.dwc-nav-menu-list .dwc-nav-menu-link:hover {
+  opacity: 1;
+  transform: translateX(16px);
+}
+
+.dwc-nav-menu-list .dwc-nav-menu-link:hover .dwc-nav-menu-text {
+  color: #ffffff;
+}
+
+.dwc-nav-menu-list .dwc-nav-menu-link:hover .dwc-nav-menu-hover-line {
+  transform: scaleX(1);
+}
+
+/* Numbering (01 - 05): Visually Secondary */
+.dwc-nav-menu-num {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: clamp(0.75rem, 0.85vw, 1.1rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+}
+
+/* Kinetic Mask for Typography: Generous padding prevents any letter clipping */
+.dwc-nav-menu-mask {
+  overflow: hidden;
+  display: inline-block;
+  padding: 4px 0 10px 0;
+  line-height: 1.1;
+}
+
+/* Large Editorial Menu Typography */
+.dwc-nav-menu-text {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: clamp(2.4rem, 5.2vw, 5.25rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  display: inline-block;
+  line-height: 1.1;
+  transition: color 0.25s ease;
+}
+
+/* Subtle Geometric Hover Indicator */
+.dwc-nav-menu-hover-line {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent-red, #e62217);
+  display: block;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   4. Right / Secondary Editorial Brand Content
+   ========================================================================== */
+.dwc-nav-editorial {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 440px;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  padding-left: clamp(2rem, 3.5vw, 4.5rem);
+  box-sizing: border-box;
+}
+
+.dwc-nav-editorial__top {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dwc-nav-editorial__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.dwc-nav-editorial__badge-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-red, #e62217);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dwc-nav-editorial__heading {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: clamp(1.15rem, 1.4vw, 1.65rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.dwc-nav-editorial__desc {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: clamp(0.75rem, 0.8vw, 0.875rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.dwc-nav-editorial__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: clamp(2rem, 4vh, 3.5rem);
+  padding-top: clamp(1.25rem, 2vh, 2rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dwc-nav-editorial__coord {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.dwc-nav-editorial__label {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.dwc-nav-editorial__val {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+.dwc-nav-editorial__link {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: color var(--transition-fast, 0.2s ease);
+}
+
+.dwc-nav-editorial__link:hover {
+  color: var(--color-accent-red, #e62217);
+}
+
+/* ==========================================================================
+   5. Responsive Breakpoints
+   ========================================================================== */
+
+/* Tablet (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .dwc-nav-menu-content {
+    grid-template-columns: 1fr;
+    row-gap: 2.5rem;
+    padding-top: clamp(5rem, 9vh, 7rem);
+  }
+
+  .dwc-nav-grid-line--vert {
+    display: none;
+  }
+
+  .dwc-nav-editorial {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-left: 0;
+    padding-top: 1.75rem;
+    max-width: 100%;
+  }
+
+  .dwc-nav-editorial__footer {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+
+/* Dedicated Mobile (< 768px) */
+@media (max-width: 767px) {
+  .dwc-navbar {
+    height: 60px;
+  }
+
+  .dwc-navbar__inner {
+    padding: 0 1.25rem;
+  }
+
+  .dwc-navbar__brand-accent {
+    width: 2px;
+  }
+
+  .dwc-navbar__brand-primary {
+    font-size: 0.8125rem;
+  }
+
+  .dwc-navbar__brand-sub {
+    font-size: 0.5625rem;
+  }
+
+  .dwc-navbar__toggle {
+    padding: 6px 10px;
+    gap: 8px;
+  }
+
+  .dwc-navbar__toggle-text {
+    width: 42px;
+  }
+
+  .dwc-navbar__label {
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+  }
+
+  .dwc-nav-menu-content {
+    padding: 72px 1.25rem 2rem 1.25rem;
+    row-gap: 2rem;
+  }
+
+  .dwc-nav-menu-list {
+    gap: 0.75rem;
+  }
+
+  .dwc-nav-menu-text {
+    font-size: clamp(1.85rem, 7.5vw, 2.75rem);
+    letter-spacing: -0.01em;
+  }
+
+  .dwc-nav-menu-num {
+    font-size: 0.6875rem;
+  }
+
+  .dwc-nav-editorial {
+    padding-top: 1.25rem;
+  }
+
+  .dwc-nav-editorial__heading {
+    font-size: 1rem;
+  }
+
+  .dwc-nav-editorial__desc {
+    font-size: 0.75rem;
+  }
+
+  .dwc-nav-editorial__footer {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 1rem;
+    padding-top: 0.85rem;
+  }
+
+  .dwc-nav-editorial__val,
+  .dwc-nav-editorial__link {
+    font-size: 0.75rem;
+  }
+}

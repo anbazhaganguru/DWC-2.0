@@ -448,7 +448,6 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   background-color: #EBEBE6;
 }
 
@@ -510,6 +509,8 @@
   position: relative;
   transition: background-color var(--transition-fast);
   box-sizing: border-box;
+  text-decoration: none;
+  border-top: none;
 }
 
 .therapy-card:hover {
@@ -532,8 +533,19 @@
   margin-bottom: 0.75rem;
 }
 
+.therapy-card--large .therapy-card-number-value,
 .therapy-card--large .therapy-card__watermark {
   font-size: 5.5rem;
+}
+
+.therapy-card--large .therapy-card-number-line,
+.therapy-card--large .therapy-card__accent-line {
+  width: 38px;
+}
+
+.therapy-card--large:hover .therapy-card-number-line,
+.therapy-card--large:hover .therapy-card__accent-line {
+  width: 58px;
 }
 
 .therapy-card--large .therapy-card__img-box {
@@ -559,8 +571,19 @@
   margin-bottom: 0.5rem;
 }
 
+.therapy-card--small .therapy-card-number-value,
 .therapy-card--small .therapy-card__watermark {
   font-size: 3.2rem;
+}
+
+.therapy-card--small .therapy-card-number-line,
+.therapy-card--small .therapy-card__accent-line {
+  width: 26px;
+}
+
+.therapy-card--small:hover .therapy-card-number-line,
+.therapy-card--small:hover .therapy-card__accent-line {
+  width: 40px;
 }
 
 .therapy-card--small .therapy-card__img-box {
@@ -586,8 +609,19 @@
   margin-bottom: 0.65rem;
 }
 
+.therapy-card--standard .therapy-card-number-value,
 .therapy-card--standard .therapy-card__watermark {
   font-size: 4rem;
+}
+
+.therapy-card--standard .therapy-card-number-line,
+.therapy-card--standard .therapy-card__accent-line {
+  width: 32px;
+}
+
+.therapy-card--standard:hover .therapy-card-number-line,
+.therapy-card--standard:hover .therapy-card__accent-line {
+  width: 48px;
 }
 
 .therapy-card--standard .therapy-card__img-box {
@@ -615,7 +649,7 @@
 .therapy-card__header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 1.5rem;
   position: relative;
   width: 100%;
@@ -651,23 +685,85 @@
   color: #ffffff;
 }
 
+/* Service Number + Accent Underline Unit (Visual Identity Marker) */
+.therapy-card-number,
+.therapy-card__number-unit {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  user-select: none;
+  margin-top: -0.25rem;
+  position: relative;
+  z-index: 2;
+}
+
+.therapy-card-number-value,
 .therapy-card__watermark {
   font-size: 4rem;
   font-weight: 800;
-  line-height: 0.8;
+  line-height: 0.82;
   letter-spacing: -0.04em;
-  color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.24);
   user-select: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+  display: block;
 }
 
+.therapy-card--dark .therapy-card-number-value,
 .therapy-card--dark .therapy-card__watermark {
-  color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
 }
 
-/* Card Body */
+.therapy-card:hover .therapy-card-number-value,
+.therapy-card:hover .therapy-card__watermark {
+  transform: translateY(-2px);
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.therapy-card--dark:hover .therapy-card-number-value,
+.therapy-card--dark:hover .therapy-card__watermark {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Small Horizontal Underline / Accent — Guaranteed Visible (Requirements 1, 2, 3, 5, 6) */
+.therapy-card-number-line,
+.therapy-card__accent-line {
+  display: block !important;
+  width: 32px;
+  height: 2px;
+  background-color: var(--color-accent-red, #E62217);
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+  position: relative;
+  z-index: 3;
+}
+
+.therapy-card--dark .therapy-card-number-line,
+.therapy-card--dark .therapy-card__accent-line {
+  background-color: #FFFFFF !important;
+}
+
+.therapy-card:hover .therapy-card-number-line,
+.therapy-card:hover .therapy-card__accent-line {
+  width: 48px;
+}
+
+/* Card Body: Title/Quote on Left + Number Unit on Right */
 .therapy-card__body {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
   margin-bottom: 2rem;
   width: 100%;
+}
+
+.therapy-card__title-wrap {
+  flex: 1;
+  min-width: 0;
 }
 
 .therapy-card__title {
@@ -679,6 +775,11 @@
   margin: 0 0 0.85rem 0;
   color: #000000;
   word-break: break-word;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.therapy-card:hover .therapy-card__title {
+  transform: translateX(4px);
 }
 
 .therapy-card--dark .therapy-card__title {
@@ -1007,8 +1108,24 @@
     box-sizing: border-box;
   }
 
+  .therapy-card__body {
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .therapy-card-number-value,
   .therapy-card__watermark {
     font-size: 2.75rem;
+  }
+
+  .therapy-card-number-line,
+  .therapy-card__accent-line {
+    width: 24px;
+  }
+
+  .therapy-card:hover .therapy-card-number-line,
+  .therapy-card:hover .therapy-card__accent-line {
+    width: 36px;
   }
 
   .therapy-card__tag-row {
@@ -1063,8 +1180,19 @@
     font-size: 1.25rem;
   }
 
+  .therapy-card-number-value,
   .therapy-card__watermark {
     font-size: 2.2rem;
+  }
+
+  .therapy-card-number-line,
+  .therapy-card__accent-line {
+    width: 20px;
+  }
+
+  .therapy-card:hover .therapy-card-number-line,
+  .therapy-card:hover .therapy-card__accent-line {
+    width: 30px;
   }
 
   .therapy-card__action-text {

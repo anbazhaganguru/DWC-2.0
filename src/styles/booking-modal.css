@@ -1,0 +1,664 @@
+/**
+ * Daniel Wellness Center (DWC 2.0) - Booking Modal Stylesheet
+ * Refined Swiss International Style — Single Guided Form UX
+ *
+ * Clean White / Light Theme with high-contrast monochrome & restrained red accent (#e62217).
+ * Zero nested card clutter, generous whitespace, razor-sharp typography.
+ */
+
+/* ==========================================================================
+   1. Backdrop Overlay
+   ========================================================================== */
+.dwc-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 3vw, 28px);
+  animation: dwcModalBackdropIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-sizing: border-box;
+}
+
+@keyframes dwcModalBackdropIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   2. Main Dialog Container
+   ========================================================================== */
+.dwc-booking-modal {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  max-height: min(92vh, 820px);
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: var(--font-family-primary, 'IBM Plex Sans', -apple-system, sans-serif);
+  animation: dwcModalZoomIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-sizing: border-box;
+}
+
+@keyframes dwcModalZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ==========================================================================
+   3. Modal Header: Eyebrow, Title, Subtitle, Close Button
+   ========================================================================== */
+.dwc-modal-header {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px 16px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #ebebeb;
+  flex-shrink: 0;
+}
+
+.dwc-modal-header__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dwc-modal-header__eyebrow-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dwc-modal-header__accent {
+  width: 12px;
+  height: 2px;
+  background-color: var(--color-accent-red, #e62217);
+  display: inline-block;
+}
+
+.dwc-modal-header__eyebrow {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #666666;
+}
+
+.dwc-modal-header__title {
+  font-size: clamp(1.25rem, 1.8vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0d0d0d;
+  margin: 2px 0 0 0;
+  line-height: 1.2;
+}
+
+.dwc-modal-header__subtitle {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: #555c59;
+  margin: 0;
+}
+
+.dwc-modal-close-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  background: #ffffff;
+  color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all var(--transition-fast, 0.2s ease);
+}
+
+.dwc-modal-close-btn:hover {
+  background: #111111;
+  color: #ffffff;
+  border-color: #111111;
+}
+
+.dwc-modal-close-btn:focus-visible {
+  outline: 2px solid var(--color-accent-red, #e62217);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   4. Form Body & Scroll Area
+   ========================================================================== */
+.dwc-modal-form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.dwc-modal-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overscroll-behavior: contain;
+}
+
+/* Custom Minimal Scrollbar */
+.dwc-modal-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+.dwc-modal-scroll-area::-webkit-scrollbar-track {
+  background: #f8f8f8;
+}
+.dwc-modal-scroll-area::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 3px;
+}
+.dwc-modal-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: #b0b0b0;
+}
+
+/* Generic Step Label */
+.dwc-step-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #111111;
+  margin-bottom: 8px;
+}
+
+.dwc-step-num {
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--color-accent-red, #e62217);
+  background: rgba(230, 34, 23, 0.08);
+  padding: 2px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+}
+
+.dwc-form-step {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   5. Step 1: Segmented Service Category Control
+   ========================================================================== */
+.dwc-segmented-control {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #f2f2f4;
+  border: 1px solid #e5e5e8;
+  border-radius: 4px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.dwc-segment-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 12px;
+  border-radius: 3px;
+  border: none;
+  background: transparent;
+  color: #555c59;
+  cursor: pointer;
+  transition: all var(--transition-fast, 0.18s ease);
+  text-align: center;
+  user-select: none;
+}
+
+.dwc-segment-tab:hover:not(.dwc-segment-tab--active) {
+  color: #111111;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.dwc-segment-tab--active {
+  background: #000000;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.dwc-segment-tab__title {
+  font-family: var(--font-family-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.dwc-segment-tab__meta {
+  font-size: 0.6875rem;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.dwc-segment-tab:focus-visible {
+  outline: 2px solid var(--color-accent-red, #e62217);
+  outline-offset: -2px;
+}
+
+/* ==========================================================================
+   6. Step 2: Compact Pill Selector for Modalities
+   ========================================================================== */
+.dwc-pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dwc-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 4px;
+  border: 1px solid #dcdcdc;
+  background: #ffffff;
+  color: #222222;
+  font-family: var(--font-family-primary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: all var(--transition-fast, 0.18s ease);
+  text-align: left;
+}
+
+.dwc-pill-btn:hover:not(.dwc-pill-btn--active) {
+  border-color: #888888;
+  background: #fafafa;
+  color: #000000;
+}
+
+.dwc-pill-btn--active {
+  background: #000000;
+  border-color: #000000;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.dwc-pill-dot {
+  width: 5px;
+  height: 5px;
+  background-color: var(--color-accent-red, #e62217);
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.dwc-pill-btn:focus-visible {
+  outline: 2px solid var(--color-accent-red, #e62217);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   7. Step 3 & 4: Date & Time Layout
+   ========================================================================== */
+.dwc-form-row--datetime {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.dwc-form-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Inputs Common */
+.dwc-input-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.dwc-input {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 4px;
+  border: 1px solid #dcdcdc;
+  background: #ffffff;
+  color: #111111;
+  font-family: var(--font-family-primary);
+  font-size: 0.8125rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color var(--transition-fast, 0.18s ease);
+}
+
+.dwc-input:focus {
+  border-color: #000000;
+  box-shadow: 0 0 0 1px #000000;
+}
+
+.dwc-input--error {
+  border-color: var(--color-accent-red, #e62217) !important;
+  box-shadow: 0 0 0 1px var(--color-accent-red, #e62217) !important;
+}
+
+.dwc-input--date {
+  color-scheme: light;
+  cursor: pointer;
+}
+
+.dwc-field-error {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-accent-red, #e62217);
+  margin: 4px 0 0 0;
+}
+
+.dwc-input-hint {
+  font-size: 0.6875rem;
+  color: #666666;
+  margin: 4px 0 0 0;
+  line-height: 1.35;
+}
+
+/* 15-Minute Slots Grid */
+.dwc-time-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  max-height: 140px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.dwc-time-grid::-webkit-scrollbar {
+  width: 4px;
+}
+.dwc-time-grid::-webkit-scrollbar-thumb {
+  background: #d8d8d8;
+  border-radius: 2px;
+}
+
+.dwc-time-chip {
+  padding: 6px 4px;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  background: #ffffff;
+  color: #333333;
+  font-family: var(--font-family-primary);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-fast, 0.18s ease);
+  user-select: none;
+}
+
+.dwc-time-chip:hover:not(.dwc-time-chip--active) {
+  border-color: #888888;
+  background: #fafafa;
+  color: #000000;
+}
+
+.dwc-time-chip--active {
+  background: #000000;
+  border-color: #000000;
+  color: #ffffff;
+}
+
+.dwc-time-chip:focus-visible {
+  outline: 2px solid var(--color-accent-red, #e62217);
+  outline-offset: 1px;
+}
+
+.dwc-treatment-time-block {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   8. Client Information Fields
+   ========================================================================== */
+.dwc-form-row--client {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.dwc-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dwc-field-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #555555;
+}
+
+.dwc-required-mark {
+  color: var(--color-accent-red, #e62217);
+}
+
+.dwc-phone-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  background: #ffffff;
+  overflow: hidden;
+  transition: border-color var(--transition-fast, 0.18s ease);
+}
+
+.dwc-phone-wrap:focus-within {
+  border-color: #000000;
+  box-shadow: 0 0 0 1px #000000;
+}
+
+.dwc-phone-wrap--error {
+  border-color: var(--color-accent-red, #e62217) !important;
+  box-shadow: 0 0 0 1px var(--color-accent-red, #e62217) !important;
+}
+
+.dwc-phone-code {
+  padding: 9px 12px;
+  background: #f5f5f7;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #222222;
+  border-right: 1px solid #e0e0e0;
+  user-select: none;
+}
+
+.dwc-input--phone {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* ==========================================================================
+   9. Modal Footer & Submission Action
+   ========================================================================== */
+.dwc-modal-footer {
+  padding: 14px 24px 18px 24px;
+  background: #fcfcfc;
+  border-top: 1px solid #ebebeb;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Live Selection Summary */
+.dwc-modal-summary-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f5f5f7;
+  border: 1px solid #e8e8ea;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  color: #333333;
+}
+
+.dwc-summary-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-red, #e62217);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dwc-summary-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dwc-summary-text strong {
+  color: #000000;
+  font-weight: 600;
+}
+
+/* Primary Button */
+.dwc-modal-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 20px;
+  border-radius: 4px;
+  border: 1px solid #000000;
+  background: #000000;
+  color: #ffffff;
+  font-family: var(--font-family-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-fast, 0.18s ease);
+}
+
+.dwc-modal-submit-btn:hover {
+  background: #222222;
+  border-color: #222222;
+}
+
+.dwc-modal-submit-btn:focus-visible {
+  outline: 2px solid var(--color-accent-red, #e62217);
+  outline-offset: 2px;
+}
+
+.dwc-submit-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.dwc-submit-arrow {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--transition-fast, 0.18s ease);
+}
+
+.dwc-modal-submit-btn:hover .dwc-submit-arrow {
+  transform: translateX(3px);
+}
+
+.dwc-modal-footnote {
+  font-size: 0.6875rem;
+  color: #777777;
+  text-align: center;
+  margin: 0;
+  line-height: 1.35;
+}
+
+/* ==========================================================================
+   10. Responsiveness (Tablet & Mobile)
+   ========================================================================== */
+@media (max-width: 640px) {
+  .dwc-modal-backdrop {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .dwc-booking-modal {
+    max-width: 100%;
+    max-height: 94vh;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .dwc-modal-header {
+    padding: 16px 18px 14px 18px;
+  }
+
+  .dwc-modal-header__title {
+    font-size: 1.15rem;
+  }
+
+  .dwc-modal-scroll-area {
+    padding: 16px 18px;
+    gap: 16px;
+  }
+
+  .dwc-form-row--datetime {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .dwc-form-row--client {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .dwc-time-grid {
+    grid-template-columns: repeat(4, 1fr);
+    max-height: 120px;
+  }
+
+  .dwc-modal-footer {
+    padding: 12px 18px 16px 18px;
+  }
+
+  .dwc-modal-submit-btn {
+    padding: 12px 16px;
+    font-size: 0.75rem;
+  }
+}

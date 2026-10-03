@@ -20,6 +20,7 @@ import '../../styles/therapy.css';
 const modalitiesData = [
   {
     id: '01',
+    slug: 'reflexology',
     badge: 'NEURO-RESTORATIVE',
     title: 'REFLEXOLOGY',
     subtitle: '“Restore Balance. Relax Deeply. Feel Refreshed.”',
@@ -30,6 +31,7 @@ const modalitiesData = [
   },
   {
     id: '02',
+    slug: 'taping',
     badge: 'KINESIOLOGY',
     title: 'TAPING THERAPY',
     subtitle: '“Support Your Movement. Stay Active With Confidence.”',
@@ -40,16 +42,18 @@ const modalitiesData = [
   },
   {
     id: '03',
+    slug: 'ice-bath',
     badge: 'CRYOTHERMIC',
-    title: 'ICE CUPPING THERAPY',
-    subtitle: '“Cryogenic Suction Modality”',
-    image: '/images/therapy/modality_03_ice_cupping_original.png',
-    imageTag: 'THERMAL GRADIENT // SUB-ZERO VACUUM',
+    title: 'ICE BATH THERAPY',
+    subtitle: '“Refresh Your Body. Reset Your Mind. Support Your Recovery.”',
+    image: '/images/recovery/recovery_03_ice_bath.png',
+    imageTag: 'THERMAL GRADIENT // SUB-ZERO RECOVERY',
     isDark: false,
     size: 'small'
   },
   {
     id: '04',
+    slug: 'steam-bath',
     badge: 'HYDRO-THERMAL',
     title: 'STEAM BATH',
     subtitle: '“Step Into Warmth. Leave Feeling Relaxed.”',
@@ -60,6 +64,7 @@ const modalitiesData = [
   },
   {
     id: '05',
+    slug: 'bamboo',
     badge: 'ORGANIC TACTILE',
     title: 'BAMBOO THERAPY',
     subtitle: '“Experience the Natural Power of Bamboo. Deep Relaxation Starts Here.”',
@@ -70,6 +75,7 @@ const modalitiesData = [
   },
   {
     id: '06',
+    slug: 'cupping',
     badge: 'DECOMPRESSION',
     title: 'CUPPING THERAPY',
     subtitle: '“Release Tension. Relax Your Body. Support Your Wellness.”',

@@ -1,0 +1,1435 @@
+/**
+ * Daniel Wellness Center (DWC 2.0) - About Section Stylesheet
+ * Swiss International Style Editorial Founder Profile
+ *
+ * Core Principles:
+ * - 12-Column Asymmetric Swiss Grid
+ * - IBM Plex Sans typography with precise letter-spacing and hierarchy
+ * - Monochromatic palette (Deep Black #000000, Dark Surface #0A0A0A, Off-white #EBEBE6, Pure White #FFFFFF)
+ * - Restrained DWC Red accent (#E62217)
+ * - Hairline geometric borders (rgba(255, 255, 255, 0.12) / rgba(255, 255, 255, 0.06))
+ * - Generous whitespace, zero decorative fluff, zero corporate card styling
+ */
+
+/* ==========================================================================
+   1. About Section Root & Container
+   ========================================================================== */
+
+.dwc-about-section {
+  width: 100%;
+  max-width: 100%;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: var(--font-family-primary);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 4;
+}
+
+.dwc-about-section *,
+.dwc-about-section *::before,
+.dwc-about-section *::after {
+  box-sizing: border-box;
+}
+
+.dwc-about-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   2. Swiss Top Metadata Bar (Section Tracker)
+   ========================================================================== */
+
+.about-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem clamp(1.5rem, 3.5vw, 2.5rem);
+  background-color: #000000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.about-top-bar__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+}
+
+.about-top-bar__accent {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-accent-red, #e62217);
+  display: inline-block;
+}
+
+.about-top-bar__right {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.about-top-bar__index {
+  color: var(--color-accent-red, #e62217);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   3. Section 4: About Intro / Hero Zone
+   ========================================================================== */
+
+.about-intro-zone {
+  padding: clamp(3rem, 6vw, 5.5rem) clamp(1.5rem, 3.5vw, 2.5rem) clamp(2.5rem, 5vw, 4.5rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 2rem;
+  row-gap: 2.5rem;
+  align-items: flex-start;
+}
+
+.about-intro__header {
+  grid-column: 1 / 13;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.about-intro__tag-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.about-intro__tag-line {
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-accent-red, #e62217);
+  display: inline-block;
+}
+
+.about-intro__tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.about-intro__num {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--color-accent-red, #e62217);
+}
+
+.about-intro__main-col {
+  grid-column: 1 / 9;
+}
+
+.about-intro__title {
+  font-size: clamp(2.25rem, 5.2vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+  margin: 0;
+  text-transform: none;
+}
+
+.about-intro__title em {
+  font-style: normal;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.about-intro__side-col {
+  grid-column: 9 / 13;
+  padding-left: clamp(0rem, 2vw, 2rem);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.about-intro__side-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 1rem;
+}
+
+.about-intro__desc {
+  font-size: clamp(1rem, 1.35vw, 1.1875rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+/* ==========================================================================
+   4. Section 5 & 6: Founder Profile & Introduction
+   ========================================================================== */
+
+.founder-profile-zone {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+/* Left Column: Founder Image / Intentional Architectural Placeholder */
+.founder-profile__media-col {
+  grid-column: 1 / 6;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #050505;
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 3.5vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 520px;
+}
+
+.founder-placeholder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: linear-gradient(180deg, #0d0d0d 0%, #060606 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+/* Swiss Crosshair Corners */
+.founder-placeholder__corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: 300;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.founder-placeholder__corner--tl { top: 8px; left: 8px; }
+.founder-placeholder__corner--tr { top: 8px; right: 8px; }
+.founder-placeholder__corner--bl { bottom: 8px; left: 8px; }
+.founder-placeholder__corner--br { bottom: 8px; right: 8px; }
+
+/* Subtle Geometric Grid Lines in Placeholder */
+.founder-placeholder__grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+.founder-placeholder__header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.founder-placeholder__stamp {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.founder-placeholder__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--color-accent-red, #e62217);
+}
+
+.founder-placeholder__status-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-red, #e62217);
+  border-radius: 50%;
+}
+
+.founder-placeholder__body {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin: auto 0;
+}
+
+.founder-placeholder__glyph {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.founder-placeholder__caption {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 0.35rem;
+}
+
+.founder-placeholder__subtext {
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.founder-placeholder__footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 0.85rem;
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.founder-profile__media-caption {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Right Column: Founder Info & Introduction */
+.founder-profile__content-col {
+  grid-column: 6 / 13;
+  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.5rem, 3.5vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.founder-profile__meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1.5rem;
+}
+
+.founder-profile__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.founder-profile__badge-accent {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-red, #e62217);
+}
+
+.founder-profile__index {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.founder-profile__intro-heading {
+  font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin-bottom: clamp(1.5rem, 2.5vw, 2.25rem);
+}
+
+.founder-profile__lead-paragraph {
+  font-size: clamp(1.125rem, 1.6vw, 1.35rem);
+  font-weight: 300;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: clamp(2rem, 3.5vw, 3rem);
+}
+
+.founder-profile__roles-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+}
+
+.founder-profile__role-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.founder-profile__role-index {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--color-accent-red, #e62217);
+  margin-bottom: 0.45rem;
+}
+
+.founder-profile__role-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1.35;
+}
+
+/* ==========================================================================
+   5. Section 7: Education Block
+   ========================================================================== */
+
+.founder-education-zone {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.founder-education__side-label {
+  grid-column: 1 / 4;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3.5vw, 2.5rem);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.education-label-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.education-label-group__tag {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent-red, #e62217);
+}
+
+.education-label-group__title {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.founder-education__side-meta {
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.founder-education__content-col {
+  grid-column: 4 / 13;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.education-card {
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3.5vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 280px;
+}
+
+.education-card:first-child {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.education-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.education-card__index {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.education-card__status-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.education-card__status-tag--active {
+  border-color: var(--color-accent-red, #e62217);
+  color: #ffffff;
+  background-color: rgba(230, 34, 23, 0.12);
+}
+
+.education-card__degree {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.education-card__institution {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+}
+
+.education-card__footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   6. Section 8 & 10: Sports Background & Netball
+   ========================================================================== */
+
+.founder-sports-zone {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.founder-sports__side-label {
+  grid-column: 1 / 4;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3.5vw, 2.5rem);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sports-label-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sports-label-group__tag {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent-red, #e62217);
+}
+
+.sports-label-group__title {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.founder-sports__side-meta {
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.founder-sports__content-col {
+  grid-column: 4 / 13;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+/* Basketball Block: 7 cols */
+.sports-basketball-card {
+  grid-column: 1 / 8;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3.5vw, 3rem);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sports-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.sports-card__discipline {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent-red, #e62217);
+}
+
+.sports-card__index {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.sports-basketball__title {
+  font-size: clamp(2rem, 3.8vw, 3.25rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0 0 1rem;
+}
+
+.sports-basketball__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.sports-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+  padding: 4px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.sports-basketball__desc {
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+/* Netball Block: 5 cols */
+.sports-netball-card {
+  grid-column: 8 / 13;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3.5vw, 2.5rem);
+  background-color: #050505;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sports-netball__title {
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin: 0 0 1.25rem;
+  text-transform: uppercase;
+}
+
+.sports-netball__medal-block {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+  margin-bottom: 1.5rem;
+}
+
+.sports-netball__medal-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent-red, #e62217);
+  margin-bottom: 0.5rem;
+}
+
+.sports-netball__medal-title {
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin: 0 0 0.5rem;
+}
+
+.sports-netball__rep-text {
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* ==========================================================================
+   7. Section 9: World Records (High-Impact Numerical Swiss Layout)
+   ========================================================================== */
+
+.founder-records-zone {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #030303;
+}
+
+.founder-records__header {
+  padding: 2.5rem clamp(1.5rem, 3.5vw, 2.5rem) 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.records-header__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.records-header__tag-line {
+  width: 20px;
+  height: 2px;
+  background-color: var(--color-accent-red, #e62217);
+}
+
+.records-header__title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+}
+
+.records-header__right {
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.founder-records__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.record-column {
+  padding: clamp(3rem, 6vw, 5.5rem) clamp(1.5rem, 4vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.record-column:first-child {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.record-column__book-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent-red, #e62217);
+  margin-bottom: 2rem;
+}
+
+.record-column__book-tag-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-red, #e62217);
+}
+
+/* Massive Swiss Typography Number */
+.record-column__num-hero {
+  font-size: clamp(4rem, 8.5vw, 8rem);
+  font-weight: 300;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin: 0 0 1.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.record-column__discipline-title {
+  font-size: clamp(1.125rem, 1.8vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 clamp(2rem, 3.5vw, 3rem);
+  max-width: 480px;
+}
+
+/* Time / Duration Sub-block */
+.record-column__time-block {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.record-column__time-num {
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+
+.record-column__time-unit {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.record-column__verification {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.record-column__badge {
+  color: #ffffff;
+  padding: 3px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.625rem;
+  letter-spacing: 0.15em;
+}
+
+/* ==========================================================================
+   8. Section 11: Wellness Training (Clean Numbered Editorial List)
+   ========================================================================== */
+
+.founder-wellness-zone {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.founder-wellness__side-label {
+  grid-column: 1 / 4;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3.5vw, 2.5rem);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wellness-label-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.wellness-label-group__tag {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent-red, #e62217);
+}
+
+.wellness-label-group__title {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.founder-wellness__side-meta {
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.founder-wellness__content-col {
+  grid-column: 4 / 13;
+  display: flex;
+  flex-direction: column;
+}
+
+.wellness-training-item {
+  padding: clamp(2rem, 3.8vw, 3rem) clamp(1.5rem, 3.5vw, 3.5rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.25s ease;
+}
+
+.wellness-training-item:last-child {
+  border-bottom: none;
+}
+
+.wellness-training-item:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.wellness-training-item__left {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(1.5rem, 3.5vw, 3rem);
+}
+
+.wellness-training-item__index {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--color-accent-red, #e62217);
+}
+
+.wellness-training-item__name {
+  font-size: clamp(1.25rem, 2.2vw, 2rem);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+}
+
+.wellness-training-item__right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.wellness-training-item__badge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 4px 10px;
+}
+
+.wellness-training-item__icon {
+  width: 24px;
+  height: 24px;
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+/* ==========================================================================
+   9. Section 12 & 13 & 14: Vision, Center & Visual Bridge to Therapy
+   ========================================================================== */
+
+.about-vision-zone {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #000000;
+}
+
+/* Part A: Psychology + Wellness Connection */
+.vision-disciplines-row {
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 3.5vw, 2.5rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 2rem;
+  row-gap: 3rem;
+}
+
+.vision-disciplines__left {
+  grid-column: 1 / 7;
+}
+
+.vision-disciplines__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent-red, #e62217);
+  margin-bottom: 1rem;
+}
+
+.vision-disciplines__tag-bar {
+  width: 16px;
+  height: 2px;
+  background-color: var(--color-accent-red, #e62217);
+}
+
+.vision-disciplines__title {
+  font-size: clamp(2rem, 3.8vw, 3.25rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0 0 1.25rem;
+  text-transform: uppercase;
+}
+
+.vision-disciplines__desc {
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  font-weight: 300;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+  max-width: 520px;
+}
+
+.vision-disciplines__pillars-col {
+  grid-column: 7 / 13;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.vision-pillar-box {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 1.75rem 1.25rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 160px;
+  transition: border-color 0.25s ease;
+}
+
+.vision-pillar-box:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.vision-pillar-box__index {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--color-accent-red, #e62217);
+}
+
+.vision-pillar-box__label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* Part B: Daniel Wellness Center Vision */
+.vision-center-row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.vision-center__side-label {
+  grid-column: 1 / 4;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3.5vw, 2.5rem);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.vision-center__label-tag {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent-red, #e62217);
+  margin-bottom: 0.5rem;
+}
+
+.vision-center__label-title {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.vision-center__content-col {
+  grid-column: 4 / 13;
+  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.5rem, 3.5vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vision-center__location-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent-red, #e62217);
+  margin-bottom: 1.25rem;
+}
+
+.vision-center__heading {
+  font-size: clamp(1.75rem, 3.6vw, 3rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0 0 1.25rem;
+}
+
+.vision-center__desc {
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+  max-width: 680px;
+}
+
+/* Part C: Visual Ending / Bridge into Therapy */
+.about-bridge-row {
+  padding: clamp(3.5rem, 7vw, 6rem) clamp(1.5rem, 3.5vw, 2.5rem);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 2rem;
+  align-items: center;
+  background-color: #000000;
+}
+
+.about-bridge__quote-col {
+  grid-column: 1 / 10;
+}
+
+.about-bridge__tag {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent-red, #e62217);
+  margin-bottom: 1.25rem;
+  display: block;
+}
+
+.about-bridge__statement {
+  font-size: clamp(1.75rem, 3.8vw, 3.25rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.about-bridge__nav-col {
+  grid-column: 10 / 13;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.about-bridge__arrow-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.65);
+  transition: color 0.2s ease;
+}
+
+.about-bridge__arrow-link:hover {
+  color: #ffffff;
+}
+
+.about-bridge__arrow-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.about-bridge__arrow-icon {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-red, #e62217);
+}
+
+/* ==========================================================================
+   10. Bottom Section Verification Bar
+   ========================================================================== */
+
+.about-footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem clamp(1.5rem, 3.5vw, 2.5rem);
+  background-color: #000000;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.about-footer-bar__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.about-footer-bar__dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-red, #e62217);
+}
+
+.about-footer-bar__right {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ==========================================================================
+   11. Responsive Breakpoints
+   ========================================================================== */
+
+/* Tablet (1024px and below) */
+@media (max-width: 1024px) {
+  .about-intro__main-col {
+    grid-column: 1 / 13;
+  }
+
+  .about-intro__side-col {
+    grid-column: 1 / 13;
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+  }
+
+  .founder-profile__media-col {
+    grid-column: 1 / 6;
+  }
+
+  .founder-profile__content-col {
+    grid-column: 6 / 13;
+  }
+
+  .founder-education__side-label,
+  .founder-sports__side-label,
+  .founder-wellness__side-label,
+  .vision-center__side-label {
+    grid-column: 1 / 13;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1.5rem;
+  }
+
+  .founder-education__content-col,
+  .founder-sports__content-col,
+  .founder-wellness__content-col,
+  .vision-center__content-col {
+    grid-column: 1 / 13;
+  }
+
+  .sports-basketball-card {
+    grid-column: 1 / 13;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .sports-netball-card {
+    grid-column: 1 / 13;
+  }
+
+  .vision-disciplines__left {
+    grid-column: 1 / 13;
+  }
+
+  .vision-disciplines__pillars-col {
+    grid-column: 1 / 13;
+  }
+
+  .about-bridge__quote-col {
+    grid-column: 1 / 13;
+    margin-bottom: 2rem;
+  }
+
+  .about-bridge__nav-col {
+    grid-column: 1 / 13;
+    align-items: flex-start;
+  }
+}
+
+/* Mobile (768px and below) */
+@media (max-width: 768px) {
+  .about-top-bar__right span:not(.about-top-bar__index) {
+    display: none;
+  }
+
+  .founder-profile-zone {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .founder-profile__media-col {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: auto;
+  }
+
+  .founder-profile__content-col {
+    width: 100%;
+    padding: 2.25rem 1.5rem;
+  }
+
+  .founder-profile__roles-list {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .founder-education__content-col {
+    grid-template-columns: 1fr;
+  }
+
+  .education-card:first-child {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .founder-records__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .record-column:first-child {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .record-column {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .wellness-training-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.75rem 1.5rem;
+  }
+
+  .wellness-training-item__right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .vision-disciplines-row {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .vision-disciplines__pillars-col {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .vision-pillar-box {
+    min-height: auto;
+    padding: 1.25rem;
+  }
+
+  .about-bridge-row {
+    padding: 3rem 1.5rem;
+  }
+
+  .about-footer-bar__right span:not(:last-child) {
+    display: none;
+  }
+}

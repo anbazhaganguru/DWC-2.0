@@ -68,6 +68,11 @@
   z-index: 20;
 }
 
+.hero-header--spacer {
+  height: clamp(48px, 6vh, 64px);
+  pointer-events: none;
+}
+
 /* Distinctive Left Brand Lockup (Cols 1 - 4) */
 .hero-header__brand {
   grid-column: 1 / 4;

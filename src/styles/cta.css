@@ -1,0 +1,489 @@
+/**
+ * Daniel Wellness Center (DWC 2.0) - CTA Section Styles
+ * Clean White / Light Theme — Strict Swiss International Typographic & Editorial Grid
+ *
+ * - Light monochrome palette (#ffffff, #fafafa, #111111, #555c59)
+ * - Restrained red accent (#e62217)
+ * - IBM Plex Sans typography with generous whitespace and razor-sharp hairline dividers
+ */
+
+/* ==========================================================================
+   1. Section Base & Atmospheric Layer (White Theme)
+   ========================================================================== */
+.dwc-cta-section {
+  position: relative;
+  width: 100%;
+  background-color: #ffffff;
+  color: #111111;
+  border-top: 1px solid #e5e5e5;
+  overflow: hidden;
+  padding: clamp(4.5rem, 8vw, 8rem) 0;
+  box-sizing: border-box;
+}
+
+.dwc-cta-bg-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.dwc-cta-picture {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.dwc-cta-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.07;
+  filter: grayscale(100%) contrast(105%);
+}
+
+.dwc-cta-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(255, 255, 255, 0.92) 50%,
+    rgba(255, 255, 255, 0.98) 100%
+  );
+}
+
+.dwc-cta-subtle-glow {
+  display: none;
+}
+
+/* ==========================================================================
+   2. Main Container & 12-Column Grid
+   ========================================================================== */
+.dwc-cta-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 3.5vw, 5rem);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(1.5rem, 3vw, 4rem);
+  row-gap: 3.5rem;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   3. Left Column: Editorial Brand & Coordinates (Cols 1 - 6)
+   ========================================================================== */
+.dwc-cta-editorial-col {
+  grid-column: 1 / 7;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Eyebrow */
+.dwc-cta-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: clamp(1rem, 1.8vw, 1.75rem);
+}
+
+.dwc-cta-eyebrow-accent {
+  width: 14px;
+  height: 2px;
+  background-color: var(--color-accent-red, #e62217);
+  flex-shrink: 0;
+}
+
+.dwc-cta-eyebrow-text {
+  font-family: var(--font-family-primary);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #666666;
+}
+
+/* Headline */
+.dwc-cta-headline {
+  font-family: var(--font-family-primary);
+  font-size: clamp(2.25rem, 3.8vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: #0d0d0d;
+  text-transform: uppercase;
+  margin: 0 0 clamp(1.5rem, 2.2vw, 2.25rem) 0;
+}
+
+.dwc-cta-desktop-br {
+  display: block;
+}
+
+/* Philosophy Statement */
+.dwc-cta-philosophy {
+  font-family: var(--font-family-primary);
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: #222222;
+  margin: 0 0 clamp(1.25rem, 1.8vw, 1.75rem) 0;
+  padding-left: 18px;
+  border-left: 2px solid var(--color-accent-red, #e62217);
+  font-style: normal;
+}
+
+/* Supporting Description */
+.dwc-cta-description {
+  font-family: var(--font-family-primary);
+  font-size: clamp(0.875rem, 0.95vw, 1rem);
+  line-height: 1.6;
+  color: #555c59;
+  margin: 0 0 clamp(2rem, 3vw, 3rem) 0;
+  max-width: 540px;
+}
+
+/* Official DWC Contact Coordinates Panel */
+.dwc-cta-contact-panel {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e8e8e8;
+  background: #fafafa;
+  border-radius: 0;
+}
+
+.dwc-cta-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.dwc-cta-contact-item--social {
+  border-bottom: none;
+}
+
+.dwc-cta-contact-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.dwc-cta-contact-split .dwc-cta-contact-item {
+  border-bottom: none;
+}
+
+.dwc-cta-contact-split .dwc-cta-contact-item:first-child {
+  border-right: 1px solid #eeeeee;
+}
+
+.dwc-cta-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-red, #e62217);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.dwc-cta-contact-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dwc-cta-contact-label {
+  font-family: var(--font-family-primary);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #777777;
+}
+
+.dwc-cta-contact-address {
+  font-family: var(--font-family-primary);
+  font-style: normal;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #111111;
+}
+
+.dwc-cta-contact-link {
+  font-family: var(--font-family-primary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #111111;
+  text-decoration: none;
+  transition: color var(--transition-fast, 0.2s cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.dwc-cta-contact-link:hover {
+  color: var(--color-accent-red, #e62217);
+}
+
+.dwc-cta-contact-link:focus-visible {
+  outline: 2px solid var(--color-accent-red, #e62217);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   4. Right Column: Elevated Booking Card (Cols 7 - 12)
+   ========================================================================== */
+.dwc-cta-booking-col {
+  grid-column: 7 / 13;
+  display: flex;
+  flex-direction: column;
+}
+
+.dwc-cta-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 0;
+  padding: clamp(2rem, 3vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.04);
+}
+
+.dwc-cta-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dwc-cta-card__badge-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dwc-cta-card__badge-accent {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-red, #e62217);
+}
+
+.dwc-cta-card__badge {
+  font-family: var(--font-family-primary);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #666666;
+}
+
+.dwc-cta-card__title {
+  font-family: var(--font-family-primary);
+  font-size: clamp(1.35rem, 1.8vw, 1.75rem);
+  font-weight: 700;
+  color: #0d0d0d;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.dwc-cta-card__subtitle {
+  font-family: var(--font-family-primary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #555c59;
+  margin: 0;
+}
+
+/* Service Summary Options */
+.dwc-cta-summary-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dwc-cta-summary-box {
+  background: #fafafa;
+  border: 1px solid #eeeeee;
+  border-radius: 0;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color var(--transition-fast, 0.2s cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.dwc-cta-summary-box:hover {
+  border-color: #cccccc;
+}
+
+.dwc-cta-summary-box__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-family-primary);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.dwc-cta-summary-tag {
+  color: #111111;
+}
+
+.dwc-cta-summary-tag--day {
+  color: #333333;
+}
+
+.dwc-cta-summary-duration {
+  color: var(--color-accent-red, #e62217);
+  font-weight: 700;
+}
+
+.dwc-cta-summary-title {
+  font-family: var(--font-family-primary);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #111111;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.dwc-cta-summary-desc {
+  font-family: var(--font-family-primary);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #555c59;
+  margin: 0;
+}
+
+/* Action Button */
+.dwc-cta-action-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dwc-cta-book-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 24px;
+  border-radius: 0;
+  border: 1px solid #000000;
+  background: #000000;
+  color: #ffffff;
+  font-family: var(--font-family-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-fast, 0.2s cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.dwc-cta-book-btn:hover {
+  background: #222222;
+  border-color: #222222;
+  color: #ffffff;
+}
+
+.dwc-cta-book-btn:focus-visible {
+  outline: 2px solid var(--color-accent-red, #e62217);
+  outline-offset: 2px;
+}
+
+.dwc-cta-btn-arrow {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--transition-fast, 0.2s cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.dwc-cta-book-btn:hover .dwc-cta-btn-arrow {
+  transform: translateX(3px);
+}
+
+.dwc-cta-footer-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-family: var(--font-family-primary);
+  font-size: 0.6875rem;
+  color: #777777;
+  letter-spacing: 0.04em;
+}
+
+.dwc-cta-note-dot {
+  width: 5px;
+  height: 5px;
+  background-color: var(--color-accent-red, #e62217);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   5. Responsiveness (Tablet & Mobile)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .dwc-cta-container {
+    grid-template-columns: 1fr;
+    row-gap: 3rem;
+  }
+
+  .dwc-cta-editorial-col {
+    grid-column: 1 / -1;
+  }
+
+  .dwc-cta-booking-col {
+    grid-column: 1 / -1;
+  }
+
+  .dwc-cta-desktop-br {
+    display: inline;
+  }
+}
+
+@media (max-width: 680px) {
+  .dwc-cta-section {
+    padding: 3.5rem 0;
+  }
+
+  .dwc-cta-container {
+    padding: 0 1.25rem;
+    row-gap: 2.5rem;
+  }
+
+  .dwc-cta-headline {
+    font-size: 2rem;
+  }
+
+  .dwc-cta-card {
+    padding: 1.5rem 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .dwc-cta-contact-split {
+    grid-template-columns: 1fr;
+  }
+
+  .dwc-cta-contact-split .dwc-cta-contact-item:first-child {
+    border-right: none;
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  .dwc-cta-summary-box__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

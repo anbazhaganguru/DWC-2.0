@@ -47,7 +47,7 @@ export function TherapyApparatus() {
           </div>
 
           <div className="therapy-apparatus__action-row">
-            <a href="#hero" className="therapy-apparatus__btn">
+            <a href="/services/irobo-massage-chair" className="therapy-apparatus__btn" aria-label="View dedicated iROBO massage chair detail page">
               VIEW DETAILS <span>→</span>
             </a>
             <span className="therapy-apparatus__ref">

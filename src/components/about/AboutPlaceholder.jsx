@@ -1,19 +1,7 @@
-import React from 'react';
+import About from './About';
 
 /**
- * About Section Minimal Placeholder.
- * Preserves the page flow and unpinning transition without invented content,
- * ready for future implementation as specified.
+ * Re-exporting the newly built About component for backwards compatibility.
  */
-export function AboutPlaceholder() {
-  return (
-    <section className="dwc-next-section" id="about">
-      <p className="dwc-next-section__tag">DANIEL WELLNESS CENTER</p>
-      <h2 className="dwc-next-section__title">
-        PHYSICAL RECOVERY ENGINEERED WITH UNCOMPROMISING SWISS PRECISION
-      </h2>
-    </section>
-  );
-}
-
-export default AboutPlaceholder;
+export { About, About as AboutPlaceholder };
+export default About;
