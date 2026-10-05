@@ -9,7 +9,7 @@ import React from 'react';
  * - Visually intentional Swiss image placeholder
  * - Exact disciplines and concise introduction
  */
-export function FounderProfile({ founderImage = null }) {
+export function FounderProfile({ founderImage = '/images/about/founder_portrait.png' }) {
   return (
     <div className="founder-profile-zone" data-about-anim="fade-up">
       {/* Column 1–5: Founder Image or Intentional Swiss Placeholder */}

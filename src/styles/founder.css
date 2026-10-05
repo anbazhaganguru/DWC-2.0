@@ -208,6 +208,17 @@
   grid-column: 8 / 13;
   display: flex;
   flex-direction: column;
+  max-width: 440px;
+  width: 100%;
+  margin-left: auto;
+}
+
+/* Light Theme Adaptations for Founder Portrait in Hero */
+.founder-hero__media-col .founder-image-wrapper,
+.founder-image-wrapper--light {
+  background-color: #f7f7f5;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
 }
 
 /* Light Theme Adaptations for Archive Placeholder in Hero */

@@ -75,41 +75,17 @@ export function About() {
 
         {/* Teaser Core Grid */}
         <div className="about-teaser-zone" data-about-anim="fade-up">
-          {/* 3. Founder Image / Intentional Swiss Architectural Placeholder */}
+          {/* 3. Founder Image: Approved Studio Portrait */}
           <div className="about-teaser__media-col">
-            <div
-              className="founder-placeholder"
-              role="img"
-              aria-label="Daniel Wellness Center Founder Portrait Archive Placeholder"
-            >
-              {/* Swiss Precision Corner Crosshairs */}
-              <span className="founder-placeholder__corner founder-placeholder__corner--tl" aria-hidden="true">+</span>
-              <span className="founder-placeholder__corner founder-placeholder__corner--tr" aria-hidden="true">+</span>
-              <span className="founder-placeholder__corner founder-placeholder__corner--bl" aria-hidden="true">+</span>
-              <span className="founder-placeholder__corner founder-placeholder__corner--br" aria-hidden="true">+</span>
-
-              <div className="founder-placeholder__grid-overlay" aria-hidden="true" />
-
-              <div className="founder-placeholder__header">
-                <span className="founder-placeholder__stamp">ARCHIVE // PORTRAIT</span>
-                <span className="founder-placeholder__status">
-                  <span className="founder-placeholder__status-dot" aria-hidden="true" />
-                  DWC FOUNDER
-                </span>
-              </div>
-
-              <div className="founder-placeholder__body">
-                <div className="founder-placeholder__glyph" aria-hidden="true">
-                  DWC
-                </div>
-                <p className="founder-placeholder__caption">FOUNDER PORTRAIT</p>
-                <p className="founder-placeholder__subtext">DOCUMENTARY PHOTOGRAPHY ARCHIVE</p>
-              </div>
-
-              <div className="founder-placeholder__footer">
-                <span>SYSTEM: SWISS EDITORIAL</span>
-                <span>CHENNAI // AMBATTUR</span>
-              </div>
+            <div className="founder-image-wrapper">
+              <img
+                src="/images/about/founder_portrait.png"
+                alt="Daniel Wellness Center Founder Portrait"
+                className="founder-image"
+                width="1254"
+                height="1254"
+                loading="lazy"
+              />
             </div>
 
             <div className="founder-profile__media-caption">
