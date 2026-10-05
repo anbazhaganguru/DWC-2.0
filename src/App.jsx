@@ -9,6 +9,7 @@ import CTA from './components/cta/CTA';
 import Footer from './components/footer/Footer';
 import BookingModal from './components/booking/BookingModal';
 import ServiceDetailPage from './components/service-detail/ServiceDetailPage';
+import FounderPage from './components/founder/FounderPage';
 
 /**
  * HomePage Component
@@ -111,6 +112,18 @@ export function App() {
           <Route
             path="/therapy/irobo-massage-chair"
             element={<Navigate to="/services/irobo-massage-chair" replace />}
+          />
+
+          {/* Dedicated Founder Page Route */}
+          <Route
+            path="/about/founder"
+            element={<FounderPage onOpenBooking={handleOpenBooking} />}
+          />
+
+          {/* Alias for Founder page */}
+          <Route
+            path="/founder"
+            element={<Navigate to="/about/founder" replace />}
           />
 
           {/* Fallback Route */}

@@ -1433,3 +1433,193 @@
     display: none;
   }
 }
+
+/* ==========================================================================
+   Homepage Teaser Layout
+   ========================================================================== */
+.dwc-about-section--teaser {
+  min-height: auto;
+}
+
+.about-teaser-zone {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(2rem, 4vw, 4rem);
+  row-gap: 2.5rem;
+  padding: clamp(3rem, 5vw, 4.5rem) clamp(1.5rem, 3.5vw, 2.5rem);
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-teaser__media-col {
+  grid-column: 1 / 6;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-teaser__media-col .founder-placeholder {
+  max-width: 440px;
+  width: 100%;
+}
+
+.about-teaser__content-col {
+  grid-column: 6 / 13;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-teaser__meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.about-teaser__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.about-teaser__badge-accent {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-red, #e62217);
+}
+
+.about-teaser__index {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.about-teaser__headline {
+  font-size: clamp(2rem, 3.5vw, 3.25rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0 0 clamp(1rem, 2vw, 1.5rem);
+}
+
+.about-teaser__lead {
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  font-weight: 300;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 clamp(1.5rem, 2.5vw, 2.25rem);
+  max-width: 620px;
+}
+
+.about-teaser__disciplines {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.75rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: clamp(1.25rem, 2vw, 1.75rem);
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.about-teaser__discipline-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.about-teaser__discipline-num {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--color-accent-red, #e62217);
+}
+
+.about-teaser__discipline-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.about-teaser__cta-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.about-teaser__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: clamp(0.85rem, 1.5vw, 1rem) clamp(1.5rem, 2.5vw, 2.25rem);
+  font-family: var(--font-family-primary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-teaser__cta-btn:hover {
+  background-color: var(--color-accent-red, #e62217);
+  border-color: var(--color-accent-red, #e62217);
+  color: #ffffff;
+}
+
+.about-teaser__cta-arrow {
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.about-teaser__cta-btn:hover .about-teaser__cta-arrow {
+  transform: translateX(6px);
+}
+
+/* Responsive Teaser adjustments */
+@media (max-width: 900px) {
+  .about-teaser-zone {
+    grid-template-columns: 1fr;
+    row-gap: 2rem;
+    padding: 3rem 1.5rem;
+  }
+
+  .about-teaser__media-col {
+    grid-column: 1 / -1;
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .about-teaser__content-col {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 520px) {
+  .about-teaser__disciplines {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .about-teaser__cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+

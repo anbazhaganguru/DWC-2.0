@@ -1,13 +1,7 @@
 import React, { useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import AboutIntro from './AboutIntro';
-import FounderProfile from './FounderProfile';
-import FounderEducation from './FounderEducation';
-import FounderSports from './FounderSports';
-import FounderRecords from './FounderRecords';
-import FounderWellness from './FounderWellness';
-import AboutVision from './AboutVision';
 import '../../styles/about.css';
 
 if (typeof window !== 'undefined') {
@@ -15,19 +9,16 @@ if (typeof window !== 'undefined') {
 }
 
 /**
- * Master About Component (DWC 2.0)
- * Rebuilt as a Founder-Led Swiss International Style Editorial Profile.
- *
- * Sequence:
- * 1. Top Metadata Bar (Section Tracker)
- * 2. About Intro (Large Heading & Multidisciplinary Philosophy)
- * 3. Founder Profile (Architectural Portrait Placeholder & Intro)
- * 4. Education (B.Sc. Psychology & M.Sc. Clinical Psychology - Currently Studying)
- * 5. Sport (Basketball player/coach & Netball Silver Medal)
- * 6. Records (Asia & Indian Book of World Records Spider Dribbles)
- * 7. Wellness Training (Foot Reflexology, Taping Therapy, Cupping Therapy)
- * 8. Vision (Two Disciplines, Ambattur Center & Visual Bridge to Therapy)
- * 9. Bottom Section Verification Bar
+ * Homepage About Teaser Component (DWC 2.0)
+ * Rebuilt as a concise, minimal Swiss International Style teaser profile.
+ * 
+ * Contains ONLY:
+ * 1. Small section label / index
+ * 2. Short About introduction
+ * 3. Founder image / archival portrait placeholder
+ * 4. Very short founder introduction
+ * 5. Small supporting metadata (PSYCHOLOGY, SPORT, WELLNESS)
+ * 6. Clear CTA button: VIEW FOUNDER → (links to /about/founder)
  */
 export function About() {
   const sectionRef = useRef(null);
@@ -35,14 +26,12 @@ export function About() {
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    // Respect user's accessibility preferences
     const prefersReducedMotion = typeof window !== 'undefined' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // Subtle upward reveal for editorial sections
       const animatedElements = sectionRef.current.querySelectorAll('[data-about-anim="fade-up"]');
       animatedElements.forEach((el) => {
         gsap.fromTo(
@@ -61,41 +50,19 @@ export function About() {
           }
         );
       });
-
-      // Special subtle entrance for records numbers
-      const recordsSection = sectionRef.current.querySelector('[data-about-anim="records-reveal"]');
-      if (recordsSection) {
-        const recordNumbers = recordsSection.querySelectorAll('.record-column__num-hero');
-        gsap.fromTo(
-          recordNumbers,
-          { opacity: 0, y: 28 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.85,
-            stagger: 0.15,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: recordsSection,
-              start: 'top 82%',
-              toggleActions: 'play none none reverse'
-            }
-          }
-        );
-      }
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section className="dwc-about-section" id="about" ref={sectionRef} aria-label="About Daniel Wellness Center Founder">
+    <section className="dwc-about-section dwc-about-section--teaser" id="about" ref={sectionRef} aria-label="About Daniel Wellness Center Founder">
       <div className="dwc-about-container">
-        {/* Top Section Metadata Tracker */}
+        {/* 1. Small section label / index */}
         <div className="about-top-bar" aria-label="Section Identity">
           <div className="about-top-bar__left">
             <span className="about-top-bar__accent" aria-hidden="true" />
-            <span>SEC 02 // ABOUT &amp; FOUNDER PROFILE</span>
+            <span>SEC 02 // ABOUT &amp; FOUNDER</span>
           </div>
 
           <div className="about-top-bar__right">
@@ -106,32 +73,108 @@ export function About() {
           </div>
         </div>
 
-        {/* Section 4: Intro & Design Statement */}
-        <AboutIntro />
+        {/* Teaser Core Grid */}
+        <div className="about-teaser-zone" data-about-anim="fade-up">
+          {/* 3. Founder Image / Intentional Swiss Architectural Placeholder */}
+          <div className="about-teaser__media-col">
+            <div
+              className="founder-placeholder"
+              role="img"
+              aria-label="Daniel Wellness Center Founder Portrait Archive Placeholder"
+            >
+              {/* Swiss Precision Corner Crosshairs */}
+              <span className="founder-placeholder__corner founder-placeholder__corner--tl" aria-hidden="true">+</span>
+              <span className="founder-placeholder__corner founder-placeholder__corner--tr" aria-hidden="true">+</span>
+              <span className="founder-placeholder__corner founder-placeholder__corner--bl" aria-hidden="true">+</span>
+              <span className="founder-placeholder__corner founder-placeholder__corner--br" aria-hidden="true">+</span>
 
-        {/* Sections 5 & 6: Founder Profile, Image Placeholder & Concise Intro */}
-        <FounderProfile />
+              <div className="founder-placeholder__grid-overlay" aria-hidden="true" />
 
-        {/* Section 7: Education Block (B.Sc. & M.Sc. Currently Studying) */}
-        <FounderEducation />
+              <div className="founder-placeholder__header">
+                <span className="founder-placeholder__stamp">ARCHIVE // PORTRAIT</span>
+                <span className="founder-placeholder__status">
+                  <span className="founder-placeholder__status-dot" aria-hidden="true" />
+                  DWC FOUNDER
+                </span>
+              </div>
 
-        {/* Sections 8 & 10: Sports Background (Basketball & Netball) */}
-        <FounderSports />
+              <div className="founder-placeholder__body">
+                <div className="founder-placeholder__glyph" aria-hidden="true">
+                  DWC
+                </div>
+                <p className="founder-placeholder__caption">FOUNDER PORTRAIT</p>
+                <p className="founder-placeholder__subtext">DOCUMENTARY PHOTOGRAPHY ARCHIVE</p>
+              </div>
 
-        {/* Section 9: World Records Layout */}
-        <FounderRecords />
+              <div className="founder-placeholder__footer">
+                <span>SYSTEM: SWISS EDITORIAL</span>
+                <span>CHENNAI // AMBATTUR</span>
+              </div>
+            </div>
 
-        {/* Section 11: Wellness Training (3 Modalities) */}
-        <FounderWellness />
+            <div className="founder-profile__media-caption">
+              <span>SEC 02.1 // PORTRAIT</span>
+              <span>DANIEL WELLNESS CENTER</span>
+            </div>
+          </div>
 
-        {/* Sections 12, 13, 14: Vision, Ambattur Center & Visual Bridge */}
-        <AboutVision />
+          {/* Right Column: Teaser Content */}
+          <div className="about-teaser__content-col">
+            <div className="about-teaser__meta-header">
+              <div className="about-teaser__badge">
+                <span className="about-teaser__badge-accent" aria-hidden="true" />
+                <span>FOUNDER PROFILE</span>
+              </div>
+              <span className="about-teaser__index">DISCIPLINES // 03</span>
+            </div>
+
+            {/* 2. Short About introduction */}
+            <h2 className="about-teaser__headline">
+              Built at the intersection of psychology, sport and wellness.
+            </h2>
+
+            {/* 4. Very short founder introduction */}
+            <p className="about-teaser__lead">
+              With a background spanning psychology, competitive sport, coaching and wellness training, the founder is building Daniel Wellness Center around a multidisciplinary understanding of mind, movement and recovery.
+            </p>
+
+            {/* 5. Small supporting metadata */}
+            <div className="about-teaser__disciplines">
+              <div className="about-teaser__discipline-item">
+                <span className="about-teaser__discipline-num">01</span>
+                <span className="about-teaser__discipline-title">PSYCHOLOGY</span>
+              </div>
+
+              <div className="about-teaser__discipline-item">
+                <span className="about-teaser__discipline-num">02</span>
+                <span className="about-teaser__discipline-title">SPORT</span>
+              </div>
+
+              <div className="about-teaser__discipline-item">
+                <span className="about-teaser__discipline-num">03</span>
+                <span className="about-teaser__discipline-title">WELLNESS</span>
+              </div>
+            </div>
+
+            {/* 6. Clear CTA button */}
+            <div className="about-teaser__cta-wrapper">
+              <Link
+                to="/about/founder"
+                className="about-teaser__cta-btn"
+                aria-label="View complete founder profile and background"
+              >
+                <span>VIEW FOUNDER</span>
+                <span className="about-teaser__cta-arrow" aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </div>
+        </div>
 
         {/* Bottom Section Verification Bar */}
         <div className="about-footer-bar" aria-label="Section Verification">
           <div className="about-footer-bar__left">
             <span className="about-footer-bar__dot" aria-hidden="true" />
-            <span>DANIEL WELLNESS CENTER // FOUNDER PROFILE VERIFIED</span>
+            <span>DANIEL WELLNESS CENTER // FOUNDER PROFILE TEASER</span>
           </div>
 
           <div className="about-footer-bar__right">

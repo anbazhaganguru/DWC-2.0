@@ -43,13 +43,11 @@ export function Footer({ onOpenBooking }) {
         <div className="dwc-footer-grid">
           {/* Column 1: Brand & Philosophy */}
           <div className="dwc-footer-col dwc-footer-col--brand">
-            <a href="#hero" className="dwc-footer-brand-link" aria-label="Daniel Wellness Center - Home">
-              <div className="dwc-footer-brand-badge">
-                <span className="dwc-footer-brand-letter">D</span>
-              </div>
-              <div className="dwc-footer-brand-text">
-                <span className="dwc-footer-brand-title">DANIEL WELLNESS CENTER</span>
-                <span className="dwc-footer-brand-subtitle">SANCTUARY OF RESTORATION</span>
+            <a href="#hero" className="dwc-footer-brand-link dwc-brand-lockup dwc-brand-lockup--footer" aria-label="Daniel Wellness Center - Home">
+              <span className="dwc-brand-lockup__accent" aria-hidden="true" />
+              <div className="dwc-brand-lockup__text">
+                <span className="dwc-brand-lockup__primary dwc-footer-brand-title">DANIEL</span>
+                <span className="dwc-brand-lockup__supporting dwc-footer-brand-subtitle">WELLNESS CENTER</span>
               </div>
             </a>
 

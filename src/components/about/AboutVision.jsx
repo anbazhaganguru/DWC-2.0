@@ -90,7 +90,7 @@ export function AboutVision() {
         </div>
 
         <div className="about-bridge__nav-col">
-          <a href="#therapy" className="about-bridge__arrow-link" aria-label="Explore Clinical Modalities">
+          <a href="/#therapy" className="about-bridge__arrow-link" aria-label="Explore Clinical Modalities">
             <span className="about-bridge__arrow-label">EXPLORE MODALITIES</span>
             <div className="about-bridge__arrow-icon" aria-hidden="true">
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8">

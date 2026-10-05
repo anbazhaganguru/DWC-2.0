@@ -83,39 +83,56 @@
   justify-content: space-between;
 }
 
-/* Default state over Hero: Left half of Hero is white, so text is bold black */
-.dwc-navbar__brand-primary {
+/* Default state over Hero:
+   While the user is in the Homepage Hero section, the brand lockup must be BLACK.
+   Both DANIEL and WELLNESS CENTER use #000000 with smooth 0.35s transition. */
+.dwc-navbar--hero .dwc-navbar__brand-primary,
+.dwc-navbar--hero .dwc-brand-lockup__primary,
+.dwc-navbar:not(.dwc-navbar--sticky):not(.dwc-navbar--scrolled):not(.dwc-navbar--menu-open) .dwc-navbar__brand-primary,
+.dwc-navbar:not(.dwc-navbar--sticky):not(.dwc-navbar--scrolled):not(.dwc-navbar--menu-open) .dwc-brand-lockup__primary {
   font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
-  font-size: clamp(0.8125rem, 0.9vw, 1.25rem);
+  font-size: clamp(0.875rem, 1.05vw, 1.35rem);
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.22em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #000000;
+  margin-bottom: 2px;
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dwc-navbar--hero .dwc-navbar__brand-sub,
+.dwc-navbar--hero .dwc-brand-lockup__supporting,
+.dwc-navbar:not(.dwc-navbar--sticky):not(.dwc-navbar--scrolled):not(.dwc-navbar--menu-open) .dwc-navbar__brand-sub,
+.dwc-navbar:not(.dwc-navbar--sticky):not(.dwc-navbar--scrolled):not(.dwc-navbar--menu-open) .dwc-brand-lockup__supporting {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: clamp(0.5rem, 0.6vw, 0.72rem);
+  font-weight: 500;
+  letter-spacing: 0.36em;
   line-height: 1.1;
   text-transform: uppercase;
   color: #000000;
   transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.dwc-navbar__brand-sub {
-  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
-  font-size: clamp(0.5625rem, 0.62vw, 0.95rem);
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  line-height: 1.25;
-  text-transform: uppercase;
-  color: #1a1c1b;
-  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* When menu is open or in sticky/scrolled state past Hero, brand text turns crisp white */
+/* About and subsequent dark/black navbar state:
+   When user reaches the About boundary and beyond, or menu is opened:
+   Brand transitions smoothly to WHITE. */
 .dwc-navbar--menu-open .dwc-navbar__brand-primary,
 .dwc-navbar--sticky .dwc-navbar__brand-primary,
-.dwc-navbar--scrolled .dwc-navbar__brand-primary {
+.dwc-navbar--scrolled .dwc-navbar__brand-primary,
+.dwc-navbar--menu-open .dwc-brand-lockup__primary,
+.dwc-navbar--sticky .dwc-brand-lockup__primary,
+.dwc-navbar--scrolled .dwc-brand-lockup__primary {
   color: #ffffff;
 }
 
 .dwc-navbar--menu-open .dwc-navbar__brand-sub,
 .dwc-navbar--sticky .dwc-navbar__brand-sub,
-.dwc-navbar--scrolled .dwc-navbar__brand-sub {
+.dwc-navbar--scrolled .dwc-navbar__brand-sub,
+.dwc-navbar--menu-open .dwc-brand-lockup__supporting,
+.dwc-navbar--sticky .dwc-brand-lockup__supporting,
+.dwc-navbar--scrolled .dwc-brand-lockup__supporting {
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -597,10 +614,12 @@
 
   .dwc-navbar__brand-primary {
     font-size: 0.8125rem;
+    letter-spacing: 0.18em;
   }
 
   .dwc-navbar__brand-sub {
-    font-size: 0.5625rem;
+    font-size: 0.46875rem;
+    letter-spacing: 0.28em;
   }
 
   .dwc-navbar__toggle {

@@ -10,11 +10,11 @@ export function ServiceDetailFooter({ onOpenBooking }) {
       <div className="service-footer__container">
         {/* Brand & Mission Column */}
         <div className="service-footer__col service-footer__col--brand">
-          <a href="/#hero" className="service-footer__brand" aria-label="Daniel Wellness Center - Home">
-            <span className="service-footer__brand-accent" aria-hidden="true" />
-            <div className="service-footer__brand-text">
-              <span className="service-footer__brand-primary">DANIEL</span>
-              <span className="service-footer__brand-sub">WELLNESS CENTER</span>
+          <a href="/#hero" className="service-footer__brand dwc-brand-lockup" aria-label="Daniel Wellness Center - Home">
+            <span className="dwc-brand-lockup__accent service-footer__brand-accent" aria-hidden="true" />
+            <div className="dwc-brand-lockup__text service-footer__brand-text">
+              <span className="dwc-brand-lockup__primary service-footer__brand-primary">DANIEL</span>
+              <span className="dwc-brand-lockup__supporting service-footer__brand-sub">WELLNESS CENTER</span>
             </div>
           </a>
           <p className="service-footer__tagline">

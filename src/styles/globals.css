@@ -65,3 +65,101 @@ body {
   color: var(--color-white);
   max-width: 680px;
 }
+
+/* ==========================================================================
+   Global Brand Identity: DANIEL / WELLNESS CENTER
+   ========================================================================== */
+
+.dwc-brand-lockup {
+  display: inline-flex;
+  align-items: stretch;
+  gap: clamp(7px, 0.65vw, 14px);
+  text-decoration: none;
+  pointer-events: auto;
+  user-select: none;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  color: inherit;
+}
+
+.dwc-brand-lockup:hover {
+  opacity: 0.82;
+}
+
+.dwc-brand-lockup__accent {
+  width: clamp(2.5px, 0.2vw, 4px);
+  background-color: var(--color-accent-red, #e62217);
+  flex-shrink: 0;
+  display: block;
+}
+
+.dwc-brand-lockup__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1;
+}
+
+.dwc-brand-lockup__primary {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: clamp(0.875rem, 1.05vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: inherit;
+  line-height: 1.05;
+  margin-bottom: 2px;
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dwc-brand-lockup__supporting {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: clamp(0.5rem, 0.6vw, 0.72rem);
+  font-weight: 500;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: inherit;
+  line-height: 1.1;
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Light / Hero background variant: Pure black brand */
+.dwc-brand-lockup--hero .dwc-brand-lockup__primary,
+.dwc-brand-lockup--light .dwc-brand-lockup__primary {
+  color: #000000;
+}
+
+.dwc-brand-lockup--hero .dwc-brand-lockup__supporting,
+.dwc-brand-lockup--light .dwc-brand-lockup__supporting {
+  color: #000000;
+}
+
+/* Footer specific variant */
+.dwc-brand-lockup--footer .dwc-brand-lockup__primary {
+  font-size: clamp(1.05rem, 1.35vw, 1.6rem);
+  letter-spacing: 0.22em;
+  color: #ffffff;
+}
+
+.dwc-brand-lockup--footer .dwc-brand-lockup__supporting {
+  font-size: clamp(0.5625rem, 0.7vw, 0.82rem);
+  letter-spacing: 0.38em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Mobile compact adjustments */
+@media (max-width: 767px) {
+  .dwc-brand-lockup {
+    gap: 7px;
+  }
+
+  .dwc-brand-lockup__primary {
+    font-size: 0.8125rem;
+    letter-spacing: 0.18em;
+  }
+
+  .dwc-brand-lockup__supporting {
+    font-size: 0.46875rem;
+    letter-spacing: 0.28em;
+  }
+}
+

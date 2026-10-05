@@ -215,16 +215,18 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
-/* Large Hero Image */
+/* Controlled Editorial Service Hero Image Container */
 .service-hero__image-wrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 8;
-  max-height: 640px;
+  max-width: clamp(520px, 60vw, 840px);
+  max-height: clamp(320px, 50vh, 460px);
+  aspect-ratio: 16 / 9;
+  margin: 0 auto clamp(2rem, 3.5vw, 2.5rem);
   overflow: hidden;
   background-color: #121214;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
 }
 
 .service-hero__image {
@@ -1296,19 +1298,22 @@
 }
 
 .service-footer__brand-primary {
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.22em;
+  line-height: 1.05;
   text-transform: uppercase;
   color: #ffffff;
+  margin-bottom: 2px;
 }
 
 .service-footer__brand-sub {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.36em;
+  line-height: 1.1;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .service-footer__tagline {
@@ -1553,7 +1558,10 @@
   }
 
   .service-hero__image-wrap {
-    aspect-ratio: 4 / 3;
+    max-width: 100%;
+    max-height: clamp(220px, 42vh, 280px);
+    aspect-ratio: 16 / 10;
+    margin: 0 auto 1.5rem;
   }
 
   .service-hero__meta-grid {

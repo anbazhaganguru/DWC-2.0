@@ -1,0 +1,425 @@
+/**
+ * Daniel Wellness Center (DWC 2.0) - Dedicated Founder Page Stylesheet
+ * Swiss International Style Editorial Profile with Black + White Alternation
+ */
+
+.founder-page {
+  width: 100%;
+  max-width: 100%;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: var(--font-family-primary);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.founder-page-main {
+  width: 100%;
+  padding-top: clamp(64px, 8vh, 88px);
+}
+
+.founder-section {
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Alternating Theme Foundations
+   ========================================================================== */
+
+/* Light Section (White / Off-white background, crisp dark typography) */
+.founder-section--light {
+  background-color: #ffffff;
+  color: #0a0a0a;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Dark Section (Deep Black background, off-white typography) */
+.founder-section--dark {
+  background-color: #000000;
+  color: #ffffff;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   Section 01: White Founder Hero Section
+   ========================================================================== */
+
+.founder-hero-section {
+  padding-top: 0;
+}
+
+.founder-hero-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem clamp(1.5rem, 3.5vw, 2.5rem);
+  background-color: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.founder-hero-nav__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.founder-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #0a0a0a;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  transition: color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.founder-back-arrow {
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.founder-back-link:hover {
+  color: var(--color-accent-red, #e62217);
+}
+
+.founder-back-link:hover .founder-back-arrow {
+  transform: translateX(-4px);
+}
+
+.founder-hero-nav__right {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  color: rgba(10, 10, 10, 0.45);
+}
+
+.founder-hero-nav__specimen {
+  color: var(--color-accent-red, #e62217);
+  font-weight: 700;
+}
+
+/* Hero Content Grid */
+.founder-hero-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(2rem, 4vw, 4rem);
+  row-gap: 3rem;
+  padding: clamp(3.5rem, 6vw, 6rem) clamp(1.5rem, 3.5vw, 2.5rem);
+  align-items: center;
+}
+
+.founder-hero__content-col {
+  grid-column: 1 / 8;
+  display: flex;
+  flex-direction: column;
+}
+
+.founder-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #0a0a0a;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.founder-hero__badge-accent {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-red, #e62217);
+}
+
+.founder-hero__title {
+  font-size: clamp(2.75rem, 5.5vw, 5rem);
+  font-weight: 300;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  color: #0a0a0a;
+  margin: 0 0 clamp(1rem, 2vw, 1.5rem);
+  text-transform: uppercase;
+}
+
+.founder-hero__subtitle {
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  font-weight: 300;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: rgba(10, 10, 10, 0.9);
+  margin: 0 0 clamp(1.25rem, 2vw, 1.75rem);
+}
+
+.founder-hero__desc {
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  color: rgba(10, 10, 10, 0.68);
+  margin: 0 0 clamp(2rem, 3.5vw, 3rem);
+  max-width: 640px;
+}
+
+.founder-hero__disciplines {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.75rem);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+.founder-hero__discipline-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.founder-hero__discipline-num {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--color-accent-red, #e62217);
+}
+
+.founder-hero__discipline-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0a0a0a;
+  line-height: 1.35;
+}
+
+.founder-hero__media-col {
+  grid-column: 8 / 13;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Light Theme Adaptations for Archive Placeholder in Hero */
+.founder-placeholder--light {
+  background: linear-gradient(180deg, #f7f7f5 0%, #efefe9 100%);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.founder-placeholder--light .founder-placeholder__corner {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.founder-placeholder--light .founder-placeholder__grid-overlay {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+}
+
+.founder-placeholder--light .founder-placeholder__stamp {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.founder-placeholder--light .founder-placeholder__glyph {
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #0a0a0a;
+}
+
+.founder-placeholder--light .founder-placeholder__caption {
+  color: #0a0a0a;
+}
+
+.founder-placeholder--light .founder-placeholder__subtext {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.founder-placeholder--light .founder-placeholder__footer {
+  border-top-color: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.founder-hero__media-caption {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   Section 03: White Education Section Adaptations
+   ========================================================================== */
+
+.founder-section--light .founder-education-zone {
+  border-bottom: none;
+}
+
+.founder-section--light .founder-education__side-label {
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.founder-section--light .education-label-group__title {
+  color: #0a0a0a;
+}
+
+.founder-section--light .founder-education__side-meta {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.founder-section--light .education-card {
+  background-color: transparent;
+}
+
+.founder-section--light .education-card:first-child {
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.founder-section--light .education-card__index {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.founder-section--light .education-card__status-tag {
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  color: #0a0a0a;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.founder-section--light .education-card__status-tag--active {
+  border-color: var(--color-accent-red, #e62217);
+  color: var(--color-accent-red, #e62217);
+  background-color: rgba(230, 34, 23, 0.06);
+}
+
+.founder-section--light .education-card__degree {
+  color: #0a0a0a;
+}
+
+.founder-section--light .education-card__institution {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.founder-section--light .education-card__footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   Section 05: White Wellness Training Adaptations
+   ========================================================================== */
+
+.founder-section--light .founder-wellness-zone {
+  border-bottom: none;
+}
+
+.founder-section--light .founder-wellness__side-label {
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.founder-section--light .wellness-label-group__title {
+  color: #0a0a0a;
+}
+
+.founder-section--light .founder-wellness__side-meta {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.founder-section--light .wellness-training-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.founder-section--light .wellness-training-item:last-child {
+  border-bottom: none;
+}
+
+.founder-section--light .wellness-training-item__index {
+  color: var(--color-accent-red, #e62217);
+}
+
+.founder-section--light .wellness-training-item__name {
+  color: #0a0a0a;
+}
+
+.founder-section--light .wellness-training-item__badge {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.65);
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.founder-section--light .wellness-training-item__icon {
+  stroke: #0a0a0a;
+  color: #0a0a0a;
+}
+
+/* ==========================================================================
+   Responsive Adaptations for Founder Page
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .founder-hero-grid {
+    grid-template-columns: 1fr;
+    row-gap: 2.5rem;
+    padding: 3.5rem 1.5rem;
+  }
+
+  .founder-hero__content-col {
+    grid-column: 1 / -1;
+  }
+
+  .founder-hero__media-col {
+    grid-column: 1 / -1;
+    max-width: 440px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .founder-section--light .founder-education-zone,
+  .founder-section--light .founder-wellness-zone {
+    grid-template-columns: 1fr;
+  }
+
+  .founder-section--light .founder-education__side-label,
+  .founder-section--light .founder-wellness__side-label {
+    grid-column: 1 / -1;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .founder-section--light .founder-education__content-col,
+  .founder-section--light .founder-wellness__content-col {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .founder-hero__disciplines {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .founder-hero-nav__right {
+    display: none;
+  }
+
+  .founder-section--light .founder-education__content-col {
+    grid-template-columns: 1fr;
+  }
+
+  .founder-section--light .education-card:first-child {
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+}

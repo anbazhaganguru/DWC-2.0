@@ -29,7 +29,7 @@ const NAV_ITEMS = [
  * - Smooth reverse timeline on close and ESC / backdrop click handling
  * - CustomEase ("0.65, 0.01, 0.05, 0.99")
  */
-export function Navbar({ isDetailPage = false, onOpenBooking }) {
+export function Navbar({ isDetailPage = false, hideCenterLinks = false, onOpenBooking }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isHero, setIsHero] = useState(!isDetailPage);
 
@@ -411,27 +411,26 @@ export function Navbar({ isDetailPage = false, onOpenBooking }) {
           1. FIXED TOP NAVBAR BAR (Minimal Swiss Editorial)
           ========================================================= */}
       <header
-        className={`dwc-navbar ${!isHero ? 'dwc-navbar--sticky dwc-navbar--scrolled' : ''} ${isOpen ? 'dwc-navbar--menu-open' : ''}`}
+        className={`dwc-navbar ${isHero ? 'dwc-navbar--hero' : 'dwc-navbar--sticky dwc-navbar--scrolled'} ${isOpen ? 'dwc-navbar--menu-open' : ''}`}
         aria-label="Daniel Wellness Center Navigation"
       >
         <div className="dwc-navbar__inner">
-          {/* Left: DWC Distinctive Swiss Brand Lockup */}
+          {/* Left: Distinctive Swiss Brand Lockup (DANIEL / WELLNESS CENTER) */}
           <a
             href="#hero"
-            className="dwc-navbar__brand"
+            className={`dwc-navbar__brand dwc-brand-lockup ${isHero && !isOpen ? 'dwc-brand-lockup--hero' : ''}`}
             onClick={(e) => handleNavClick(e, '#hero')}
             aria-label="Daniel Wellness Center - Home"
           >
-            <span className="dwc-navbar__brand-accent" aria-hidden="true" />
-            <div className="dwc-navbar__brand-text">
-              <span className="dwc-navbar__brand-primary">DANIEL</span>
-              <span className="dwc-navbar__brand-sub">WELLNESS</span>
-              <span className="dwc-navbar__brand-sub">CENTER</span>
+            <span className="dwc-brand-lockup__accent dwc-navbar__brand-accent" aria-hidden="true" />
+            <div className="dwc-brand-lockup__text dwc-navbar__brand-text">
+              <span className="dwc-brand-lockup__primary dwc-navbar__brand-primary">DANIEL</span>
+              <span className="dwc-brand-lockup__supporting dwc-navbar__brand-sub">WELLNESS CENTER</span>
             </div>
           </a>
 
-          {/* Center: HOME & THERAPY Navigation Links for Detail Pages (Section 4) */}
-          {isDetailPage && (
+          {/* Center: HOME & THERAPY Navigation Links for Detail Pages (Removed ONLY on Founder Page via hideCenterLinks) */}
+          {isDetailPage && !hideCenterLinks && (
             <nav className="dwc-navbar__center-links" aria-label="Quick Page Navigation">
               <a
                 href="/#hero"
