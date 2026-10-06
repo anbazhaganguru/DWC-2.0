@@ -1,15 +1,67 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { EASING, isReducedMotion } from '../../animations/scrollAnimations';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /**
  * ServiceWhyChooseUs Component
  * Section E: Why Choose Daniel Wellness Center?
  * Minimal Swiss editorial list highlighting the authentic practice standards
+ * 
+ * Choreographed GSAP staggered scroll reveals.
  */
 export function ServiceWhyChooseUs({ service }) {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    if (isReducedMotion()) return;
+
+    const ctx = gsap.context(() => {
+      const header = sectionRef.current.querySelector('.service-section-header');
+      const items = sectionRef.current.querySelectorAll('.service-why-us__item');
+
+      if (header) {
+        gsap.from(header, {
+          opacity: 0,
+          y: 20,
+          duration: 0.75,
+          ease: EASING.editorial,
+          scrollTrigger: {
+            trigger: header,
+            start: 'top 85%',
+            once: true
+          }
+        });
+      }
+
+      if (items.length) {
+        gsap.from(items, {
+          opacity: 0,
+          y: 24,
+          stagger: 0.1,
+          duration: 0.75,
+          ease: EASING.editorial,
+          scrollTrigger: {
+            trigger: sectionRef.current.querySelector('.service-why-us__grid'),
+            start: 'top 82%',
+            once: true
+          }
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [service]);
+
   if (!service || !service.whyChooseUs?.length) return null;
 
   return (
-    <section className="service-why-us" aria-labelledby="why-heading">
+    <section ref={sectionRef} className="service-why-us" aria-labelledby="why-heading">
       <div className="service-why-us__container">
         {/* Section Header */}
         <div className="service-section-header">

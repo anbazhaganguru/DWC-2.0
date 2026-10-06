@@ -1,15 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { EASING, isReducedMotion } from '../../animations/scrollAnimations';
 import BookingModal from '../booking/BookingModal';
 import '../../styles/cta.css';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /**
  * CTA Component (Daniel Wellness Center 2.0)
  * Swiss International Style architectural appointment booking and contact section.
  *
+ * Animations:
+ * - Subtle background image parallax (yPercent -5 to +5)
+ * - Progressive editorial text loading (eyebrow, headline, quote, contact coordinates)
+ * - Elevated booking card entrance and options stagger
+ * - Full responsive and reduced-motion handling
+ *
  * Section ID: #cta (Target for Hero header booking action)
  */
 export function CTA({ onOpenBooking }) {
   const [internalModalOpen, setInternalModalOpen] = useState(false);
+  const sectionRef = useRef(null);
 
   // Auto-open modal if URL hash is #book or #booking
   useEffect(() => {
@@ -27,6 +41,169 @@ export function CTA({ onOpenBooking }) {
     return () => window.removeEventListener('hashchange', handleHash);
   }, [onOpenBooking]);
 
+  // GSAP ScrollTrigger reveals and background parallax
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    if (isReducedMotion()) return;
+
+    const ctx = gsap.context(() => {
+      const isMobile = window.innerWidth <= 768;
+      const bgImg = sectionRef.current.querySelector('.dwc-cta-bg-img');
+      const editorialCol = sectionRef.current.querySelector('.dwc-cta-editorial-col');
+      const bookingCol = sectionRef.current.querySelector('.dwc-cta-booking-col');
+
+      // 1. Subtle Slow Background Image Parallax
+      if (bgImg && !isMobile) {
+        gsap.fromTo(
+          bgImg,
+          { yPercent: -5 },
+          {
+            yPercent: 5,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2
+            }
+          }
+        );
+      }
+
+      // 2. Left Column: Progressive Editorial Text Loading
+      if (editorialCol) {
+        const eyebrow = editorialCol.querySelector('.dwc-cta-eyebrow');
+        const headline = editorialCol.querySelector('.dwc-cta-headline');
+        const philosophy = editorialCol.querySelector('.dwc-cta-philosophy');
+        const description = editorialCol.querySelector('.dwc-cta-description');
+        const contactItems = editorialCol.querySelectorAll('.dwc-cta-contact-item');
+
+        const tlEditorial = gsap.timeline({
+          scrollTrigger: {
+            trigger: editorialCol,
+            start: 'top 80%',
+            once: true
+          }
+        });
+
+        if (eyebrow) {
+          tlEditorial.from(eyebrow, {
+            opacity: 0,
+            y: 15,
+            duration: 0.6,
+            ease: EASING.editorial
+          });
+        }
+
+        if (headline) {
+          tlEditorial.from(
+            headline,
+            {
+              opacity: 0,
+              y: 30,
+              duration: 0.8,
+              ease: EASING.editorial
+            },
+            '-=0.4'
+          );
+        }
+
+        if (philosophy) {
+          tlEditorial.from(
+            philosophy,
+            {
+              opacity: 0,
+              y: 20,
+              duration: 0.7,
+              ease: EASING.editorial
+            },
+            '-=0.5'
+          );
+        }
+
+        if (description) {
+          tlEditorial.from(
+            description,
+            {
+              opacity: 0,
+              y: 20,
+              duration: 0.7,
+              ease: EASING.editorial
+            },
+            '-=0.5'
+          );
+        }
+
+        if (contactItems && contactItems.length) {
+          tlEditorial.from(
+            contactItems,
+            {
+              opacity: 0,
+              y: 15,
+              stagger: 0.08,
+              duration: 0.6,
+              ease: EASING.editorial
+            },
+            '-=0.4'
+          );
+        }
+      }
+
+      // 3. Right Column: Booking Card Reveal
+      if (bookingCol) {
+        const card = bookingCol.querySelector('.dwc-cta-card');
+        const summaryBoxes = bookingCol.querySelectorAll('.dwc-cta-summary-box');
+        const actionWrap = bookingCol.querySelector('.dwc-cta-action-wrap');
+
+        const tlBooking = gsap.timeline({
+          scrollTrigger: {
+            trigger: bookingCol,
+            start: 'top 80%',
+            once: true
+          }
+        });
+
+        if (card) {
+          tlBooking.from(card, {
+            opacity: 0,
+            y: 25,
+            duration: 0.85,
+            ease: EASING.editorial
+          });
+        }
+
+        if (summaryBoxes && summaryBoxes.length) {
+          tlBooking.from(
+            summaryBoxes,
+            {
+              opacity: 0,
+              y: 15,
+              stagger: 0.1,
+              duration: 0.65,
+              ease: EASING.editorial
+            },
+            '-=0.5'
+          );
+        }
+
+        if (actionWrap) {
+          tlBooking.from(
+            actionWrap,
+            {
+              opacity: 0,
+              y: 15,
+              duration: 0.6,
+              ease: EASING.editorial
+            },
+            '-=0.4'
+          );
+        }
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const handleBookingClick = () => {
     if (onOpenBooking) {
       onOpenBooking();
@@ -36,7 +213,7 @@ export function CTA({ onOpenBooking }) {
   };
 
   return (
-    <section id="cta" className="dwc-cta-section" aria-label="Contact & Appointments">
+    <section id="cta" ref={sectionRef} className="dwc-cta-section" aria-label="Contact & Appointments">
       {/* 1. Full-Screen Atmospheric Background Image with Responsive Assets */}
       <div className="dwc-cta-bg-wrap" aria-hidden="true">
         <picture className="dwc-cta-picture">

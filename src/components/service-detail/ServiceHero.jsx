@@ -1,17 +1,81 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { EASING, isReducedMotion } from '../../animations/scrollAnimations';
 import { ServiceIcon } from './ServiceIcons';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /**
  * ServiceHero Component
  * Minimal Swiss Editorial Hero for Service Detail Pages
  * Displays category, dominant title, authoritative tagline, large hero image,
  * metadata table, and minimal monochrome line badge.
+ * 
+ * Animations:
+ * - Staggered entrance for header, title, and metadata
+ * - Subtle vertical parallax for the main service image (desktop)
+ * - Pure preservation of layout, dimensions, and assets
  */
 export function ServiceHero({ service, onOpenBooking }) {
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    if (!heroRef.current) return;
+    if (isReducedMotion()) return;
+
+    const ctx = gsap.context(() => {
+      const isMobile = window.innerWidth <= 768;
+      const backRow = heroRef.current.querySelector('.service-hero__back-row');
+      const categoryRow = heroRef.current.querySelector('.service-hero__category-row');
+      const title = heroRef.current.querySelector('.service-hero__title');
+      const tagline = heroRef.current.querySelector('.service-hero__tagline');
+      const badgeCard = heroRef.current.querySelector('.service-hero__badge-card');
+      const imgWrap = heroRef.current.querySelector('.service-hero__image-wrap');
+      const img = heroRef.current.querySelector('.service-hero__image');
+      const metaItems = heroRef.current.querySelectorAll('.service-hero__meta-item');
+      const bookBtn = heroRef.current.querySelector('.service-hero__book-btn');
+
+      // 1. Header Row Entrance
+      const tl = gsap.timeline({ delay: 0.1 });
+
+      if (backRow) tl.from(backRow, { opacity: 0, y: 12, duration: 0.6, ease: EASING.editorial });
+      if (categoryRow) tl.from(categoryRow, { opacity: 0, y: 12, duration: 0.5, ease: EASING.editorial }, '-=0.4');
+      if (title) tl.from(title, { opacity: 0, y: 28, duration: 0.75, ease: EASING.editorial }, '-=0.4');
+      if (tagline) tl.from(tagline, { opacity: 0, y: 18, duration: 0.65, ease: EASING.editorial }, '-=0.5');
+      if (badgeCard) tl.from(badgeCard, { opacity: 0, y: 18, duration: 0.65, ease: EASING.editorial }, '-=0.5');
+      if (imgWrap) tl.from(imgWrap, { opacity: 0, y: 24, duration: 0.8, ease: EASING.editorial }, '-=0.4');
+      if (metaItems.length) tl.from(metaItems, { opacity: 0, y: 14, stagger: 0.06, duration: 0.6, ease: EASING.editorial }, '-=0.5');
+      if (bookBtn) tl.from(bookBtn, { opacity: 0, y: 14, duration: 0.5, ease: EASING.editorial }, '-=0.3');
+
+      // 2. Subtle Vertical Parallax on Main Service Image (Desktop)
+      if (img && imgWrap && !isMobile) {
+        gsap.fromTo(
+          img,
+          { yPercent: -5 },
+          {
+            yPercent: 5,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: imgWrap,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2
+            }
+          }
+        );
+      }
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, [service]);
+
   if (!service) return null;
 
   return (
-    <section className="service-hero" aria-label={`${service.title} Overview`}>
+    <section ref={heroRef} className="service-hero" aria-label={`${service.title} Overview`}>
       <div className="service-hero__container">
         {/* Back Link to Therapy Grid */}
         <div className="service-hero__back-row">

@@ -1,15 +1,67 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { EASING, isReducedMotion } from '../../animations/scrollAnimations';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /**
  * ServiceExperience Component
  * Section D: What to Expect During Your Session
  * Editorial timeline visualizing the structured session progression
+ * 
+ * Choreographed GSAP staggered scroll reveals.
  */
 export function ServiceExperience({ service }) {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    if (isReducedMotion()) return;
+
+    const ctx = gsap.context(() => {
+      const header = sectionRef.current.querySelector('.service-section-header');
+      const steps = sectionRef.current.querySelectorAll('.service-experience__step');
+
+      if (header) {
+        gsap.from(header, {
+          opacity: 0,
+          y: 20,
+          duration: 0.75,
+          ease: EASING.editorial,
+          scrollTrigger: {
+            trigger: header,
+            start: 'top 85%',
+            once: true
+          }
+        });
+      }
+
+      if (steps.length) {
+        gsap.from(steps, {
+          opacity: 0,
+          y: 24,
+          stagger: 0.12,
+          duration: 0.75,
+          ease: EASING.editorial,
+          scrollTrigger: {
+            trigger: sectionRef.current.querySelector('.service-experience__timeline'),
+            start: 'top 82%',
+            once: true
+          }
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [service]);
+
   if (!service || !service.sessionExpectations?.length) return null;
 
   return (
-    <section className="service-experience" aria-labelledby="experience-heading">
+    <section ref={sectionRef} className="service-experience" aria-labelledby="experience-heading">
       <div className="service-experience__container">
         {/* Section Header */}
         <div className="service-section-header">

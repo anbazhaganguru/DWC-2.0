@@ -1,9 +1,16 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { EASING, isReducedMotion } from '../../animations/scrollAnimations';
 import RecoveryHeader from './RecoveryHeader';
 import RecoveryCard from './RecoveryCard';
 import RecoveryTrackbar from './RecoveryTrackbar';
 import { recoveryModalities } from './recoveryData';
 import '../../styles/recovery.css';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /**
  * Recovery Section Component
@@ -197,6 +204,114 @@ export function Recovery() {
 
     observer.observe(section);
     return () => observer.disconnect();
+  }, []);
+
+  // GSAP ScrollTrigger reveals for Section Header, Carousel Wrapper, and Trackbar
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    if (isReducedMotion()) return;
+
+    const ctx = gsap.context(() => {
+      const header = sectionRef.current.querySelector('.recovery-header');
+      const wrapper = wrapperRef.current;
+      const trackbar = sectionRef.current.querySelector('.recovery-trackbar-wrap');
+
+      // 1. Recovery Header Progressive Reveal
+      if (header) {
+        const meta = header.querySelector('.recovery-header__meta');
+        const title = header.querySelector('.recovery-header__title');
+        const copy = header.querySelector('.recovery-header__copy');
+        const counter = header.querySelector('.recovery-header__counter');
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: header,
+            start: 'top 82%',
+            once: true
+          }
+        });
+
+        if (meta) {
+          tl.from(meta, {
+            opacity: 0,
+            y: 15,
+            duration: 0.6,
+            ease: EASING.editorial
+          });
+        }
+
+        if (title) {
+          tl.from(
+            title,
+            {
+              opacity: 0,
+              y: 30,
+              duration: 0.8,
+              ease: EASING.editorial
+            },
+            '-=0.4'
+          );
+        }
+
+        if (copy) {
+          tl.from(
+            copy,
+            {
+              opacity: 0,
+              y: 20,
+              duration: 0.7,
+              ease: EASING.editorial
+            },
+            '-=0.5'
+          );
+        }
+
+        if (counter) {
+          tl.from(
+            counter,
+            {
+              opacity: 0,
+              y: 15,
+              duration: 0.6,
+              ease: EASING.editorial
+            },
+            '-=0.4'
+          );
+        }
+      }
+
+      // 2. Carousel Wrapper subtle entrance into view (vertical only; does not affect continuous horizontal rAF loop)
+      if (wrapper) {
+        gsap.from(wrapper, {
+          opacity: 0,
+          y: 25,
+          duration: 0.85,
+          ease: EASING.editorial,
+          scrollTrigger: {
+            trigger: wrapper,
+            start: 'top 85%',
+            once: true
+          }
+        });
+      }
+
+      // 3. Trackbar progressive reveal
+      if (trackbar) {
+        gsap.from(trackbar, {
+          opacity: 0,
+          y: 15,
+          duration: 0.7,
+          ease: EASING.editorial,
+          scrollTrigger: {
+            trigger: trackbar,
+            start: 'top 92%',
+            once: true
+          }
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   // Continuous auto-scroll animation loop (36 px/s)

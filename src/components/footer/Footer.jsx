@@ -1,13 +1,64 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { EASING, isReducedMotion } from '../../animations/scrollAnimations';
 import '../../styles/footer.css';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /**
  * Footer Component (Daniel Wellness Center 2.0)
  * Disciplined 4-column Swiss International Style layout with verified legacy brand content,
  * navigation anchors, contact coordinates, and unified booking modal trigger.
+ * 
+ * Maintained mostly static with a very subtle editorial reveal.
  */
 export function Footer({ onOpenBooking }) {
   const currentYear = new Date().getFullYear();
+  const footerRef = useRef(null);
+
+  useEffect(() => {
+    if (!footerRef.current) return;
+    if (isReducedMotion()) return;
+
+    const ctx = gsap.context(() => {
+      const cols = footerRef.current.querySelectorAll('.dwc-footer-col');
+      const bottom = footerRef.current.querySelector('.dwc-footer-bottom');
+
+      if (cols.length) {
+        gsap.from(cols, {
+          opacity: 0,
+          y: 15,
+          duration: 0.75,
+          stagger: 0.08,
+          ease: EASING.editorial,
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: 'top 92%',
+            once: true
+          }
+        });
+      }
+
+      if (bottom) {
+        gsap.from(bottom, {
+          opacity: 0,
+          y: 10,
+          duration: 0.6,
+          ease: EASING.editorial,
+          scrollTrigger: {
+            trigger: bottom,
+            start: 'top 95%',
+            once: true
+          }
+        });
+      }
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleBookingClick = (e) => {
     e.preventDefault();
@@ -23,7 +74,7 @@ export function Footer({ onOpenBooking }) {
   };
 
   return (
-    <footer id="footer" className="dwc-footer" aria-label="Website Footer">
+    <footer id="footer" ref={footerRef} className="dwc-footer" aria-label="Website Footer">
       {/* Atmosphere Background Layer */}
       <div className="dwc-footer-bg-wrap" aria-hidden="true">
         <picture>

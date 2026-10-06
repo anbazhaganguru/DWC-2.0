@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { EASING, isReducedMotion } from '../../animations/scrollAnimations';
 import '../../styles/about.css';
 
 if (typeof window !== 'undefined') {
@@ -12,44 +13,170 @@ if (typeof window !== 'undefined') {
  * Homepage About Teaser Component (DWC 2.0)
  * Rebuilt as a concise, minimal Swiss International Style teaser profile.
  * 
- * Contains ONLY:
- * 1. Small section label / index
- * 2. Short About introduction
- * 3. Founder image / archival portrait placeholder
- * 4. Very short founder introduction
- * 5. Small supporting metadata (PSYCHOLOGY, SPORT, WELLNESS)
- * 6. Clear CTA button: VIEW FOUNDER → (links to /about/founder)
+ * Animations:
+ * - Subtle vertical parallax on the Founder portrait (yPercent -7 to +7)
+ * - Progressive staggered text loading (metadata 15px, heading 30px, lead 20px)
+ * - Gentle opposing movement on editorial content column
+ * - Full prefers-reduced-motion and responsive mobile support
  */
 export function About() {
   const sectionRef = useRef(null);
 
   useEffect(() => {
     if (!sectionRef.current) return;
-
-    const prefersReducedMotion = typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReducedMotion) return;
+    if (isReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      const animatedElements = sectionRef.current.querySelectorAll('[data-about-anim="fade-up"]');
-      animatedElements.forEach((el) => {
+      const isMobile = window.innerWidth <= 768;
+      const img = sectionRef.current.querySelector('.founder-image');
+      const contentCol = sectionRef.current.querySelector('.about-teaser__content-col');
+      const topBar = sectionRef.current.querySelector('.about-top-bar');
+      const footerBar = sectionRef.current.querySelector('.about-footer-bar');
+
+      // 1. Subtle Vertical Parallax on Founder Portrait
+      if (img && !isMobile) {
         gsap.fromTo(
-          el,
-          { opacity: 0, y: 20 },
+          img,
+          { yPercent: -7 },
           {
-            opacity: 1,
-            y: 0,
-            duration: 0.75,
-            ease: 'power2.out',
+            yPercent: 7,
+            ease: 'none',
             scrollTrigger: {
-              trigger: el,
-              start: 'top 88%',
-              toggleActions: 'play none none reverse'
+              trigger: sectionRef.current,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2
             }
           }
         );
-      });
+      }
+
+      // 2. Subtle opposing vertical movement on content column for editorial depth
+      if (contentCol && !isMobile) {
+        gsap.fromTo(
+          contentCol,
+          { y: 10 },
+          {
+            y: -10,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.5
+            }
+          }
+        );
+      }
+
+      // 3. Progressive Text Loading: Top Bar
+      if (topBar) {
+        gsap.from(topBar, {
+          opacity: 0,
+          y: 15,
+          duration: 0.75,
+          ease: EASING.editorial,
+          scrollTrigger: {
+            trigger: topBar,
+            start: 'top 88%',
+            once: true
+          }
+        });
+      }
+
+      // 4. Progressive Text Loading: Editorial Teaser Content
+      if (contentCol) {
+        const metaHeader = contentCol.querySelector('.about-teaser__meta-header');
+        const headline = contentCol.querySelector('.about-teaser__headline');
+        const lead = contentCol.querySelector('.about-teaser__lead');
+        const disciplines = contentCol.querySelectorAll('.about-teaser__discipline-item');
+        const ctaBtn = contentCol.querySelector('.about-teaser__cta-wrapper');
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: contentCol,
+            start: 'top 82%',
+            once: true
+          }
+        });
+
+        if (metaHeader) {
+          tl.from(metaHeader, {
+            opacity: 0,
+            y: 15,
+            duration: 0.6,
+            ease: EASING.editorial
+          });
+        }
+
+        if (headline) {
+          tl.from(
+            headline,
+            {
+              opacity: 0,
+              y: 30,
+              duration: 0.8,
+              ease: EASING.editorial
+            },
+            '-=0.4'
+          );
+        }
+
+        if (lead) {
+          tl.from(
+            lead,
+            {
+              opacity: 0,
+              y: 20,
+              duration: 0.7,
+              ease: EASING.editorial
+            },
+            '-=0.5'
+          );
+        }
+
+        if (disciplines && disciplines.length) {
+          tl.from(
+            disciplines,
+            {
+              opacity: 0,
+              y: 15,
+              stagger: 0.08,
+              duration: 0.6,
+              ease: EASING.editorial
+            },
+            '-=0.4'
+          );
+        }
+
+        if (ctaBtn) {
+          tl.from(
+            ctaBtn,
+            {
+              opacity: 0,
+              y: 15,
+              duration: 0.6,
+              ease: EASING.editorial
+            },
+            '-=0.3'
+          );
+        }
+      }
+
+      // 5. Section Footer Bar
+      if (footerBar) {
+        gsap.from(footerBar, {
+          opacity: 0,
+          y: 15,
+          duration: 0.75,
+          ease: EASING.editorial,
+          scrollTrigger: {
+            trigger: footerBar,
+            start: 'top 92%',
+            once: true
+          }
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -74,7 +201,7 @@ export function About() {
         </div>
 
         {/* Teaser Core Grid */}
-        <div className="about-teaser-zone" data-about-anim="fade-up">
+        <div className="about-teaser-zone">
           {/* 3. Founder Image: Approved Studio Portrait */}
           <div className="about-teaser__media-col">
             <div className="founder-image-wrapper">

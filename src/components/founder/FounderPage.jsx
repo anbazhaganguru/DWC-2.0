@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { EASING, isReducedMotion } from '../../animations/scrollAnimations';
 import Navbar from '../navigation/Navbar';
 import AboutIntro from '../about/AboutIntro';
 import FounderEducation from '../about/FounderEducation';
@@ -53,55 +54,243 @@ export function FounderPage({ onOpenBooking }) {
     }, 100);
   };
 
-  // GSAP ScrollTrigger Entrance Animations
+  // GSAP ScrollTrigger Section-Specific Reveals and Parallax
   useEffect(() => {
     if (!pageRef.current) return;
-
-    const prefersReducedMotion = typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReducedMotion) return;
+    if (isReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      const animatedElements = pageRef.current.querySelectorAll('[data-about-anim="fade-up"]');
-      animatedElements.forEach((el) => {
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: 24 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.75,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 88%',
-              toggleActions: 'play none none reverse'
-            }
-          }
-        );
-      });
+      const isMobile = window.innerWidth <= 768;
 
-      // Special entrance for record counter digits
-      const recordsSection = pageRef.current.querySelector('[data-about-anim="records-reveal"]');
-      if (recordsSection) {
-        const recordNumbers = recordsSection.querySelectorAll('.record-column__num-hero');
+      // 1. Founder Hero Image Slow Vertical Parallax (Desktop)
+      const heroSection = pageRef.current.querySelector('.founder-hero-section');
+      const heroImg = heroSection?.querySelector('.founder-image');
+      if (heroImg && !isMobile) {
         gsap.fromTo(
-          recordNumbers,
-          { opacity: 0, y: 28 },
+          heroImg,
+          { yPercent: -6 },
           {
-            opacity: 1,
-            y: 0,
-            duration: 0.85,
-            stagger: 0.15,
-            ease: 'power2.out',
+            yPercent: 6,
+            ease: 'none',
             scrollTrigger: {
-              trigger: recordsSection,
-              start: 'top 82%',
-              toggleActions: 'play none none reverse'
+              trigger: heroSection,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2
             }
           }
         );
+      }
+
+      // Hero Content Progressive Reveal
+      if (heroSection) {
+        const badge = heroSection.querySelector('.founder-hero__badge');
+        const title = heroSection.querySelector('.founder-hero__title');
+        const subtitle = heroSection.querySelector('.founder-hero__subtitle');
+        const desc = heroSection.querySelector('.founder-hero__desc');
+        const disciplines = heroSection.querySelectorAll('.founder-hero__discipline-item');
+
+        const tlHero = gsap.timeline({
+          scrollTrigger: {
+            trigger: heroSection,
+            start: 'top 85%',
+            once: true
+          }
+        });
+
+        if (badge) tlHero.from(badge, { opacity: 0, y: 15, duration: 0.6, ease: EASING.editorial });
+        if (title) tlHero.from(title, { opacity: 0, y: 30, duration: 0.8, ease: EASING.editorial }, '-=0.4');
+        if (subtitle) tlHero.from(subtitle, { opacity: 0, y: 20, duration: 0.7, ease: EASING.editorial }, '-=0.5');
+        if (desc) tlHero.from(desc, { opacity: 0, y: 20, duration: 0.7, ease: EASING.editorial }, '-=0.5');
+        if (disciplines && disciplines.length) {
+          tlHero.from(disciplines, { opacity: 0, y: 15, stagger: 0.08, duration: 0.6, ease: EASING.editorial }, '-=0.4');
+        }
+      }
+
+      // 2. Founder Introduction: Fade + Upward Reveal
+      const introZone = pageRef.current.querySelector('.about-intro-zone');
+      if (introZone) {
+        const tagGroup = introZone.querySelector('.about-intro__tag-group');
+        const num = introZone.querySelector('.about-intro__num');
+        const title = introZone.querySelector('.about-intro__title');
+        const sideCol = introZone.querySelector('.about-intro__side-col');
+
+        const tlIntro = gsap.timeline({
+          scrollTrigger: {
+            trigger: introZone,
+            start: 'top 82%',
+            once: true
+          }
+        });
+
+        if (tagGroup || num) {
+          tlIntro.from([tagGroup, num].filter(Boolean), {
+            opacity: 0,
+            y: 15,
+            duration: 0.6,
+            ease: EASING.editorial
+          });
+        }
+        if (title) {
+          tlIntro.from(title, { opacity: 0, y: 30, duration: 0.8, ease: EASING.editorial }, '-=0.4');
+        }
+        if (sideCol) {
+          tlIntro.from(sideCol, { opacity: 0, y: 20, duration: 0.7, ease: EASING.editorial }, '-=0.5');
+        }
+      }
+
+      // 3. Education: Staggered Reveal
+      const eduZone = pageRef.current.querySelector('.founder-education-zone');
+      if (eduZone) {
+        const sideLabel = eduZone.querySelector('.founder-education__side-label');
+        const cards = eduZone.querySelectorAll('.education-card');
+
+        const tlEdu = gsap.timeline({
+          scrollTrigger: {
+            trigger: eduZone,
+            start: 'top 82%',
+            once: true
+          }
+        });
+
+        if (sideLabel) tlEdu.from(sideLabel, { opacity: 0, y: 20, duration: 0.65, ease: EASING.editorial });
+        if (cards && cards.length) {
+          tlEdu.from(cards, { opacity: 0, y: 25, stagger: 0.12, duration: 0.8, ease: EASING.editorial }, '-=0.4');
+        }
+      }
+
+      // 4. Sports & Records: Directional Stagger + Numeric Counter Reveal
+      const sportsZone = pageRef.current.querySelector('.founder-sports-zone');
+      if (sportsZone) {
+        const sideLabel = sportsZone.querySelector('.founder-sports__side-label');
+        const cards = sportsZone.querySelectorAll('.sports-basketball-card, .sports-netball-card');
+
+        const tlSports = gsap.timeline({
+          scrollTrigger: {
+            trigger: sportsZone,
+            start: 'top 82%',
+            once: true
+          }
+        });
+
+        if (sideLabel) tlSports.from(sideLabel, { opacity: 0, y: 20, duration: 0.65, ease: EASING.editorial });
+        if (cards && cards.length) {
+          tlSports.from(
+            cards,
+            {
+              opacity: 0,
+              x: isMobile ? 0 : 24,
+              y: isMobile ? 20 : 0,
+              stagger: 0.15,
+              duration: 0.8,
+              ease: EASING.editorial
+            },
+            '-=0.4'
+          );
+        }
+      }
+
+      const recordsZone = pageRef.current.querySelector('.founder-records-zone');
+      if (recordsZone) {
+        const header = recordsZone.querySelector('.founder-records__header');
+        const recordCols = recordsZone.querySelectorAll('.record-column');
+        const recordNumbers = recordsZone.querySelectorAll('.record-column__num-hero');
+
+        const tlRecords = gsap.timeline({
+          scrollTrigger: {
+            trigger: recordsZone,
+            start: 'top 82%',
+            once: true
+          }
+        });
+
+        if (header) tlRecords.from(header, { opacity: 0, y: 15, duration: 0.6, ease: EASING.editorial });
+        if (recordCols && recordCols.length) {
+          tlRecords.from(recordCols, { opacity: 0, y: 25, stagger: 0.12, duration: 0.8, ease: EASING.editorial }, '-=0.4');
+        }
+        if (recordNumbers && recordNumbers.length) {
+          tlRecords.from(recordNumbers, { opacity: 0, y: 20, stagger: 0.15, duration: 0.8, ease: EASING.editorial }, '-=0.6');
+        }
+      }
+
+      // 5. Wellness: Clean Stagger & Clip Reveal
+      const wellnessZone = pageRef.current.querySelector('.founder-wellness-zone');
+      if (wellnessZone) {
+        const sideLabel = wellnessZone.querySelector('.founder-wellness__side-label');
+        const items = wellnessZone.querySelectorAll('.wellness-training-item');
+
+        const tlWellness = gsap.timeline({
+          scrollTrigger: {
+            trigger: wellnessZone,
+            start: 'top 82%',
+            once: true
+          }
+        });
+
+        if (sideLabel) tlWellness.from(sideLabel, { opacity: 0, y: 20, duration: 0.65, ease: EASING.editorial });
+        if (items && items.length) {
+          tlWellness.from(
+            items,
+            {
+              opacity: 0,
+              y: 18,
+              stagger: 0.1,
+              duration: 0.75,
+              ease: EASING.editorial
+            },
+            '-=0.4'
+          );
+        }
+      }
+
+      // 6. Vision: Disciplines, Center, and Bridge Stagger
+      const visionZone = pageRef.current.querySelector('.about-vision-zone');
+      if (visionZone) {
+        const disciplinesRow = visionZone.querySelector('.vision-disciplines-row');
+        const centerRow = visionZone.querySelector('.vision-center-row');
+        const bridgeRow = visionZone.querySelector('.about-bridge-row');
+
+        if (disciplinesRow) {
+          gsap.from(disciplinesRow, {
+            opacity: 0,
+            y: 25,
+            duration: 0.8,
+            ease: EASING.editorial,
+            scrollTrigger: {
+              trigger: disciplinesRow,
+              start: 'top 82%',
+              once: true
+            }
+          });
+        }
+
+        if (centerRow) {
+          gsap.from(centerRow, {
+            opacity: 0,
+            y: 25,
+            duration: 0.8,
+            ease: EASING.editorial,
+            scrollTrigger: {
+              trigger: centerRow,
+              start: 'top 82%',
+              once: true
+            }
+          });
+        }
+
+        if (bridgeRow) {
+          gsap.from(bridgeRow, {
+            opacity: 0,
+            y: 20,
+            duration: 0.8,
+            ease: EASING.editorial,
+            scrollTrigger: {
+              trigger: bridgeRow,
+              start: 'top 88%',
+              once: true
+            }
+          });
+        }
       }
     }, pageRef);
 
