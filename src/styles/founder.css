@@ -116,8 +116,8 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   column-gap: clamp(2rem, 4vw, 4rem);
-  row-gap: 3rem;
-  padding: clamp(3.5rem, 6vw, 6rem) clamp(1.5rem, 3.5vw, 2.5rem);
+  row-gap: clamp(1.75rem, 3vw, 2.25rem);
+  padding: clamp(2.25rem, 4vw, 3.75rem) clamp(1.5rem, 3.5vw, 2.5rem);
   align-items: center;
 }
 
@@ -434,3 +434,1092 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
 }
+
+/* ==========================================================================
+   Compact Sports & Records Architecture (DWC 2.0 Swiss International)
+   ========================================================================== */
+
+/* Sports Zone Container */
+.founder-sports-zone {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  background-color: #000000;
+}
+
+.founder-sports__side-label {
+  grid-column: 1 / 4;
+  padding: clamp(1.75rem, 3vw, 2.5rem) clamp(1.25rem, 2.5vw, 2rem);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.founder-sports__content-col {
+  grid-column: 4 / 13;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sports Compact Rows (8 / 4 Parallel Grid) */
+.sports-compact-row {
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sports-compact-row:last-child {
+  border-bottom: none;
+}
+
+/* Sports Information Card (8 cols) */
+.sports-compact-card {
+  padding: clamp(1.5rem, 2.5vw, 2.25rem) clamp(1.25rem, 2.5vw, 2.25rem);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #020202;
+}
+
+.sports-compact-card__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.sports-compact-card__title {
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0 0 0.85rem;
+}
+
+.sports-compact-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 0.85rem;
+}
+
+.sports-compact-card__desc {
+  font-size: clamp(0.875rem, 1.05vw, 0.95rem);
+  font-weight: 300;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0 0 1.25rem;
+  max-width: 580px;
+}
+
+.sports-compact-card__footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 0.75rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+}
+
+/* Sports Supporting Media & Video Cards (4 cols) */
+.sports-media-card {
+  padding: clamp(1.25rem, 2vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #030303;
+}
+
+.sports-media-card__frame {
+  position: relative;
+  background-color: #080808;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+}
+
+.sports-media-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.sports-media-card:hover .sports-media-card__img {
+  transform: scale(1.02);
+}
+
+.sports-media-card__caption {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.sports-media-card__caption-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sports-caption-accent {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-red, #e62217);
+}
+
+.sports-media-card__tag {
+  color: #ffffff;
+}
+
+.sports-media-card__meta {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Video Card Interaction & Frame */
+.sports-media-card--video,
+.records-modular-card--video {
+  cursor: pointer;
+  background-color: #030303;
+  transition: background-color 0.25s ease;
+}
+
+.sports-media-card--video:hover,
+.records-modular-card--video:hover {
+  background-color: #080808;
+}
+
+.sports-video-card__frame,
+.records-video-card__frame {
+  position: relative;
+  background-color: #080808;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+}
+
+.sports-video-card__poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  filter: brightness(0.7);
+  transition: filter 0.3s ease, transform 0.35s ease;
+}
+
+.sports-media-card--video:hover .sports-video-card__poster,
+.records-modular-card--video:hover .sports-video-card__poster {
+  filter: brightness(0.85);
+  transform: scale(1.02);
+}
+
+.sports-video-card__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.55) 100%);
+  transition: background 0.25s ease;
+}
+
+.sports-video-card__play-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  background-color: rgba(10, 10, 10, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.sports-media-card--video:hover .sports-video-card__play-badge,
+.records-modular-card--video:hover .sports-video-card__play-badge {
+  background-color: var(--color-accent-red, #e62217);
+  border-color: var(--color-accent-red, #e62217);
+  color: #ffffff;
+  transform: scale(1.04);
+}
+
+.sports-video-card__play-icon {
+  font-size: 0.625rem;
+}
+
+.sports-video-card__caption {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sports-video-card__meta-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sports-video-card__tag {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-accent-red, #e62217);
+  text-transform: uppercase;
+}
+
+.sports-video-card__title {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.sports-video-card__action {
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   Records Zone & Compact Asymmetric Achievement Layout
+   ========================================================================== */
+
+.founder-records-zone {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #000000;
+}
+
+.founder-records__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.15rem clamp(1.5rem, 3.5vw, 2.5rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #020202;
+}
+
+.records-header__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.records-header__tag-line {
+  width: 4px;
+  height: 18px;
+  background-color: var(--color-accent-red, #e62217);
+}
+
+.records-header__title {
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+}
+
+.records-header__right {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   Primary Area: Compact Asymmetric Grid (Data Archive + Trophy Feature)
+   -------------------------------------------------------------------------- */
+
+.records-asymmetric-primary {
+  display: grid;
+  grid-template-columns: minmax(0, 1.38fr) minmax(0, 1fr);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #020202;
+}
+
+.records-primary__data-col {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Individual Record Blocks */
+.record-hero-entry {
+  padding: clamp(1.25rem, 2vw, 1.85rem) clamp(1.25rem, 2.5vw, 2.25rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: #030303;
+  display: flex;
+  flex-direction: column;
+}
+
+.record-companion-entry {
+  padding: clamp(1.15rem, 1.8vw, 1.65rem) clamp(1.25rem, 2.5vw, 2.25rem);
+  background-color: #020202;
+  display: flex;
+  flex-direction: column;
+}
+
+.record-entry__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+
+.record-column__book-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent-red, #e62217);
+}
+
+.record-column__book-tag-dot {
+  width: 5px;
+  height: 5px;
+  background-color: var(--color-accent-red, #e62217);
+}
+
+.record-entry__badge-index {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.record-hero-entry__body,
+.record-companion-entry__body {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: clamp(1.25rem, 2.5vw, 2.5rem);
+}
+
+.record-hero-entry__num-wrapper,
+.record-companion-entry__num-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: clamp(90px, 10vw, 150px);
+}
+
+.record-hero-entry__num {
+  font-size: clamp(3.5rem, 5.5vw, 5.25rem);
+  font-weight: 300;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+
+.record-companion-entry__num {
+  font-size: clamp(2.75rem, 4.2vw, 3.85rem);
+  font-weight: 300;
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+
+.record-hero-entry__num-label,
+.record-companion-entry__num-label {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 0.4rem;
+}
+
+.record-hero-entry__content,
+.record-companion-entry__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.record-hero-entry__title {
+  font-size: clamp(0.95rem, 1.25vw, 1.15rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 0.75rem;
+}
+
+.record-companion-entry__title {
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 0.75rem;
+}
+
+.record-hero-entry__metrics {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(0.85rem, 1.5vw, 1.5rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 0.65rem;
+}
+
+.record-metric-time {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.record-metric-time__val {
+  font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+
+.record-metric-time__unit {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.record-metric-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.record-metric-status__label {
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.record-column__badge {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ffffff;
+  padding: 2px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Primary Visual Column: Trophy Feature */
+.records-primary__visual-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.records-trophy-feature {
+  padding: clamp(1.25rem, 2vw, 1.85rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background-color: #020202;
+}
+
+.records-trophy-feature__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 380px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: #080808;
+}
+
+.records-frame-accent-corner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid var(--color-accent-red, #e62217);
+  border-right: 2px solid var(--color-accent-red, #e62217);
+  pointer-events: none;
+}
+
+.records-trophy-feature__footer {
+  margin-top: 0.85rem;
+}
+
+.records-trophy-feature__subnote {
+  font-size: 0.6875rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.45;
+  margin-top: 0.35rem;
+  letter-spacing: 0.01em;
+}
+
+/* --------------------------------------------------------------------------
+   Supporting Area: Connected Asymmetric Recognition & Media Blocks (3 Cols)
+   -------------------------------------------------------------------------- */
+
+.records-asymmetric-supporting {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #020202;
+}
+
+.records-support-item {
+  padding: clamp(1.15rem, 1.8vw, 1.5rem);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #020202;
+  transition: background-color 0.25s ease;
+}
+
+.records-asymmetric-supporting > div:last-child {
+  border-right: none;
+}
+
+.records-support-item:hover {
+  background-color: #050505;
+}
+
+.records-support-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: #080808;
+}
+
+.records-support-frame--award {
+  aspect-ratio: 4 / 3;
+}
+
+.records-support-frame--press {
+  aspect-ratio: 16 / 11;
+}
+
+.records-support-frame--video {
+  aspect-ratio: 16 / 10;
+  cursor: pointer;
+}
+
+.records-modular-card__img,
+.recognition-modular-card__img,
+.sports-video-card__poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.records-modular-card:hover .records-modular-card__img,
+.recognition-modular-card:hover .recognition-modular-card__img,
+.records-support-item--video:hover .sports-video-card__poster {
+  transform: scale(1.025);
+}
+
+.records-support-item__body {
+  margin-top: 0.85rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.records-support-item__title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0.4rem 0 0.35rem;
+}
+
+.records-support-item__desc {
+  font-size: 0.6875rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+/* Captions */
+.records-modular-card__caption,
+.recognition-modular-card__caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.records-modular-card__caption-left,
+.recognition-modular-card__caption-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.records-caption-accent {
+  width: 5px;
+  height: 5px;
+  background-color: var(--color-accent-red, #e62217);
+}
+
+.records-modular-card__tag,
+.recognition-modular-card__tag {
+  color: #ffffff;
+}
+
+.records-modular-card__meta,
+.recognition-modular-card__meta {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Video Card Enhancements */
+.records-support-item--video {
+  cursor: pointer;
+}
+
+.records-support-item--video .sports-video-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background 0.25s ease;
+}
+
+.records-support-item--video:hover .sports-video-card__overlay {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.records-support-item--video .sports-video-card__play-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  background: rgba(0, 0, 0, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+}
+
+.records-support-item--video:hover .sports-video-card__play-badge {
+  background-color: var(--color-accent-red, #e62217);
+  border-color: var(--color-accent-red, #e62217);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Compact Instagram Editorial Link
+   ========================================================================== */
+
+.founder-instagram-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(1rem, 2vw, 1.35rem) clamp(1.5rem, 3.5vw, 2.5rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #020202;
+}
+
+.founder-instagram-bar__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.founder-instagram-bar__tag {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-accent-red, #e62217);
+  text-transform: uppercase;
+}
+
+.founder-instagram-bar__desc {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+}
+
+.founder-instagram-link {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.75rem, 1.5vw, 1.5rem);
+  text-decoration: none;
+  color: #ffffff;
+  padding: 7px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background-color: transparent;
+  transition: all 0.25s ease;
+}
+
+.founder-instagram-link:hover {
+  background-color: var(--color-accent-red, #e62217);
+  border-color: var(--color-accent-red, #e62217);
+  color: #ffffff;
+}
+
+.founder-instagram-link__label {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.founder-instagram-link:hover .founder-instagram-link__label {
+  color: #ffffff;
+}
+
+.founder-instagram-link__handle {
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.founder-instagram-link__action {
+  color: var(--color-accent-red, #e62217);
+}
+
+.founder-instagram-link:hover .founder-instagram-link__action {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Founder Video Modal Styles
+   ========================================================================== */
+
+.founder-video-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  animation: founderModalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes founderModalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.founder-video-modal-container {
+  background-color: #050505;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.9);
+  animation: founderModalScaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes founderModalScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.founder-video-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem clamp(1rem, 2vw, 1.5rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #080808;
+}
+
+.founder-video-modal__title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.founder-video-modal__accent-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-red, #e62217);
+}
+
+.founder-video-modal__tag {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-accent-red, #e62217);
+  text-transform: uppercase;
+}
+
+.founder-video-modal__title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.founder-video-modal__close-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 5px 12px;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.founder-video-modal__close-btn:hover {
+  background-color: var(--color-accent-red, #e62217);
+  border-color: var(--color-accent-red, #e62217);
+  color: #ffffff;
+}
+
+.founder-video-modal__player-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #000000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.founder-video-modal__video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.founder-video-modal__fallback {
+  padding: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.founder-video-fallback__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-accent-red, #e62217);
+  text-transform: uppercase;
+}
+
+.founder-video-fallback__dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-red, #e62217);
+}
+
+.founder-video-fallback__title {
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.founder-video-fallback__desc {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.founder-video-fallback__desc code {
+  color: var(--color-accent-red, #e62217);
+  font-family: monospace;
+}
+
+.founder-video-fallback__sub {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  max-width: 440px;
+  margin: 0;
+}
+
+.founder-video-fallback__sub code {
+  color: #ffffff;
+  font-family: monospace;
+}
+
+.founder-video-modal__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem clamp(1rem, 2vw, 1.5rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  background-color: #080808;
+}
+
+/* ==========================================================================
+   Responsive Overrides for Compact Layout
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .founder-sports-zone {
+    grid-template-columns: 1fr;
+  }
+
+  .founder-sports__side-label {
+    grid-column: 1 / -1;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .founder-sports__content-col {
+    grid-column: 1 / -1;
+  }
+
+  .sports-compact-row {
+    grid-template-columns: 1fr;
+  }
+
+  .sports-compact-card {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .records-asymmetric-primary {
+    grid-template-columns: 1fr;
+  }
+
+  .records-primary__data-col {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .records-asymmetric-supporting {
+    grid-template-columns: 1fr;
+  }
+
+  .records-support-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .records-support-item:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .record-hero-entry__body,
+  .record-companion-entry__body {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .record-hero-entry,
+  .record-companion-entry {
+    padding: 1.25rem 1rem;
+  }
+
+  .records-trophy-feature {
+    padding: 1.25rem 1rem;
+  }
+
+  .records-support-item {
+    padding: 1.25rem 1rem;
+  }
+
+  .records-header__right {
+    display: none;
+  }
+
+  .founder-instagram-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .founder-instagram-link {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .founder-video-modal__footer {
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+}
+

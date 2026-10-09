@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGradB" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#030303"/>
+    </linearGradient>
+    <pattern id="gridPatternB" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bgGradB)"/>
+  <rect width="800" height="500" fill="url(#gridPatternB)"/>
+
+  <!-- Outer Frame -->
+  <rect x="24" y="24" width="752" height="452" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+
+  <!-- Technical Corner Marks -->
+  <path d="M 24 40 L 40 40 L 40 24" fill="none" stroke="#e62217" stroke-width="2"/>
+  <path d="M 776 40 L 760 40 L 760 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <path d="M 24 460 L 40 460 L 40 476" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <path d="M 776 460 L 760 460 L 760 476" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+
+  <!-- Minimal Basketball Court Geometry -->
+  <g opacity="0.18">
+    <circle cx="400" cy="250" r="140" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="160" y1="250" x2="640" y2="250" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="400" y1="110" x2="400" y2="390" stroke="#ffffff" stroke-width="1.5"/>
+    <circle cx="400" cy="250" r="4" fill="#e62217"/>
+  </g>
+
+  <!-- Swiss Header Tag -->
+  <rect x="56" y="56" width="6" height="6" fill="#e62217"/>
+  <text x="72" y="62" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" letter-spacing="2.5">ATHLETIC ARCHIVE // PHOTO 02</text>
+  <text x="744" y="62" text-anchor="end" fill="rgba(255,255,255,0.4)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600" letter-spacing="2">DWC 2.0</text>
+
+  <!-- Large Stylized Monogram / Identity -->
+  <text x="400" y="270" text-anchor="middle" fill="rgba(255,255,255,0.08)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="140" font-weight="900" letter-spacing="-4">BASKETBALL</text>
+
+  <!-- Central Evidence Plaque -->
+  <g transform="translate(400, 240)">
+    <circle cx="0" cy="-30" r="28" fill="#111111" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <!-- Basketball Icon -->
+    <circle cx="0" cy="-30" r="16" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="-16" y1="-30" x2="16" y2="-30" stroke="#ffffff" stroke-width="1.2"/>
+    <path d="M -11 -41 A 16 16 0 0 1 -11 -19" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+    <path d="M 11 -41 A 16 16 0 0 0 11 -19" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+
+    <text x="0" y="22" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" letter-spacing="2">STATE PLAYER &amp; COACH</text>
+    <text x="0" y="44" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="400" letter-spacing="1.2">ATHLETIC CONDITIONING &amp; COMPETITIVE MOVEMENT</text>
+  </g>
+
+  <!-- Bottom Verification Footer -->
+  <line x1="56" y1="420" x2="744" y2="420" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <text x="56" y="444" fill="rgba(255,255,255,0.45)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600" letter-spacing="1.8">ATHLETE PORTRAIT EVIDENCE</text>
+  <text x="744" y="444" text-anchor="end" fill="#e62217" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" letter-spacing="1.8">VERIFIED RECORD // TN REPRESENTATION</text>
+</svg>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGradA" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#020202"/>
+    </linearGradient>
+    <pattern id="gridPatternA" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bgGradA)"/>
+  <rect width="800" height="500" fill="url(#gridPatternA)"/>
+
+  <!-- Outer Frame -->
+  <rect x="24" y="24" width="752" height="452" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+
+  <!-- Technical Corner Marks -->
+  <path d="M 24 40 L 40 40 L 40 24" fill="none" stroke="#e62217" stroke-width="2"/>
+  <path d="M 776 40 L 760 40 L 760 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <path d="M 24 460 L 40 460 L 40 476" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <path d="M 776 460 L 760 460 L 760 476" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+
+  <!-- Swiss Header Tag -->
+  <rect x="56" y="56" width="6" height="6" fill="#e62217"/>
+  <text x="72" y="62" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" letter-spacing="2.5">PRIMARY EVIDENCE // PHOTO 01</text>
+  <text x="744" y="62" text-anchor="end" fill="rgba(255,255,255,0.4)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600" letter-spacing="2">OFFICIAL BENCHMARK</text>
+
+  <!-- Large Stylized Background Numbers -->
+  <text x="400" y="275" text-anchor="middle" fill="rgba(255,255,255,0.06)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="130" font-weight="900" letter-spacing="-3">WORLD RECORD</text>
+
+  <!-- Trophy & Certificate Graphic -->
+  <g transform="translate(400, 230)">
+    <circle cx="0" cy="-30" r="32" fill="#111111" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <!-- Trophy Icon -->
+    <path d="M -12 -42 L 12 -42 L 12 -32 C 12 -24 6 -18 0 -18 C -6 -18 -12 -24 -12 -32 Z" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+    <path d="M -12 -38 L -18 -38 C -22 -38 -22 -30 -18 -30 L -12 -30" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+    <path d="M 12 -38 L 18 -38 C 22 -38 22 -30 18 -30 L 12 -30" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+    <line x1="0" y1="-18" x2="0" y2="-12" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="-8" y1="-12" x2="8" y2="-12" stroke="#ffffff" stroke-width="1.5"/>
+
+    <text x="0" y="24" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" letter-spacing="2">COURT ACHIEVEMENT &amp; TROPHIES</text>
+    <text x="0" y="46" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="400" letter-spacing="1.2">OFFICIAL CERTIFICATE, MEDALS &amp; JERSEYS ARCHIVE</text>
+  </g>
+
+  <!-- Verification Badges Row -->
+  <g transform="translate(400, 350)">
+    <rect x="-140" y="-12" width="130" height="24" fill="#0d0d0d" stroke="rgba(255,255,255,0.15)"/>
+    <text x="-75" y="4" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" letter-spacing="1.5">385 DRIBBLES // 1 MIN</text>
+
+    <rect x="10" y="-12" width="130" height="24" fill="#0d0d0d" stroke="rgba(255,255,255,0.15)"/>
+    <text x="75" y="4" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" letter-spacing="1.5">210 BLINDFOLDED</text>
+  </g>
+
+  <!-- Bottom Verification Footer -->
+  <line x1="56" y1="420" x2="744" y2="420" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <text x="56" y="444" fill="rgba(255,255,255,0.45)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600" letter-spacing="1.8">VERIFIED PHOTOGRAPHIC RECORD</text>
+  <text x="744" y="444" text-anchor="end" fill="#e62217" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" letter-spacing="1.8">ASIA &amp; INDIAN BOOK OF RECORDS</text>
+</svg>

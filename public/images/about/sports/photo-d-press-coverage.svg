@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGradD" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090909"/>
+      <stop offset="100%" stop-color="#020202"/>
+    </linearGradient>
+    <pattern id="gridPatternD" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bgGradD)"/>
+  <rect width="800" height="500" fill="url(#gridPatternD)"/>
+
+  <!-- Outer Frame -->
+  <rect x="24" y="24" width="752" height="452" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+
+  <!-- Technical Corner Marks -->
+  <path d="M 24 40 L 40 40 L 40 24" fill="none" stroke="#e62217" stroke-width="2"/>
+  <path d="M 776 40 L 760 40 L 760 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <path d="M 24 460 L 40 460 L 40 476" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <path d="M 776 460 L 760 460 L 760 476" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+
+  <!-- Swiss Header Tag -->
+  <rect x="56" y="56" width="6" height="6" fill="#e62217"/>
+  <text x="72" y="62" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" letter-spacing="2.5">PRESS &amp; MEDIA ARCHIVE // PHOTO 04</text>
+  <text x="744" y="62" text-anchor="end" fill="rgba(255,255,255,0.4)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600" letter-spacing="2">NEWS ARCHIVE</text>
+
+  <!-- Large Stylized Background Text -->
+  <text x="400" y="270" text-anchor="middle" fill="rgba(255,255,255,0.06)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="140" font-weight="900" letter-spacing="-3">PRESS</text>
+
+  <!-- Newspaper / Press Graphic -->
+  <g transform="translate(400, 235)">
+    <circle cx="0" cy="-30" r="30" fill="#111111" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <!-- Newspaper Icon -->
+    <rect x="-16" y="-44" width="32" height="26" fill="none" stroke="#ffffff" stroke-width="1.4"/>
+    <line x1="-10" y1="-38" x2="-2" y2="-38" stroke="#ffffff" stroke-width="1.2"/>
+    <line x1="-10" y1="-32" x2="10" y2="-32" stroke="#ffffff" stroke-width="1"/>
+    <line x1="-10" y1="-26" x2="10" y2="-26" stroke="#ffffff" stroke-width="1"/>
+    <rect x="2" y="-40" width="8" height="6" fill="#e62217"/>
+
+    <text x="0" y="24" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" letter-spacing="2">NEWSPAPER PRESS COVERAGE</text>
+    <text x="0" y="46" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="400" letter-spacing="1.2">DOCUMENTARY EVIDENCE &amp; PUBLIC VERIFICATION</text>
+  </g>
+
+  <!-- Bottom Verification Footer -->
+  <line x1="56" y1="420" x2="744" y2="420" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <text x="56" y="444" fill="rgba(255,255,255,0.45)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600" letter-spacing="1.8">PRINT MEDIA CITATION</text>
+  <text x="744" y="444" text-anchor="end" fill="#e62217" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" letter-spacing="1.8">PUBLISHED WORLD RECORD REPORT</text>
+</svg>

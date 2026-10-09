@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -12,6 +12,7 @@ import FounderWellness from '../about/FounderWellness';
 import AboutVision from '../about/AboutVision';
 import CTA from '../cta/CTA';
 import Footer from '../footer/Footer';
+import FounderVideoModal from './FounderVideoModal';
 import '../../styles/about.css';
 import '../../styles/founder.css';
 
@@ -35,6 +36,7 @@ if (typeof window !== 'undefined') {
 export function FounderPage({ onOpenBooking }) {
   const pageRef = useRef(null);
   const navigate = useNavigate();
+  const [activeVideo, setActiveVideo] = useState(null);
 
   // Scroll to top and set page title on mount
   useEffect(() => {
@@ -163,7 +165,9 @@ export function FounderPage({ onOpenBooking }) {
       const sportsZone = pageRef.current.querySelector('.founder-sports-zone');
       if (sportsZone) {
         const sideLabel = sportsZone.querySelector('.founder-sports__side-label');
-        const cards = sportsZone.querySelectorAll('.sports-basketball-card, .sports-netball-card');
+        const cards = sportsZone.querySelectorAll(
+          '.sports-compact-card, .sports-media-card, .sports-basketball-card, .sports-netball-card'
+        );
 
         const tlSports = gsap.timeline({
           scrollTrigger: {
@@ -181,8 +185,8 @@ export function FounderPage({ onOpenBooking }) {
               opacity: 0,
               x: isMobile ? 0 : 24,
               y: isMobile ? 20 : 0,
-              stagger: 0.15,
-              duration: 0.8,
+              stagger: 0.12,
+              duration: 0.75,
               ease: EASING.editorial
             },
             '-=0.4'
@@ -193,8 +197,8 @@ export function FounderPage({ onOpenBooking }) {
       const recordsZone = pageRef.current.querySelector('.founder-records-zone');
       if (recordsZone) {
         const header = recordsZone.querySelector('.founder-records__header');
-        const recordCols = recordsZone.querySelectorAll('.record-column');
-        const recordNumbers = recordsZone.querySelectorAll('.record-column__num-hero');
+        const recordCols = recordsZone.querySelectorAll('.record-compact-card, .record-column');
+        const recordNumbers = recordsZone.querySelectorAll('.record-compact-card__num, .record-column__num-hero');
 
         const tlRecords = gsap.timeline({
           scrollTrigger: {
@@ -210,6 +214,16 @@ export function FounderPage({ onOpenBooking }) {
         }
         if (recordNumbers && recordNumbers.length) {
           tlRecords.from(recordNumbers, { opacity: 0, y: 20, stagger: 0.15, duration: 0.8, ease: EASING.editorial }, '-=0.6');
+        }
+        const supportingVisuals = recordsZone.querySelectorAll(
+          '.records-modular-card, .recognition-modular-card, .records-evidence-card, .recognition-compact-card, .records-visual-hero, .records-recognition-pairing, .founder-instagram-bar'
+        );
+        if (supportingVisuals && supportingVisuals.length) {
+          tlRecords.from(
+            supportingVisuals,
+            { opacity: 0, y: 25, stagger: 0.12, duration: 0.8, ease: EASING.editorial },
+            '-=0.4'
+          );
         }
       }
 
@@ -375,11 +389,11 @@ export function FounderPage({ onOpenBooking }) {
               <div className="founder-hero__media-col">
                 <div className="founder-image-wrapper founder-image-wrapper--light">
                   <img
-                    src="/images/about/founder_portrait.png"
+                    src="/images/about/founder/founder-detail-portrait.png"
                     alt="Daniel Wellness Center Founder Portrait"
                     className="founder-image"
-                    width="1254"
-                    height="1254"
+                    width="1108"
+                    height="1419"
                     loading="eager"
                   />
                 </div>
@@ -425,8 +439,8 @@ export function FounderPage({ onOpenBooking }) {
           aria-label="Founder Athletics and Official World Records"
         >
           <div className="dwc-about-container">
-            <FounderSports />
-            <FounderRecords />
+            <FounderSports onOpenVideo={setActiveVideo} />
+            <FounderRecords onOpenVideo={setActiveVideo} />
           </div>
         </section>
 
@@ -462,6 +476,13 @@ export function FounderPage({ onOpenBooking }) {
 
       {/* Detail Page Footer */}
       <Footer onOpenBooking={onOpenBooking} />
+
+      {/* Interactive Founder Video Modal */}
+      <FounderVideoModal
+        isOpen={!!activeVideo}
+        videoData={activeVideo}
+        onClose={() => setActiveVideo(null)}
+      />
     </div>
   );
 }
