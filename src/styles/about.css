@@ -1857,6 +1857,17 @@
   color: rgba(255, 255, 255, 0.4);
 }
 
+.about-teaser__founder-name {
+  font-family: var(--font-family-primary);
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 clamp(0.5rem, 0.9vw, 0.75rem);
+}
+
 .about-teaser__headline {
   font-size: clamp(2rem, 3.5vw, 3.25rem);
   font-weight: 300;

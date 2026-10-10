@@ -77,17 +77,6 @@ export function ServiceHero({ service, onOpenBooking }) {
   return (
     <section ref={heroRef} className="service-hero" aria-label={`${service.title} Overview`}>
       <div className="service-hero__container">
-        {/* Back Link to Therapy Grid */}
-        <div className="service-hero__back-row">
-          <a href="/#therapy" className="service-hero__back-link" aria-label="Return to all therapies">
-            <span className="service-hero__back-arrow" aria-hidden="true">←</span>
-            <span>ALL THERAPY SERVICES</span>
-          </a>
-          <span className="service-hero__specimen-tag" aria-hidden="true">
-            DWC CLINICAL MODALITY // {service.num}
-          </span>
-        </div>
-
         {/* Top Header Block: Category, Title, Tagline, Badge */}
         <div className="service-hero__header">
           <div className="service-hero__title-col">

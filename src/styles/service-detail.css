@@ -13,13 +13,13 @@
   min-height: 100vh;
   width: 100%;
   font-family: var(--font-family-primary, 'IBM Plex Sans', -apple-system, sans-serif);
-  overflow-x: hidden;
+  overflow-x: clip;
   box-sizing: border-box;
 }
 
 .service-detail-main {
   width: 100%;
-  padding-top: clamp(64px, 8vh, 88px);
+  padding-top: 0;
 }
 
 /* Common Section Header */
@@ -78,15 +78,31 @@
   box-sizing: border-box;
 }
 
-/* Back Row */
-.service-hero__back-row {
+/* Sticky Back to All Therapy Services Navigation Bar */
+.service-hero-nav {
+  position: sticky;
+  top: clamp(64px, 8vh, 88px);
+  margin-top: clamp(64px, 8vh, 88px);
+  z-index: 900;
+  width: 100%;
+  background-color: rgba(7, 7, 8, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.service-hero-nav__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0.9rem clamp(1.5rem, 3.5vw, 6rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
+  box-sizing: border-box;
 }
 
-.service-hero__back-link {
+.service-hero-nav__back-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -94,27 +110,51 @@
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   transition: color 0.25s ease, transform 0.25s ease;
+  cursor: pointer;
 }
 
-.service-hero__back-link:hover {
+.service-hero-nav__back-link:hover {
   color: #ffffff;
   transform: translateX(-4px);
 }
 
-.service-hero__back-arrow {
+.service-hero-nav__back-arrow {
   color: var(--color-accent-red, #e62217);
   font-size: 0.9rem;
+  display: inline-block;
+  transition: transform 0.2s ease;
 }
 
-.service-hero__specimen-tag {
+.service-hero-nav__back-link:hover .service-hero-nav__back-arrow {
+  transform: translateX(-2px);
+}
+
+.service-hero-nav__specimen-tag {
   font-size: 0.625rem;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.35);
+}
+
+@media (max-width: 767px) {
+  .service-hero-nav {
+    top: 60px;
+    margin-top: 60px;
+  }
+  .service-hero-nav__inner {
+    padding: 0.75rem clamp(1rem, 3vw, 1.5rem);
+  }
+  .service-hero-nav__back-link {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+  }
+  .service-hero-nav__specimen-tag {
+    display: none;
+  }
 }
 
 /* Hero Header Row */

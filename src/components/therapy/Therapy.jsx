@@ -2,12 +2,10 @@ import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { EASING, isReducedMotion } from '../../animations/scrollAnimations';
-import TherapyTopBar from './TherapyTopBar';
 import TherapyHeader from './TherapyHeader';
 import TherapyApparatus from './TherapyApparatus';
 import TherapyDirectoryHeader from './TherapyDirectoryHeader';
 import TherapyCard from './TherapyCard';
-import TherapyFooterBar from './TherapyFooterBar';
 import '../../styles/therapy.css';
 
 if (typeof window !== 'undefined') {
@@ -333,22 +331,6 @@ export function Therapy() {
           }
         });
       }
-
-      // 6. Section Footer Bar
-      const footerBar = sectionRef.current.querySelector('.therapy-footer-bar');
-      if (footerBar) {
-        gsap.from(footerBar, {
-          opacity: 0,
-          y: 15,
-          duration: 0.75,
-          ease: EASING.editorial,
-          scrollTrigger: {
-            trigger: footerBar,
-            start: 'top 92%',
-            once: true
-          }
-        });
-      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -357,9 +339,6 @@ export function Therapy() {
   return (
     <section className="therapy-section" id="therapy" ref={sectionRef} aria-label="Clinical Therapy Services">
       <div className="therapy-container">
-        {/* Sub-header Tracking Line */}
-        <TherapyTopBar />
-
         {/* Main Header Zone */}
         <TherapyHeader />
 
@@ -385,9 +364,6 @@ export function Therapy() {
             ))}
           </div>
         </div>
-
-        {/* Section Verification Footer */}
-        <TherapyFooterBar />
       </div>
     </section>
   );

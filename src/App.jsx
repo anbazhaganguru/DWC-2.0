@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './components/navigation/Navbar';
 import Hero from './components/hero/Hero';
 import About from './components/about/About';
@@ -22,8 +23,63 @@ import FounderPage from './components/founder/FounderPage';
  * 6. Footer
  */
 function HomePage({ onOpenBooking }) {
-  // Support anchor jump on direct load or navigation back (e.g. /#therapy)
+  const location = useLocation();
+
   useEffect(() => {
+    // Check if we have an explicit request or history state to restore scroll position
+    const restoreData = location.state?.restoreTherapyScrollData || window.history?.state?.dwcTherapyScroll;
+
+    if (restoreData && typeof restoreData.scrollY === 'number') {
+      const restorePosition = () => {
+        if (typeof window !== 'undefined') {
+          ScrollTrigger.refresh();
+        }
+
+        window.scrollTo({ top: restoreData.scrollY, behavior: 'instant' });
+
+        // Fine-tune viewport alignment to the exact card if cardId & cardViewportTop were recorded
+        if (restoreData.cardId && restoreData.cardViewportTop != null) {
+          const selector = restoreData.cardId === 'apparatus'
+            ? '.therapy-apparatus-section'
+            : `.therapy-card--${restoreData.cardId}`;
+          const cardEl = document.querySelector(selector);
+          if (cardEl) {
+            const currentTop = cardEl.getBoundingClientRect().top;
+            const delta = currentTop - restoreData.cardViewportTop;
+            if (Math.abs(delta) > 1 && Math.abs(delta) < 600) {
+              window.scrollBy({ top: delta, behavior: 'instant' });
+            }
+          }
+        }
+      };
+
+      // Perform restoration across animation frames as layout commits
+      requestAnimationFrame(() => {
+        restorePosition();
+        requestAnimationFrame(() => {
+          restorePosition();
+        });
+      });
+
+      if (document.fonts?.ready) {
+        document.fonts.ready.then(() => {
+          restorePosition();
+        }).catch(() => {});
+      }
+
+      // Clear the restore state from history so page refreshes or user scrolls don't loop
+      if (window.history?.replaceState) {
+        const cleanState = { ...window.history.state };
+        if (cleanState.usr) {
+          cleanState.usr = { ...cleanState.usr, restoreTherapyScrollData: null };
+        }
+        cleanState.dwcTherapyScroll = null;
+        window.history.replaceState(cleanState, '');
+      }
+      return;
+    }
+
+    // Default anchor jump on direct load or generic navigation back (e.g. /#therapy)
     if (window.location.hash) {
       const target = window.location.hash;
       const targetEl = document.querySelector(target);
@@ -33,7 +89,7 @@ function HomePage({ onOpenBooking }) {
         }, 120);
       }
     }
-  }, []);
+  }, [location.state]);
 
   return (
     <>

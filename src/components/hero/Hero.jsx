@@ -5,7 +5,6 @@ import HeroHeader from './HeroHeader';
 import HeroLeftContent from './HeroLeftContent';
 import HeroRightContent from './HeroRightContent';
 import HeroSecondaryContent from './HeroSecondaryContent';
-import HeroScrollIndicator from './HeroScrollIndicator';
 import { useHeroSequence } from '../../hooks/useHeroSequence';
 import { initHeroSequenceAnimation, cleanupHeroAnimation } from '../../animations/heroAnimation';
 import '../../styles/hero.css';
@@ -62,7 +61,7 @@ export function Hero() {
     }
 
     const elementsToReveal = uiContainerRef.current.querySelectorAll(
-      '.hero-header, .hero-left-content, .hero-right-content, .hero-secondary-content, .hero-scroll-indicator'
+      '.hero-header, .hero-left-content, .hero-right-content, .hero-secondary-content'
     );
 
     const anim = gsap.fromTo(
@@ -109,10 +108,9 @@ export function Hero() {
             <HeroRightContent />
           </div>
 
-          {/* Lower Safe Area: Secondary Statement & Scroll to Rotate Indicator */}
+          {/* Lower Safe Area: Secondary Statement */}
           <footer className="hero-bottom-row">
             <HeroSecondaryContent />
-            <HeroScrollIndicator />
           </footer>
         </div>
       </div>

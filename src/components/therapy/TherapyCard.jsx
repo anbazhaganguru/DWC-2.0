@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * TherapyCard Component
@@ -19,11 +20,42 @@ export function TherapyCard({
   isDark = false,
   size = 'standard' // 'large' | 'small' | 'standard'
 }) {
+  const navigate = useNavigate();
   const route = `/therapy/${slug}`;
+
+  const handleClick = (e) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    const cardEl = e.currentTarget;
+    const cardRect = cardEl ? cardEl.getBoundingClientRect() : null;
+    const currentY = window.scrollY;
+
+    const scrollData = {
+      scrollY: currentY,
+      cardId: id,
+      slug: slug,
+      cardViewportTop: cardRect ? cardRect.top : null,
+      timestamp: Date.now()
+    };
+
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(
+        { ...window.history.state, dwcTherapyScroll: scrollData },
+        ''
+      );
+    }
+
+    try {
+      sessionStorage.setItem('dwc_therapy_scroll_data', JSON.stringify(scrollData));
+    } catch (_) {}
+
+    navigate(route, { state: { therapyScrollData: scrollData } });
+  };
 
   return (
     <a
       href={route}
+      onClick={handleClick}
       className={`therapy-card therapy-card--${size} therapy-card--${id} ${isDark ? 'therapy-card--dark' : ''}`}
       aria-label={`Explore ${title} dedicated service page`}
     >

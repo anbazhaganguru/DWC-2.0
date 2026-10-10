@@ -60,10 +60,6 @@ export function FounderProfile({ founderImage = '/images/about/founder_portrait.
           </div>
         )}
 
-        <div className="founder-profile__media-caption">
-          <span>SEC 02.1 // PORTRAIT</span>
-          <span>DANIEL WELLNESS CENTER</span>
-        </div>
       </div>
 
       {/* Column 6–12: Founder Metadata & Introduction */}
@@ -74,7 +70,6 @@ export function FounderProfile({ founderImage = '/images/about/founder_portrait.
               <span className="founder-profile__badge-accent" aria-hidden="true" />
               <span>FOUNDER</span>
             </div>
-            <span className="founder-profile__index">DISCIPLINES // 03</span>
           </div>
 
           <h3 className="founder-profile__intro-heading">

@@ -87,6 +87,7 @@ export function About() {
       // 4. Progressive Text Loading: Editorial Teaser Content
       if (contentCol) {
         const metaHeader = contentCol.querySelector('.about-teaser__meta-header');
+        const founderName = contentCol.querySelector('.about-teaser__founder-name');
         const headline = contentCol.querySelector('.about-teaser__headline');
         const lead = contentCol.querySelector('.about-teaser__lead');
         const disciplines = contentCol.querySelectorAll('.about-teaser__discipline-item');
@@ -107,6 +108,19 @@ export function About() {
             duration: 0.6,
             ease: EASING.editorial
           });
+        }
+
+        if (founderName) {
+          tl.from(
+            founderName,
+            {
+              opacity: 0,
+              y: 20,
+              duration: 0.65,
+              ease: EASING.editorial
+            },
+            '-=0.4'
+          );
         }
 
         if (headline) {
@@ -191,13 +205,6 @@ export function About() {
             <span className="about-top-bar__accent" aria-hidden="true" />
             <span>SEC 02 // ABOUT &amp; FOUNDER</span>
           </div>
-
-          <div className="about-top-bar__right">
-            <span>SWISS EDITORIAL SYSTEM</span>
-            <span>DANIEL WELLNESS CENTER</span>
-            <span>DWC-2.0</span>
-            <span className="about-top-bar__index">INDEX: 02</span>
-          </div>
         </div>
 
         {/* Teaser Core Grid */}
@@ -214,11 +221,6 @@ export function About() {
                 loading="lazy"
               />
             </div>
-
-            <div className="founder-profile__media-caption">
-              <span>SEC 02.1 // PORTRAIT</span>
-              <span>DANIEL WELLNESS CENTER</span>
-            </div>
           </div>
 
           {/* Right Column: Teaser Content */}
@@ -228,7 +230,11 @@ export function About() {
                 <span className="about-teaser__badge-accent" aria-hidden="true" />
                 <span>FOUNDER PROFILE</span>
               </div>
-              <span className="about-teaser__index">DISCIPLINES // 03</span>
+            </div>
+
+            {/* Founder Name */}
+            <div className="about-teaser__founder-name">
+              ASWIN KUMAR
             </div>
 
             {/* 2. Short About introduction */}
@@ -270,19 +276,6 @@ export function About() {
                 <span className="about-teaser__cta-arrow" aria-hidden="true">→</span>
               </Link>
             </div>
-          </div>
-        </div>
-
-        {/* Bottom Section Verification Bar */}
-        <div className="about-footer-bar" aria-label="Section Verification">
-          <div className="about-footer-bar__left">
-            <span className="about-footer-bar__dot" aria-hidden="true" />
-            <span>DANIEL WELLNESS CENTER // FOUNDER PROFILE TEASER</span>
-          </div>
-
-          <div className="about-footer-bar__right">
-            <span>AMBATTUR, CHENNAI</span>
-            <span>NEXT: CLINICAL MODALITIES [01–06]</span>
           </div>
         </div>
       </div>

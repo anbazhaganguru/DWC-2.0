@@ -34,7 +34,6 @@ export function TherapyHeader() {
             <span className="therapy-header__dot" aria-hidden="true" />
             <span>CLINICAL MODALITIES</span>
           </div>
-          <span className="therapy-header__badge">INDEX: 01–06</span>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation, useNavigate, Link } from 'react-router-dom';
 import Navbar from '../navigation/Navbar';
 import ServiceHero from './ServiceHero';
 import ServiceOverview from './ServiceOverview';
@@ -21,6 +21,8 @@ import '../../styles/service-detail.css';
  */
 export function ServiceDetailPage({ slugOverride, onOpenBooking }) {
   const params = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
   const activeSlug = slugOverride || params.slug;
   const service = getServiceBySlug(activeSlug);
 
@@ -31,6 +33,37 @@ export function ServiceDetailPage({ slugOverride, onOpenBooking }) {
       document.title = `${service.title} — Daniel Wellness Center`;
     }
   }, [activeSlug, service]);
+
+  // Handle returning to therapy listing with exact saved scroll restoration
+  const handleBackToTherapies = (e) => {
+    e.preventDefault();
+
+    let scrollData = location.state?.therapyScrollData;
+
+    if (!scrollData) {
+      try {
+        const stored = sessionStorage.getItem('dwc_therapy_scroll_data');
+        if (stored) {
+          scrollData = JSON.parse(stored);
+        }
+      } catch (_) {}
+    }
+
+    if (!scrollData && window.history?.state?.dwcTherapyScroll) {
+      scrollData = window.history.state.dwcTherapyScroll;
+    }
+
+    if (scrollData && typeof scrollData.scrollY === 'number' && !isNaN(scrollData.scrollY)) {
+      navigate('/#therapy', {
+        state: {
+          restoreTherapyScrollData: scrollData
+        }
+      });
+    } else {
+      // Direct visit fallback: navigate to therapy section
+      navigate('/#therapy');
+    }
+  };
 
   if (!service) {
     return (
@@ -55,6 +88,26 @@ export function ServiceDetailPage({ slugOverride, onOpenBooking }) {
     <div className="service-detail-page" id="top">
       {/* Top Navbar in Detail Mode: Black sticky background, HOME, THERAPY, BOOK, MENU + */}
       <Navbar isDetailPage={true} onOpenBooking={onOpenBooking} />
+
+      {/* =========================================================
+          STICKY RETURN ACTION: Stays visible while user scrolls
+          ========================================================= */}
+      <div className="service-hero-nav" role="navigation" aria-label="Return Navigation">
+        <div className="service-hero-nav__inner">
+          <Link
+            to="/#therapy"
+            onClick={handleBackToTherapies}
+            className="service-hero-nav__back-link"
+            aria-label="Return to all therapies"
+          >
+            <span className="service-hero-nav__back-arrow" aria-hidden="true">←</span>
+            <span>ALL THERAPY SERVICES</span>
+          </Link>
+          <span className="service-hero-nav__specimen-tag" aria-hidden="true">
+            DWC CLINICAL MODALITY // {service.num}
+          </span>
+        </div>
+      </div>
 
       <main className="service-detail-main">
         {/* Section 1: Hero */}
