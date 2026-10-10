@@ -101,6 +101,8 @@ export function FounderVideoModal({ isOpen, videoData, onClose }) {
 
   if (!isOpen || !videoData) return null;
 
+  const isPortrait = videoData.aspectRatio === '9/16' || videoData.isPortrait;
+
   return (
     <div
       className="founder-video-modal-backdrop"
@@ -110,7 +112,7 @@ export function FounderVideoModal({ isOpen, videoData, onClose }) {
       aria-label={videoData.title || 'Founder Video Player'}
     >
       <div
-        className="founder-video-modal-container"
+        className={`founder-video-modal-container ${isPortrait ? 'founder-video-modal-container--portrait' : 'founder-video-modal-container--landscape'}`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Top Bar */}
@@ -168,7 +170,7 @@ export function FounderVideoModal({ isOpen, videoData, onClose }) {
         {/* Modal Bottom Metadata */}
         <div className="founder-video-modal__footer">
           <span className="founder-video-modal__meta-left">
-            DANIEL WELLNESS CENTER // FOUNDER MEDIA ARCHIVE
+            FOUNDER MEDIA ARCHIVE
           </span>
           <span className="founder-video-modal__meta-right">
             ESC OR CLICK OUTSIDE TO CLOSE

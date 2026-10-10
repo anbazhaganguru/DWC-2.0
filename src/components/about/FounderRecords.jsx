@@ -2,17 +2,16 @@ import React from 'react';
 
 /**
  * FounderRecords Component (DWC 2.0)
- * Section 04.2: Official World Records & Media Recognition
+ * Section 04: Official World Records & Recognition
  *
- * Compact Asymmetric Achievement Layout (Swiss Editorial Architecture):
- * - Primary Tier (Asymmetric Grid):
- *   [ Left ~58% ]: Connected Record Typography (Hero 385 Record + Companion 210 Record)
- *   [ Right ~42% ]: Medium-sized Rectangular Trophy & Certificate Frame (Photo A)
- * - Supporting Tier (3 Asymmetric Connected Blocks):
- *   [ Block 1 ]: Award Presentation Recognition Photo (Photo C)
- *   [ Block 2 ]: Newspaper Media Clipping Photo (Photo D)
- *   [ Block 3 ]: Compact Clickable Record Film Thumbnail Card (Video 02 Modal Trigger)
- * - Row 3: Compact Swiss Journey Archive Link
+ * Swiss International Style Editorial Architecture:
+ * - Strong visual hierarchy for Primary Record (385 Dribbles / 1 Min — Indian Book of World Records)
+ * - Clear Companion Record (210 Blindfolded Dribbles / 59.98s — Asia Book of Records)
+ * - Large Court Evidence Photograph (Trophies, Medals, Certificate & Jerseys in natural ~1:1 uncropped frame)
+ * - Large 16:9 Video 02 Card (World Record Spider Dribbles Attempt Film)
+ * - Prominent Award Presentation Photograph (Citation ceremony uncropped frame)
+ * - Large Legible Newspaper Media Clipping Feature (High-resolution, uncropped evidence frame)
+ * - Clean Instagram archive link
  */
 export function FounderRecords({ onOpenVideo }) {
   const handleOpenRecordFilm = () => {
@@ -22,7 +21,9 @@ export function FounderRecords({ onOpenVideo }) {
         title: 'Spider Dribbles World Record Attempt',
         tag: 'VIDEO 02 // RECORD BENCHMARK',
         src: '/videos/founder/founder-achievement-video.mp4',
-        poster: '/images/about/sports/founder-records-trophies.png'
+        poster: '/images/about/sports/founder-records-trophies.png',
+        aspectRatio: '16/9',
+        isPortrait: false
       });
     }
   };
@@ -48,112 +49,108 @@ export function FounderRecords({ onOpenVideo }) {
       <div className="founder-records__header">
         <div className="records-header__left">
           <span className="records-header__tag-line" aria-hidden="true" />
-          <h3 className="records-header__title">RECORDS &amp; RECOGNITION</h3>
+          <div className="records-header__titles">
+            <span className="records-header__eyebrow">04 // OFFICIAL WORLD RECORDS</span>
+            <h3 className="records-header__title">RECORDS &amp; RECOGNITION</h3>
+          </div>
         </div>
-        <span className="records-header__right">OFFICIAL WORLD RECORD BENCHMARKS</span>
       </div>
 
-      {/* Primary Area: Compact Asymmetric Record Architecture */}
-      <div className="records-asymmetric-primary">
-        {/* Left: Connected Record Typography & Information Archive */}
-        <div className="records-primary__data-col">
-          {/* Primary Hero Record: 385 Dribbles (Indian Book of World Records) */}
-          <div className="record-compact-card record-hero-entry">
-            <div className="record-entry__header">
-              <div className="record-column__book-tag">
-                <span className="record-column__book-tag-dot" aria-hidden="true" />
+      {/* Tier 1: World Record Benchmarks + Trophy Evidence Frame */}
+      <div className="records-tier-primary">
+        {/* Left Column: Official Records Typography */}
+        <div className="records-benchmarks-col">
+          {/* Primary Record: 385 Dribbles (Indian Book of World Records) */}
+          <div className="record-feature-card record-feature-card--hero">
+            <div className="record-feature__header">
+              <div className="record-book-tag">
+                <span className="record-book-tag__dot" aria-hidden="true" />
                 <span>INDIAN BOOK OF WORLD RECORDS</span>
               </div>
-              <span className="record-entry__badge-index">RECORD 01 // WORLD BENCHMARK</span>
+              <span className="record-feature__index">RECORD 01 // WORLD BENCHMARK</span>
             </div>
 
-            <div className="record-hero-entry__body">
-              <div className="record-hero-entry__num-wrapper">
-                <div
-                  className="record-hero-entry__num record-column__num-hero"
-                  aria-label="385 dribbles"
-                >
+            <div className="record-feature__body">
+              <div className="record-num-hero-group">
+                <div className="record-num-hero" aria-label="385 spider dribbles">
                   385
                 </div>
-                <div className="record-hero-entry__num-label">
+                <div className="record-num-hero__unit">
                   DRIBBLES / MIN
                 </div>
               </div>
 
-              <div className="record-hero-entry__content">
-                <h4 className="record-hero-entry__title">
-                  BASKETBALL<br />
-                  SPIDER DRIBBLES
+              <div className="record-feature__content">
+                <h4 className="record-feature__title">
+                  BASKETBALL SPIDER DRIBBLES
                 </h4>
-
-                <div className="record-hero-entry__metrics">
-                  <div className="record-metric-time">
-                    <span className="record-metric-time__val">01</span>
-                    <span className="record-metric-time__unit">MINUTE</span>
+                <div className="record-feature__meta-row">
+                  <div className="record-metric">
+                    <span className="record-metric__val">01</span>
+                    <span className="record-metric__label">MINUTE</span>
                   </div>
-
-                  <div className="record-metric-status">
-                    <span className="record-metric-status__label">OFFICIAL BENCHMARK</span>
-                    <span className="record-column__badge">VERIFIED</span>
+                  <div className="record-status-pill">
+                    <span className="record-status-pill__dot" aria-hidden="true" />
+                    <span>VERIFIED BENCHMARK</span>
                   </div>
                 </div>
+                <p className="record-feature__desc">
+                  385 basketball spider dribbles in one minute — certified official benchmark by the Indian Book of World Records.
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Companion Record: 210 Dribbles Blindfolded (Asia Book of Records) */}
-          <div className="record-compact-card record-companion-entry">
-            <div className="record-entry__header">
-              <div className="record-column__book-tag">
-                <span className="record-column__book-tag-dot" aria-hidden="true" />
+          {/* Companion Record: 210 Blindfolded Dribbles (Asia Book of Records) */}
+          <div className="record-feature-card record-feature-card--companion">
+            <div className="record-feature__header">
+              <div className="record-book-tag">
+                <span className="record-book-tag__dot" aria-hidden="true" />
                 <span>ASIA BOOK OF RECORDS</span>
               </div>
-              <span className="record-entry__badge-index">RECORD 02 // BLINDFOLDED</span>
+              <span className="record-feature__index">RECORD 02 // BLINDFOLDED</span>
             </div>
 
-            <div className="record-companion-entry__body">
-              <div className="record-companion-entry__num-wrapper">
-                <div
-                  className="record-companion-entry__num record-compact-card__num"
-                  aria-label="210 dribbles"
-                >
+            <div className="record-feature__body">
+              <div className="record-num-hero-group">
+                <div className="record-num-companion" aria-label="210 blindfolded spider dribbles">
                   210
                 </div>
-                <div className="record-companion-entry__num-label">
-                  DRIBBLES / 60S
+                <div className="record-num-hero__unit">
+                  DRIBBLES / 59.98S
                 </div>
               </div>
 
-              <div className="record-companion-entry__content">
-                <h4 className="record-companion-entry__title">
-                  BLINDFOLDED BASKETBALL<br />
-                  SPIDER DRIBBLES
+              <div className="record-feature__content">
+                <h4 className="record-feature__title">
+                  BLINDFOLDED SPIDER DRIBBLES
                 </h4>
-
-                <div className="record-hero-entry__metrics">
-                  <div className="record-metric-time">
-                    <span className="record-metric-time__val">59.98</span>
-                    <span className="record-metric-time__unit">SECONDS</span>
+                <div className="record-feature__meta-row">
+                  <div className="record-metric">
+                    <span className="record-metric__val">59.98</span>
+                    <span className="record-metric__label">SECONDS</span>
                   </div>
-
-                  <div className="record-metric-status">
-                    <span className="record-metric-status__label">RECORD CITATION</span>
-                    <span className="record-column__badge">VERIFIED</span>
+                  <div className="record-status-pill">
+                    <span className="record-status-pill__dot" aria-hidden="true" />
+                    <span>VERIFIED CITATION</span>
                   </div>
                 </div>
+                <p className="record-feature__desc">
+                  210 blindfolded basketball spider dribbles in 59.98 seconds — official record citation by the Asia Book of Records.
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Right: Trophy & Certificate Medium-Sized Frame */}
-        <div className="records-primary__visual-col">
-          <div className="records-modular-card records-modular-card--photo records-trophy-feature">
-            <div className="records-trophy-feature__frame">
+        {/* Right Column: Court Evidence Trophy & Certificate Photo (Large Natural ~1:1 Proportions) */}
+        <div className="records-trophy-col">
+          <div className="records-evidence-feature">
+            <div className="records-evidence-feature__frame">
               <img
                 src="/images/about/sports/founder-records-trophies.png"
                 alt="Founder seated on basketball court with official record trophies, medals, certificate and jerseys"
-                className="records-modular-card__img"
+                className="records-evidence-feature__img"
                 loading="eager"
                 onError={(e) =>
                   handleImageFallback(e, '/images/about/sports/photo-a-court-achievement.svg')
@@ -162,83 +159,25 @@ export function FounderRecords({ onOpenVideo }) {
               <div className="records-frame-accent-corner" aria-hidden="true" />
             </div>
 
-            <div className="records-trophy-feature__footer">
-              <div className="records-modular-card__caption">
-                <div className="records-modular-card__caption-left">
-                  <span className="records-caption-accent" aria-hidden="true" />
-                  <span className="records-modular-card__tag">RECORD EVIDENCE</span>
-                </div>
-                <span className="records-modular-card__meta">TROPHIES &amp; CITATIONS</span>
+            <div className="records-evidence-feature__caption">
+              <div className="records-caption-left">
+                <span className="records-caption-dot" aria-hidden="true" />
+                <span className="records-caption-tag">OFFICIAL COURT EVIDENCE</span>
               </div>
-              <div className="records-trophy-feature__subnote">
-                Official court evidence documenting national and continental records
-              </div>
+              <span className="records-caption-meta">TROPHIES, MEDALS &amp; CERTIFICATES</span>
             </div>
+            <p className="records-evidence-feature__subnote">
+              Official court evidence documenting national and continental records with trophies, medals, certificate, and jerseys.
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Supporting Area: Connected Asymmetric Recognition & Media Blocks */}
-      <div className="records-asymmetric-supporting">
-        {/* Block 1: Award Presentation Photo */}
-        <div className="recognition-modular-card records-support-item">
-          <div className="recognition-modular-card__frame records-support-frame records-support-frame--award">
-            <img
-              src="/images/about/sports/founder-award-presentation.png"
-              alt="Founder receiving official world record award and citation"
-              className="recognition-modular-card__img"
-              loading="eager"
-              onError={(e) =>
-                handleImageFallback(e, '/images/about/sports/photo-c-record-award.svg')
-              }
-            />
-          </div>
-          <div className="records-support-item__body">
-            <div className="recognition-modular-card__caption">
-              <div className="recognition-modular-card__caption-left">
-                <span className="records-caption-accent" aria-hidden="true" />
-                <span className="recognition-modular-card__tag">RECOGNITION</span>
-              </div>
-              <span className="recognition-modular-card__meta">CITATION CEREMONY</span>
-            </div>
-            <h5 className="records-support-item__title">AWARD PRESENTATION</h5>
-            <p className="records-support-item__desc">
-              Formal citation and trophy presentation honoring world record benchmark.
-            </p>
-          </div>
-        </div>
-
-        {/* Block 2: Newspaper Press Media Coverage Photo */}
-        <div className="recognition-modular-card records-support-item">
-          <div className="recognition-modular-card__frame records-support-frame records-support-frame--press">
-            <img
-              src="/images/about/sports/founder-newspaper-recognition.png"
-              alt="Newspaper press coverage documenting founder's official world record"
-              className="recognition-modular-card__img"
-              loading="eager"
-              onError={(e) =>
-                handleImageFallback(e, '/images/about/sports/photo-d-press-coverage.svg')
-              }
-            />
-          </div>
-          <div className="records-support-item__body">
-            <div className="recognition-modular-card__caption">
-              <div className="recognition-modular-card__caption-left">
-                <span className="records-caption-accent" aria-hidden="true" />
-                <span className="recognition-modular-card__tag">PRESS / MEDIA</span>
-              </div>
-              <span className="recognition-modular-card__meta">PRESS ARCHIVE</span>
-            </div>
-            <h5 className="records-support-item__title">MEDIA EVIDENCE</h5>
-            <p className="records-support-item__desc">
-              National daily publication documenting the verified spider dribbles achievement.
-            </p>
-          </div>
-        </div>
-
-        {/* Block 3: Video 02 Compact Clickable Record Film Thumbnail Card */}
+      {/* Tier 2: Large Video 02 Feature + Award Presentation Feature */}
+      <div className="records-tier-secondary">
+        {/* Left: Large 16:9 Video 02 Card (Record Attempt Film) */}
         <div
-          className="records-modular-card records-modular-card--video records-support-item records-support-item--video"
+          className="records-video-card-feature"
           onClick={handleOpenRecordFilm}
           role="button"
           tabIndex={0}
@@ -247,41 +186,97 @@ export function FounderRecords({ onOpenVideo }) {
           }}
           aria-label="Play Founder World Record Spider Dribbles Video"
         >
-          <div className="records-video-card__frame records-support-frame records-support-frame--video">
-            <div className="sports-video-card__overlay">
-              <span className="sports-video-card__play-badge">
-                <span className="sports-video-card__play-icon" aria-hidden="true">▶</span>
-                <span>PLAY FILM →</span>
+          <div className="records-video-card__frame">
+            <div className="records-video-card__overlay">
+              <span className="records-video-card__play-badge">
+                <span className="records-video-card__play-icon" aria-hidden="true">▶</span>
+                <span>PLAY RECORD FILM →</span>
               </span>
             </div>
             <img
               src="/images/about/sports/founder-records-trophies.png"
               alt="World record spider dribbles film preview"
-              className="sports-video-card__poster"
-              loading="eager"
+              className="records-video-card__poster"
+              loading="lazy"
               onError={(e) =>
                 handleImageFallback(e, '/images/about/sports/photo-a-court-achievement.svg')
               }
             />
           </div>
 
-          <div className="records-support-item__body">
-            <div className="sports-video-card__caption">
-              <div className="sports-video-card__meta-group">
-                <span className="sports-video-card__tag">VIDEO 02</span>
-                <span className="sports-video-card__title">RECORD FILM</span>
-              </div>
-              <span className="sports-video-card__action">SPIDER DRIBBLES</span>
+          <div className="records-video-card__info">
+            <div className="records-video-card__meta">
+              <span className="records-video-card__tag">VIDEO 02</span>
             </div>
-            <h5 className="records-support-item__title">RECORD ATTEMPT FILM</h5>
-            <p className="records-support-item__desc">
-              Official video documentation of the benchmark performance.
+            <h5 className="records-video-card__title">Spider Dribbles World Record Attempt</h5>
+            <p className="records-video-card__desc">
+              Official video documentation of the verified benchmark performance and timing verification.
+            </p>
+          </div>
+        </div>
+
+        {/* Right: Award Presentation Photograph (Large Natural Frame) */}
+        <div className="records-award-card-feature">
+          <div className="records-award-card__frame">
+            <img
+              src="/images/about/sports/founder-award-presentation.png"
+              alt="Founder receiving official world record award and citation"
+              className="records-award-card__img"
+              loading="lazy"
+              onError={(e) =>
+                handleImageFallback(e, '/images/about/sports/photo-c-record-award.svg')
+              }
+            />
+            <div className="records-frame-accent-corner" aria-hidden="true" />
+          </div>
+
+          <div className="records-award-card__info">
+            <div className="records-award-card__meta">
+              <span className="records-award-card__tag">OFFICIAL RECOGNITION</span>
+            </div>
+            <h5 className="records-award-card__title">Formal Citation &amp; Award Presentation</h5>
+            <p className="records-award-card__desc">
+              Formal felicitation and trophy presentation ceremony honoring the verified basketball spider dribbles world records.
             </p>
           </div>
         </div>
       </div>
 
-      {/* Row 3: Subtle Swiss Instagram Reference */}
+      {/* Tier 3: Legible, Large Newspaper Press Media Evidence Feature */}
+      <div className="records-tier-press">
+        <div className="records-press-feature">
+          <div className="records-press-feature__header">
+            <div className="records-press-header__left">
+              <span className="records-press-tag">PRESS &amp; MEDIA COVERAGE</span>
+              <h4 className="records-press-title">National Daily Press Recognition</h4>
+            </div>
+            <span className="records-press-meta">PRINT MEDIA ARCHIVE // VERIFIED REPORT</span>
+          </div>
+
+          {/* Large Newspaper Clipping Frame preserving natural ~1.38:1 proportions */}
+          <div className="records-press-frame">
+            <img
+              src="/images/about/sports/founder-newspaper-recognition.png"
+              alt="Newspaper press coverage documenting founder's official world record"
+              className="records-press-frame__img"
+              loading="lazy"
+              onError={(e) =>
+                handleImageFallback(e, '/images/about/sports/photo-d-press-coverage.svg')
+              }
+            />
+          </div>
+
+          <div className="records-press-caption">
+            <div className="records-caption-left">
+              <span className="records-caption-dot" aria-hidden="true" />
+              <span>PRINT PUBLICATION</span>
+            </div>
+            <span>NATIONAL DAILY REPORT DOCUMENTING TIMING, RULES COMPLIANCE &amp; CERTIFICATION</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Journey Archive Link (Subtle Swiss Instagram Link) */}
       <div className="founder-instagram-bar">
         <div className="founder-instagram-bar__left">
           <span className="founder-instagram-bar__tag">JOURNEY ARCHIVE</span>
