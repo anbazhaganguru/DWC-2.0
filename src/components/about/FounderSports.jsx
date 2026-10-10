@@ -18,8 +18,8 @@ export function FounderSports({ onOpenVideo }) {
         id: 'video-01',
         title: 'Basketball Movement & Conditioning',
         tag: 'VIDEO 01 // ATHLETIC FILM',
-        src: '/videos/founder/founder-sports-video.mp4',
-        poster: '/images/about/sports/founder-basketball-trophy.png',
+        src: `${import.meta.env.BASE_URL}videos/founder/founder-sports-video.mp4`,
+        poster: `${import.meta.env.BASE_URL}images/about/sports/founder-basketball-trophy.png`,
         aspectRatio: '9/16',
         isPortrait: true
       });
@@ -117,12 +117,12 @@ export function FounderSports({ onOpenVideo }) {
           <div className="sports-photo-feature">
             <div className="sports-photo-feature__frame">
               <img
-                src="/images/about/sports/founder-basketball-trophy.png"
+                src={`${import.meta.env.BASE_URL}images/about/sports/founder-basketball-trophy.png`}
                 alt="Founder with basketball championship trophy"
                 className="sports-photo-feature__img"
                 loading="lazy"
                 onError={(e) =>
-                  handleImageFallback(e, '/images/about/sports/photo-b-basketball-athlete.svg')
+                  handleImageFallback(e, `${import.meta.env.BASE_URL}images/about/sports/photo-b-basketball-athlete.svg`)
                 }
               />
               <div className="sports-frame-accent-corner" aria-hidden="true" />
@@ -156,12 +156,12 @@ export function FounderSports({ onOpenVideo }) {
                 </span>
               </div>
               <img
-                src="/images/about/sports/founder-basketball-trophy.png"
+                src={`${import.meta.env.BASE_URL}images/about/sports/founder-basketball-trophy.png`}
                 alt="Basketball movement film preview"
                 className="sports-video-feature__poster"
                 loading="lazy"
                 onError={(e) =>
-                  handleImageFallback(e, '/images/about/sports/photo-b-basketball-athlete.svg')
+                  handleImageFallback(e, `${import.meta.env.BASE_URL}images/about/sports/photo-b-basketball-athlete.svg`)
                 }
               />
             </div>

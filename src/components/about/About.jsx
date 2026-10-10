@@ -213,7 +213,7 @@ export function About() {
           <div className="about-teaser__media-col">
             <div className="founder-image-wrapper">
               <img
-                src="/images/about/founder_portrait.png"
+                src={`${import.meta.env.BASE_URL}images/about/founder_portrait.png`}
                 alt="Daniel Wellness Center Founder Portrait"
                 className="founder-image"
                 width="1254"

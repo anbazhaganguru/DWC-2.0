@@ -20,8 +20,8 @@ export function FounderRecords({ onOpenVideo }) {
         id: 'video-02',
         title: 'Spider Dribbles World Record Attempt',
         tag: 'VIDEO 02 // RECORD BENCHMARK',
-        src: '/videos/founder/founder-achievement-video.mp4',
-        poster: '/images/about/sports/founder-records-trophies.png',
+        src: `${import.meta.env.BASE_URL}videos/founder/founder-achievement-video.mp4`,
+        poster: `${import.meta.env.BASE_URL}images/about/sports/founder-records-trophies.png`,
         aspectRatio: '16/9',
         isPortrait: false
       });
@@ -148,12 +148,12 @@ export function FounderRecords({ onOpenVideo }) {
           <div className="records-evidence-feature">
             <div className="records-evidence-feature__frame">
               <img
-                src="/images/about/sports/founder-records-trophies.png"
+                src={`${import.meta.env.BASE_URL}images/about/sports/founder-records-trophies.png`}
                 alt="Founder seated on basketball court with official record trophies, medals, certificate and jerseys"
                 className="records-evidence-feature__img"
                 loading="eager"
                 onError={(e) =>
-                  handleImageFallback(e, '/images/about/sports/photo-a-court-achievement.svg')
+                  handleImageFallback(e, `${import.meta.env.BASE_URL}images/about/sports/photo-a-court-achievement.svg`)
                 }
               />
               <div className="records-frame-accent-corner" aria-hidden="true" />
@@ -194,12 +194,12 @@ export function FounderRecords({ onOpenVideo }) {
               </span>
             </div>
             <img
-              src="/images/about/sports/founder-records-trophies.png"
+              src={`${import.meta.env.BASE_URL}images/about/sports/founder-records-trophies.png`}
               alt="World record spider dribbles film preview"
               className="records-video-card__poster"
               loading="lazy"
               onError={(e) =>
-                handleImageFallback(e, '/images/about/sports/photo-a-court-achievement.svg')
+                handleImageFallback(e, `${import.meta.env.BASE_URL}images/about/sports/photo-a-court-achievement.svg`)
               }
             />
           </div>
@@ -219,12 +219,12 @@ export function FounderRecords({ onOpenVideo }) {
         <div className="records-award-card-feature">
           <div className="records-award-card__frame">
             <img
-              src="/images/about/sports/founder-award-presentation.png"
+              src={`${import.meta.env.BASE_URL}images/about/sports/founder-award-presentation.png`}
               alt="Founder receiving official world record award and citation"
               className="records-award-card__img"
               loading="lazy"
               onError={(e) =>
-                handleImageFallback(e, '/images/about/sports/photo-c-record-award.svg')
+                handleImageFallback(e, `${import.meta.env.BASE_URL}images/about/sports/photo-c-record-award.svg`)
               }
             />
             <div className="records-frame-accent-corner" aria-hidden="true" />
@@ -256,12 +256,12 @@ export function FounderRecords({ onOpenVideo }) {
           {/* Large Newspaper Clipping Frame preserving natural ~1.38:1 proportions */}
           <div className="records-press-frame">
             <img
-              src="/images/about/sports/founder-newspaper-recognition.png"
+              src={`${import.meta.env.BASE_URL}images/about/sports/founder-newspaper-recognition.png`}
               alt="Newspaper press coverage documenting founder's official world record"
               className="records-press-frame__img"
               loading="lazy"
               onError={(e) =>
-                handleImageFallback(e, '/images/about/sports/photo-d-press-coverage.svg')
+                handleImageFallback(e, `${import.meta.env.BASE_URL}images/about/sports/photo-d-press-coverage.svg`)
               }
             />
           </div>

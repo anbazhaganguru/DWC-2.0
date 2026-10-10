@@ -78,9 +78,9 @@ export function Footer({ onOpenBooking }) {
       {/* Atmosphere Background Layer */}
       <div className="dwc-footer-bg-wrap" aria-hidden="true">
         <picture>
-          <source media="(max-width: 768px)" srcSet="/images/footer/footer_wellness_background_mobile.webp" />
+          <source media="(max-width: 768px)" srcSet={`${import.meta.env.BASE_URL}images/footer/footer_wellness_background_mobile.webp`} />
           <img
-            src="/images/footer/footer_wellness_background.webp"
+            src={`${import.meta.env.BASE_URL}images/footer/footer_wellness_background.webp`}
             alt=""
             className="dwc-footer-bg-img"
             loading="lazy"

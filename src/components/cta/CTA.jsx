@@ -217,9 +217,9 @@ export function CTA({ onOpenBooking }) {
       {/* 1. Full-Screen Atmospheric Background Image with Responsive Assets */}
       <div className="dwc-cta-bg-wrap" aria-hidden="true">
         <picture className="dwc-cta-picture">
-          <source media="(max-width: 768px)" srcSet="/images/cta/cta_wellness_lounge_mobile.webp" />
+          <source media="(max-width: 768px)" srcSet={`${import.meta.env.BASE_URL}images/cta/cta_wellness_lounge_mobile.webp`} />
           <img
-            src="/images/cta/cta_wellness_lounge.webp"
+            src={`${import.meta.env.BASE_URL}images/cta/cta_wellness_lounge.webp`}
             alt="Daniel Wellness Center Lounge Atmosphere"
             className="dwc-cta-bg-img"
             loading="lazy"

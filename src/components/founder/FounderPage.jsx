@@ -353,7 +353,7 @@ export function FounderPage({ onOpenBooking }) {
               <div className="founder-hero__media-col">
                 <div className="founder-image-wrapper founder-image-wrapper--light">
                   <img
-                    src="/images/about/founder/founder-detail-portrait.png"
+                    src={`${import.meta.env.BASE_URL}images/about/founder/founder-detail-portrait.png`}
                     alt="Founder Studio Portrait"
                     className="founder-image"
                     width="1108"

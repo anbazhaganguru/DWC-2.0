@@ -13,7 +13,7 @@ export const recoveryModalities = [
     title: 'Reflexology',
     description:
       'Application of focused pressure to specific reflex zones on the feet and hands corresponding to autonomic organ systems and muscular pathways.',
-    image: '/images/recovery/recovery_01_reflexology.png',
+    image: `${import.meta.env.BASE_URL}images/recovery/recovery_01_reflexology.png`,
     imageAlt: 'Reflexology Therapy at Daniel Wellness Center',
     benefits: [
       'Assists localized peripheral circulation',
@@ -29,7 +29,7 @@ export const recoveryModalities = [
     title: 'Taping Therapy',
     description:
       'Elastic therapeutic taping applied along myofascial contours to gently lift skin tissue, support joint stability, and modulate neuromuscular feedback.',
-    image: '/images/recovery/recovery_02_taping.png',
+    image: `${import.meta.env.BASE_URL}images/recovery/recovery_02_taping.png`,
     imageAlt: 'Therapeutic Kinesiology Taping at Daniel Wellness Center',
     benefits: [
       'Supports joint structural positioning without restricting ROM',
@@ -45,7 +45,7 @@ export const recoveryModalities = [
     title: 'Ice Bath Therapy',
     description:
       'Controlled cold-water immersion designed to trigger acute peripheral vasoconstriction, followed by reactive hyperemia upon rewarming.',
-    image: '/images/recovery/recovery_03_ice_bath.png',
+    image: `${import.meta.env.BASE_URL}images/recovery/recovery_03_ice_bath.png`,
     imageAlt: 'Cold Plunge Ice Bath Therapy at Daniel Wellness Center',
     benefits: [
       'Helps attenuate acute exercise-induced muscle soreness',
@@ -61,7 +61,7 @@ export const recoveryModalities = [
     title: 'Steam Bath',
     description:
       'High-humidity thermal chamber environment creating ambient vapor to induce gentle perspiration and promote passive tissue relaxation.',
-    image: '/images/recovery/recovery_04_steam_bath.png',
+    image: `${import.meta.env.BASE_URL}images/recovery/recovery_04_steam_bath.png`,
     imageAlt: 'Steam Bath Sauna Therapy at Daniel Wellness Center',
     benefits: [
       'Supports peripheral vasodilation and muscle ease',
@@ -77,7 +77,7 @@ export const recoveryModalities = [
     title: 'Cupping Therapy',
     description:
       'Negative-pressure suction cups placed on taut muscle bands to decompress adhered fascia layers and mobilize underlying microvascular fluids.',
-    image: '/images/recovery/recovery_05_cupping.png',
+    image: `${import.meta.env.BASE_URL}images/recovery/recovery_05_cupping.png`,
     imageAlt: 'Cupping Therapy at Daniel Wellness Center',
     benefits: [
       'Facilitates localized myofascial release and tissue glide',
@@ -93,7 +93,7 @@ export const recoveryModalities = [
     title: 'Bamboo Therapy',
     description:
       'Smooth, heated natural bamboo stalks utilized in long rolling and kneading strokes across large muscle groups to deliver uniform deep-pressure relief.',
-    image: '/images/recovery/recovery_06_bamboo.png',
+    image: `${import.meta.env.BASE_URL}images/recovery/recovery_06_bamboo.png`,
     imageAlt: 'Warm Bamboo Massage Therapy at Daniel Wellness Center',
     benefits: [
       'Combines thermal warmth with broad deep tissue compression',
