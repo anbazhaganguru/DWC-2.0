@@ -36,7 +36,7 @@ export function ServiceDetailPage({ slugOverride, onOpenBooking }) {
 
   // Handle returning to therapy listing with exact saved scroll restoration
   const handleBackToTherapies = (e) => {
-    e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault();
 
     let scrollData = location.state?.therapyScrollData;
 
@@ -53,16 +53,26 @@ export function ServiceDetailPage({ slugOverride, onOpenBooking }) {
       scrollData = window.history.state.dwcTherapyScroll;
     }
 
-    if (scrollData && typeof scrollData.scrollY === 'number' && !isNaN(scrollData.scrollY)) {
-      navigate('/#therapy', {
-        state: {
-          restoreTherapyScrollData: scrollData
-        }
-      });
-    } else {
-      // Direct visit fallback: navigate to therapy section
-      navigate('/#therapy');
-    }
+    const currentCardId = activeSlug === 'irobo-massage-chair'
+      ? 'apparatus'
+      : (service?.num || scrollData?.cardId || '01');
+
+    const finalScrollData = {
+      ...(scrollData || {}),
+      cardId: scrollData?.cardId || currentCardId,
+      slug: scrollData?.slug || activeSlug
+    };
+
+    try {
+      sessionStorage.setItem('dwc_therapy_return_pending', 'true');
+      sessionStorage.setItem('dwc_therapy_scroll_data', JSON.stringify(finalScrollData));
+    } catch (_) {}
+
+    navigate('/', {
+      state: {
+        restoreTherapyScrollData: finalScrollData
+      }
+    });
   };
 
   if (!service) {
@@ -75,9 +85,9 @@ export function ServiceDetailPage({ slugOverride, onOpenBooking }) {
           <p className="service-not-found__desc">
             The requested wellness modality does not exist or has been relocated.
           </p>
-          <a href="/#therapy" className="service-not-found__btn">
+          <Link to="/" onClick={handleBackToTherapies} className="service-not-found__btn">
             ← RETURN TO ALL THERAPIES
-          </a>
+          </Link>
         </div>
         <ServiceDetailFooter onOpenBooking={onOpenBooking} />
       </div>
@@ -95,7 +105,7 @@ export function ServiceDetailPage({ slugOverride, onOpenBooking }) {
       <div className="service-hero-nav" role="navigation" aria-label="Return Navigation">
         <div className="service-hero-nav__inner">
           <Link
-            to="/#therapy"
+            to="/"
             onClick={handleBackToTherapies}
             className="service-hero-nav__back-link"
             aria-label="Return to all therapies"

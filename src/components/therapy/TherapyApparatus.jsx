@@ -31,6 +31,7 @@ export function TherapyApparatus() {
     }
 
     try {
+      sessionStorage.setItem('dwc_therapy_return_pending', 'true');
       sessionStorage.setItem('dwc_therapy_scroll_data', JSON.stringify(scrollData));
     } catch (_) {}
 
@@ -38,7 +39,11 @@ export function TherapyApparatus() {
   };
 
   return (
-    <div className="therapy-apparatus-section">
+    <div
+      className="therapy-apparatus-section"
+      data-card-id="apparatus"
+      data-slug="irobo-massage-chair"
+    >
       {/* Upper Status Line */}
       <div className="therapy-apparatus__top-bar">
         <div className="therapy-apparatus__badge-row">
@@ -80,7 +85,7 @@ export function TherapyApparatus() {
 
           <div className="therapy-apparatus__action-row">
             <a
-              href="/services/irobo-massage-chair"
+              href={`${import.meta.env.BASE_URL.replace(/\/+$/, '')}/services/irobo-massage-chair`}
               onClick={handleApparatusClick}
               className="therapy-apparatus__btn"
               aria-label="View dedicated iROBO massage chair detail page"

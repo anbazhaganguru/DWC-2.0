@@ -1,16 +1,33 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * ServiceDetailFooter Component
  * Compact Swiss editorial footer for service detail pages
  */
 export function ServiceDetailFooter({ onOpenBooking }) {
+  const navigate = useNavigate();
+
+  const handleNavClick = (e, hash) => {
+    e.preventDefault();
+    try {
+      sessionStorage.removeItem('dwc_therapy_return_pending');
+      sessionStorage.removeItem('dwc_therapy_scroll_data');
+    } catch (_) {}
+    navigate({ pathname: '/', hash });
+  };
+
   return (
     <footer className="service-footer" aria-label="Daniel Wellness Center Footer">
       <div className="service-footer__container">
         {/* Brand & Mission Column */}
         <div className="service-footer__col service-footer__col--brand">
-          <a href="/#hero" className="service-footer__brand dwc-brand-lockup" aria-label="Daniel Wellness Center - Home">
+          <a
+            href={`${import.meta.env.BASE_URL}#hero`}
+            onClick={(e) => handleNavClick(e, '#hero')}
+            className="service-footer__brand dwc-brand-lockup"
+            aria-label="Daniel Wellness Center - Home"
+          >
             <span className="dwc-brand-lockup__accent service-footer__brand-accent" aria-hidden="true" />
             <div className="dwc-brand-lockup__text service-footer__brand-text">
               <span className="dwc-brand-lockup__primary service-footer__brand-primary">DANIEL</span>
@@ -29,11 +46,11 @@ export function ServiceDetailFooter({ onOpenBooking }) {
         <div className="service-footer__col">
           <span className="service-footer__heading">QUICK NAVIGATION</span>
           <ul className="service-footer__links">
-            <li><a href="/#hero">HOME</a></li>
-            <li><a href="/#about">ABOUT</a></li>
-            <li><a href="/#therapy">THERAPY</a></li>
-            <li><a href="/#recovery">RECOVERY</a></li>
-            <li><a href="/#cta">CONTACT</a></li>
+            <li><a href={`${import.meta.env.BASE_URL}#hero`} onClick={(e) => handleNavClick(e, '#hero')}>HOME</a></li>
+            <li><a href={`${import.meta.env.BASE_URL}#about`} onClick={(e) => handleNavClick(e, '#about')}>ABOUT</a></li>
+            <li><a href={`${import.meta.env.BASE_URL}#therapy`} onClick={(e) => handleNavClick(e, '#therapy')}>THERAPY</a></li>
+            <li><a href={`${import.meta.env.BASE_URL}#recovery`} onClick={(e) => handleNavClick(e, '#recovery')}>RECOVERY</a></li>
+            <li><a href={`${import.meta.env.BASE_URL}#cta`} onClick={(e) => handleNavClick(e, '#cta')}>CONTACT</a></li>
           </ul>
         </div>
 

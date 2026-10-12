@@ -33,11 +33,12 @@ export function initHeroSequenceAnimation({
   }
 
   let lastIndex = -1;
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
   const trigger = ScrollTrigger.create({
     trigger: triggerRef,
     start: 'top top',
-    end: '+=180%',
+    end: isMobile ? '+=220%' : '+=180%',
     pin: true,
     scrub: 0.2,
     anticipatePin: 1,
@@ -56,6 +57,12 @@ export function initHeroSequenceAnimation({
         lastIndex = frameIndex;
         onUpdateFrame(frameIndex);
       }
+    },
+    onLeave: () => {
+      onUpdateFrame(totalFrames - 1);
+    },
+    onLeaveBack: () => {
+      onUpdateFrame(0);
     }
   });
 

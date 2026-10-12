@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { EASING, isReducedMotion } from '../../animations/scrollAnimations';
@@ -16,8 +17,29 @@ if (typeof window !== 'undefined') {
  * Maintained mostly static with a very subtle editorial reveal.
  */
 export function Footer({ onOpenBooking }) {
+  const navigate = useNavigate();
+  const location = useLocation();
   const currentYear = new Date().getFullYear();
   const footerRef = useRef(null);
+
+  const handleLinkClick = (e, target) => {
+    e.preventDefault();
+    if (location.pathname !== '/' && location.pathname !== '') {
+      try {
+        sessionStorage.removeItem('dwc_therapy_return_pending');
+        sessionStorage.removeItem('dwc_therapy_scroll_data');
+      } catch (_) {}
+      navigate({ pathname: '/', hash: target });
+      return;
+    }
+    const targetEl = document.querySelector(target);
+    if (targetEl) {
+      targetEl.scrollIntoView({ behavior: 'smooth' });
+      if (window.history && window.history.pushState) {
+        window.history.pushState(null, '', `${import.meta.env.BASE_URL}${target}`);
+      }
+    }
+  };
 
   useEffect(() => {
     if (!footerRef.current) return;
@@ -94,7 +116,12 @@ export function Footer({ onOpenBooking }) {
         <div className="dwc-footer-grid">
           {/* Column 1: Brand & Philosophy */}
           <div className="dwc-footer-col dwc-footer-col--brand">
-            <a href="#hero" className="dwc-footer-brand-link dwc-brand-lockup dwc-brand-lockup--footer" aria-label="Daniel Wellness Center - Home">
+            <a
+              href={`${import.meta.env.BASE_URL}#hero`}
+              onClick={(e) => handleLinkClick(e, '#hero')}
+              className="dwc-footer-brand-link dwc-brand-lockup dwc-brand-lockup--footer"
+              aria-label="Daniel Wellness Center - Home"
+            >
               <span className="dwc-brand-lockup__accent" aria-hidden="true" />
               <div className="dwc-brand-lockup__text">
                 <span className="dwc-brand-lockup__primary dwc-footer-brand-title">DANIEL</span>
@@ -116,11 +143,41 @@ export function Footer({ onOpenBooking }) {
           <div className="dwc-footer-col dwc-footer-col--nav">
             <h4 className="dwc-footer-col-title">NAVIGATION</h4>
             <nav className="dwc-footer-nav-list" aria-label="Footer Navigation">
-              <a href="#hero" className="dwc-footer-nav-link">HOME</a>
-              <a href="#about" className="dwc-footer-nav-link">ABOUT</a>
-              <a href="#therapy" className="dwc-footer-nav-link">THERAPY</a>
-              <a href="#recovery" className="dwc-footer-nav-link">RECOVERY FOR</a>
-              <a href="#cta" className="dwc-footer-nav-link dwc-footer-nav-link--highlight">CONTACT</a>
+              <a
+                href={`${import.meta.env.BASE_URL}#hero`}
+                onClick={(e) => handleLinkClick(e, '#hero')}
+                className="dwc-footer-nav-link"
+              >
+                HOME
+              </a>
+              <a
+                href={`${import.meta.env.BASE_URL}#about`}
+                onClick={(e) => handleLinkClick(e, '#about')}
+                className="dwc-footer-nav-link"
+              >
+                ABOUT
+              </a>
+              <a
+                href={`${import.meta.env.BASE_URL}#therapy`}
+                onClick={(e) => handleLinkClick(e, '#therapy')}
+                className="dwc-footer-nav-link"
+              >
+                THERAPY
+              </a>
+              <a
+                href={`${import.meta.env.BASE_URL}#recovery`}
+                onClick={(e) => handleLinkClick(e, '#recovery')}
+                className="dwc-footer-nav-link"
+              >
+                RECOVERY FOR
+              </a>
+              <a
+                href={`${import.meta.env.BASE_URL}#cta`}
+                onClick={(e) => handleLinkClick(e, '#cta')}
+                className="dwc-footer-nav-link dwc-footer-nav-link--highlight"
+              >
+                CONTACT
+              </a>
               <button
                 type="button"
                 onClick={handleBookingClick}

@@ -46,7 +46,7 @@ export function FounderPage({ onOpenBooking }) {
   // Handle smooth return navigation to homepage #about section
   const handleBackToAbout = (e) => {
     e.preventDefault();
-    navigate('/#about');
+    navigate({ pathname: '/', hash: '#about' });
     setTimeout(() => {
       const el = document.getElementById('about');
       if (el) {
@@ -280,7 +280,7 @@ export function FounderPage({ onOpenBooking }) {
         <div className="founder-hero-nav" role="navigation" aria-label="Return Navigation">
           <div className="founder-hero-nav__left">
             <Link
-              to="/#about"
+              to="/"
               onClick={handleBackToAbout}
               className="founder-back-link"
               aria-label="Return to About section"

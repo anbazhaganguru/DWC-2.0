@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { CustomEase } from 'gsap/CustomEase';
 import '../../styles/navbar.css';
@@ -30,6 +31,8 @@ const NAV_ITEMS = [
  * - CustomEase ("0.65, 0.01, 0.05, 0.99")
  */
 export function Navbar({ isDetailPage = false, hideCenterLinks = false, onOpenBooking }) {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isHero, setIsHero] = useState(!isDetailPage);
 
@@ -53,6 +56,35 @@ export function Navbar({ isDetailPage = false, hideCenterLinks = false, onOpenBo
   const tlRef = useRef(null);
   const ctxRef = useRef(null);
   const pendingTargetRef = useRef(null);
+
+  const executeNavigation = (target) => {
+    if (!target) return;
+
+    // If currently on a detail or founder page, use React Router to navigate home with the target hash
+    if (location.pathname !== '/' && location.pathname !== '') {
+      try {
+        sessionStorage.removeItem('dwc_therapy_return_pending');
+        sessionStorage.removeItem('dwc_therapy_scroll_data');
+      } catch (_) {}
+
+      navigate({ pathname: '/', hash: target });
+      return;
+    }
+
+    // Already on homepage: smooth scroll to the target element
+    const targetEl = document.querySelector(target);
+    if (targetEl) {
+      targetEl.scrollIntoView({ behavior: 'smooth' });
+      if (window.history && window.history.pushState) {
+        window.history.pushState(null, '', `${import.meta.env.BASE_URL}${target}`);
+      }
+    }
+  };
+
+  const executeNavRef = useRef(executeNavigation);
+  useEffect(() => {
+    executeNavRef.current = executeNavigation;
+  });
 
   // Monitor Hero -> About section boundary on homepage.
   // On detail pages, the navbar remains permanently in the black sticky state.
@@ -161,14 +193,7 @@ export function Navbar({ isDetailPage = false, hideCenterLinks = false, onOpenBo
           if (pendingTargetRef.current) {
             const target = pendingTargetRef.current;
             pendingTargetRef.current = null;
-            if (window.location.pathname !== '/' && window.location.pathname !== '') {
-              window.location.href = '/' + target;
-              return;
-            }
-            const targetEl = document.querySelector(target);
-            if (targetEl) {
-              targetEl.scrollIntoView({ behavior: 'smooth' });
-            }
+            executeNavRef.current?.(target);
           }
         }
       });
@@ -326,14 +351,7 @@ export function Navbar({ isDetailPage = false, hideCenterLinks = false, onOpenBo
     if (isOpen) {
       closeMenu(target);
     } else {
-      if (window.location.pathname !== '/' && window.location.pathname !== '') {
-        window.location.href = '/' + target;
-        return;
-      }
-      const targetEl = document.querySelector(target);
-      if (targetEl) {
-        targetEl.scrollIntoView({ behavior: 'smooth' });
-      }
+      executeNavigation(target);
     }
   };
 
@@ -417,7 +435,7 @@ export function Navbar({ isDetailPage = false, hideCenterLinks = false, onOpenBo
         <div className="dwc-navbar__inner">
           {/* Left: Distinctive Swiss Brand Lockup (DANIEL / WELLNESS CENTER) */}
           <a
-            href="#hero"
+            href={`${import.meta.env.BASE_URL}#hero`}
             className={`dwc-navbar__brand dwc-brand-lockup ${isHero && !isOpen ? 'dwc-brand-lockup--hero' : ''}`}
             onClick={(e) => handleNavClick(e, '#hero')}
             aria-label="Daniel Wellness Center - Home"
@@ -433,14 +451,14 @@ export function Navbar({ isDetailPage = false, hideCenterLinks = false, onOpenBo
           {isDetailPage && !hideCenterLinks && (
             <nav className="dwc-navbar__center-links" aria-label="Quick Page Navigation">
               <a
-                href="/#hero"
+                href={`${import.meta.env.BASE_URL}#hero`}
                 className="dwc-navbar__center-link"
                 onClick={(e) => handleNavClick(e, '#hero')}
               >
                 HOME
               </a>
               <a
-                href="/#therapy"
+                href={`${import.meta.env.BASE_URL}#therapy`}
                 className="dwc-navbar__center-link"
                 onClick={(e) => handleNavClick(e, '#therapy')}
               >
@@ -536,7 +554,7 @@ export function Navbar({ isDetailPage = false, hideCenterLinks = false, onOpenBo
                 {NAV_ITEMS.map((item, index) => (
                   <li key={item.id} className="dwc-nav-menu-item">
                     <a
-                      href={item.target}
+                      href={`${import.meta.env.BASE_URL}${item.target}`}
                       className="dwc-nav-menu-link"
                       onClick={(e) => handleNavClick(e, item.target)}
                       onMouseEnter={() => handleLinkHover(index)}

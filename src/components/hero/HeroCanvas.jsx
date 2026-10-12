@@ -42,11 +42,27 @@ export function HeroCanvas({ canvasRef, images, frameIndexRef, isLoaded }) {
 
     const totalFrames = images.length || 61;
     const safeIndex = Math.min(Math.max(frameIndex, 0), totalFrames - 1);
-    const activeImg = images[safeIndex];
+    let activeImg = images[safeIndex];
 
-    // Ensure image is ready and valid before drawing
+    // Ensure image is ready and valid before drawing.
+    // If the exact frame is still downloading, fall back to the nearest loaded frame
+    // so the canvas animation never stalls or freezes mid-rotation.
     if (!activeImg || !activeImg.complete || activeImg.naturalWidth === 0) {
-      return false;
+      let fallbackImg = null;
+      for (let offset = 1; offset < totalFrames; offset++) {
+        const prev = safeIndex - offset;
+        if (prev >= 0 && images[prev]?.complete && images[prev]?.naturalWidth > 0) {
+          fallbackImg = images[prev];
+          break;
+        }
+        const next = safeIndex + offset;
+        if (next < totalFrames && images[next]?.complete && images[next]?.naturalWidth > 0) {
+          fallbackImg = images[next];
+          break;
+        }
+      }
+      if (!fallbackImg) return false;
+      activeImg = fallbackImg;
     }
 
     const width = canvas.parentElement ? canvas.parentElement.clientWidth : window.innerWidth;

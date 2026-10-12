@@ -1,0 +1,349 @@
+/**
+ * Daniel Wellness Center (DWC 2.0) - Google Reviews Section Styles
+ * Clean White / Light Theme — Strict Swiss International Typographic & Editorial Grid
+ * Matching CTA Section Aesthetic & Monochromatic Luxury Palette
+ */
+
+/* ==========================================================================
+   1. Section Base & Atmospheric Layer
+   ========================================================================== */
+.dwc-reviews-section {
+  position: relative;
+  width: 100%;
+  background-color: #ffffff;
+  color: #111111;
+  border-top: 1px solid #e5e5e5;
+  overflow: hidden;
+  padding: clamp(4.5rem, 7vw, 7.5rem) 0;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   2. Main Container
+   ========================================================================== */
+.dwc-reviews-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 3.5vw, 5rem);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   3. Editorial Section Header (Swiss International Style)
+   ========================================================================== */
+.dwc-reviews-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: clamp(2rem, 3.5vw, 3.25rem);
+  max-width: 860px;
+}
+
+/* Eyebrow */
+.dwc-reviews-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: clamp(0.875rem, 1.5vw, 1.25rem);
+}
+
+.dwc-reviews-eyebrow-accent {
+  width: 14px;
+  height: 2px;
+  background-color: var(--color-accent-red, #e62217);
+  flex-shrink: 0;
+}
+
+.dwc-reviews-eyebrow-text {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #666666;
+}
+
+/* Headline */
+.dwc-reviews-headline {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: clamp(2.25rem, 3.8vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: #0d0d0d;
+  text-transform: uppercase;
+  margin: 0 0 clamp(1rem, 1.6vw, 1.5rem) 0;
+}
+
+/* Description / Editorial statement */
+.dwc-reviews-description {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: clamp(0.9375rem, 1.1vw, 1.125rem);
+  line-height: 1.55;
+  color: #555c59;
+  margin: 0 0 clamp(1.25rem, 2vw, 1.75rem) 0;
+  max-width: 680px;
+}
+
+/* Live Verified Rating Badges Strip */
+.dwc-reviews-meta-strip {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 10px 18px;
+  background: #fafafa;
+  border: 1px solid #eeeeee;
+  border-radius: 0;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.dwc-reviews-rating-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dwc-reviews-rating-score {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0d0d0d;
+  line-height: 1;
+}
+
+.dwc-reviews-rating-stars {
+  color: #fbbc04;
+  font-size: 0.875rem;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.dwc-reviews-rating-count {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #666666;
+}
+
+.dwc-reviews-meta-divider {
+  width: 1px;
+  height: 18px;
+  background-color: #e0e0e0;
+}
+
+.dwc-reviews-source-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #444444;
+}
+
+.dwc-reviews-google-icon {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   4. Widget Container & Wrapper
+   ========================================================================== */
+.dwc-reviews-widget-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  box-sizing: border-box;
+}
+
+/* Exact required class from Zyff integration */
+.zyff-google-reviews {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Attribution styling */
+.zyff-google-reviews a[data-zyff-attribution] {
+  display: block !important;
+  margin-top: 14px !important;
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif) !important;
+  font-size: 0.6875rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #888888 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.zyff-google-reviews a[data-zyff-attribution]:hover {
+  color: #111111 !important;
+}
+
+/* ==========================================================================
+   5. Skeleton Loading State (Swiss Clean Architecture)
+   ========================================================================== */
+.dwc-reviews-skeleton {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: dwcReviewsPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes dwcReviewsPulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.dwc-reviews-skeleton__header {
+  height: 72px;
+  background: #fafafa;
+  border: 1px solid #eeeeee;
+  width: 100%;
+}
+
+.dwc-reviews-skeleton__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.dwc-reviews-skeleton__card {
+  height: 180px;
+  background: #fafafa;
+  border: 1px solid #eeeeee;
+}
+
+/* ==========================================================================
+   6. Graceful Fallback / Unavailable State
+   ========================================================================== */
+.dwc-reviews-fallback {
+  background: #fafafa;
+  border: 1px solid #eeeeee;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.dwc-reviews-fallback__title {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #111111;
+  margin: 0;
+}
+
+.dwc-reviews-fallback__copy {
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #666666;
+  margin: 0;
+}
+
+.dwc-reviews-fallback__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 12px 24px;
+  background: #000000;
+  color: #ffffff;
+  font-family: var(--font-family-primary, 'IBM Plex Sans', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.dwc-reviews-fallback__btn:hover {
+  background: #222222;
+}
+
+/* ==========================================================================
+   7. Responsive Design Breakpoints
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .dwc-reviews-section {
+    padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+  }
+
+  .dwc-reviews-skeleton__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dwc-reviews-container {
+    padding: 0 1.5rem;
+  }
+
+  .dwc-reviews-headline {
+    font-size: 2.25rem;
+  }
+
+  .dwc-reviews-header {
+    margin-bottom: 2rem;
+  }
+
+  .dwc-reviews-skeleton__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dwc-reviews-meta-strip {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dwc-reviews-section {
+    padding: 3rem 0;
+  }
+
+  .dwc-reviews-container {
+    padding: 0 1.25rem;
+  }
+
+  .dwc-reviews-headline {
+    font-size: 1.875rem;
+  }
+
+  .dwc-reviews-meta-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .dwc-reviews-meta-divider {
+    display: none;
+  }
+}

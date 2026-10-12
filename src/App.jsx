@@ -6,6 +6,7 @@ import Hero from './components/hero/Hero';
 import About from './components/about/About';
 import Therapy from './components/therapy/Therapy';
 import Recovery from './components/recovery/Recovery';
+import GoogleReviews from './components/reviews/GoogleReviews';
 import CTA from './components/cta/CTA';
 import Footer from './components/footer/Footer';
 import BookingModal from './components/booking/BookingModal';
@@ -26,34 +27,70 @@ function HomePage({ onOpenBooking }) {
   const location = useLocation();
 
   useEffect(() => {
-    // Check if we have an explicit request or history state to restore scroll position
-    const restoreData = location.state?.restoreTherapyScrollData || window.history?.state?.dwcTherapyScroll;
+    // 1. Determine if this visit is a return from a therapy detail page
+    let restoreData = location.state?.restoreTherapyScrollData;
 
-    if (restoreData && typeof restoreData.scrollY === 'number') {
+    if (!restoreData) {
+      try {
+        const isPending = sessionStorage.getItem('dwc_therapy_return_pending') === 'true';
+        if (isPending) {
+          const stored = sessionStorage.getItem('dwc_therapy_scroll_data');
+          if (stored) {
+            restoreData = JSON.parse(stored);
+          }
+        }
+      } catch (_) {}
+    }
+
+    if (!restoreData && window.history?.state?.dwcTherapyScroll) {
+      restoreData = window.history.state.dwcTherapyScroll;
+    }
+
+    // If we have valid restore data, restore the exact card viewport position
+    if (restoreData && (restoreData.cardId || restoreData.slug || typeof restoreData.scrollY === 'number')) {
+      // Prevent browser auto-scroll interference during restoration
+      if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual';
+      }
+
+      const getTargetCardEl = () => {
+        if (restoreData.cardId === 'apparatus' || restoreData.slug === 'irobo-massage-chair') {
+          return document.querySelector('.therapy-apparatus-section, [data-card-id="apparatus"]');
+        }
+        if (restoreData.cardId) {
+          const el = document.querySelector(`.therapy-card--${restoreData.cardId}, [data-card-id="${restoreData.cardId}"]`);
+          if (el) return el;
+        }
+        if (restoreData.slug) {
+          const el = document.querySelector(`[data-slug="${restoreData.slug}"]`);
+          if (el) return el;
+        }
+        return null;
+      };
+
       const restorePosition = () => {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== 'undefined' && ScrollTrigger) {
           ScrollTrigger.refresh();
         }
 
-        window.scrollTo({ top: restoreData.scrollY, behavior: 'instant' });
-
-        // Fine-tune viewport alignment to the exact card if cardId & cardViewportTop were recorded
-        if (restoreData.cardId && restoreData.cardViewportTop != null) {
-          const selector = restoreData.cardId === 'apparatus'
-            ? '.therapy-apparatus-section'
-            : `.therapy-card--${restoreData.cardId}`;
-          const cardEl = document.querySelector(selector);
-          if (cardEl) {
-            const currentTop = cardEl.getBoundingClientRect().top;
-            const delta = currentTop - restoreData.cardViewportTop;
-            if (Math.abs(delta) > 1 && Math.abs(delta) < 600) {
-              window.scrollBy({ top: delta, behavior: 'instant' });
-            }
+        const cardEl = getTargetCardEl();
+        if (cardEl) {
+          const cardDocTop = window.scrollY + cardEl.getBoundingClientRect().top;
+          let targetY;
+          if (typeof restoreData.cardViewportTop === 'number') {
+            targetY = Math.max(0, Math.round(cardDocTop - restoreData.cardViewportTop));
+          } else {
+            const viewportH = window.innerHeight;
+            const cardH = cardEl.offsetHeight;
+            targetY = Math.max(0, Math.round(cardDocTop - Math.max(80, (viewportH - cardH) / 2)));
           }
+          window.scrollTo({ top: targetY, behavior: 'instant' });
+        } else if (typeof restoreData.scrollY === 'number') {
+          window.scrollTo({ top: restoreData.scrollY, behavior: 'instant' });
         }
       };
 
-      // Perform restoration across animation frames as layout commits
+      // Execute across animation frames as layout commits
       requestAnimationFrame(() => {
         restorePosition();
         requestAnimationFrame(() => {
@@ -61,13 +98,27 @@ function HomePage({ onOpenBooking }) {
         });
       });
 
+      // Follow-up progressive adjustments to catch pin spacers, async images & fonts
+      const t1 = setTimeout(restorePosition, 100);
+      const t2 = setTimeout(restorePosition, 250);
+      const t3 = setTimeout(() => {
+        restorePosition();
+        try {
+          sessionStorage.removeItem('dwc_therapy_return_pending');
+          sessionStorage.removeItem('dwc_therapy_scroll_data');
+        } catch (_) {}
+        if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+          window.history.scrollRestoration = 'auto';
+        }
+      }, 550);
+
       if (document.fonts?.ready) {
         document.fonts.ready.then(() => {
           restorePosition();
         }).catch(() => {});
       }
 
-      // Clear the restore state from history so page refreshes or user scrolls don't loop
+      // Clear the restore state from history so normal future visits don't loop
       if (window.history?.replaceState) {
         const cleanState = { ...window.history.state };
         if (cleanState.usr) {
@@ -76,7 +127,12 @@ function HomePage({ onOpenBooking }) {
         cleanState.dwcTherapyScroll = null;
         window.history.replaceState(cleanState, '');
       }
-      return;
+
+      return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+        clearTimeout(t3);
+      };
     }
 
     // Default anchor jump on direct load or generic navigation back (e.g. /#therapy)
@@ -99,6 +155,7 @@ function HomePage({ onOpenBooking }) {
         <About />
         <Therapy />
         <Recovery />
+        <GoogleReviews />
         <CTA onOpenBooking={onOpenBooking} />
       </main>
       <Footer onOpenBooking={onOpenBooking} />
@@ -141,7 +198,7 @@ export function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/+$/, '') || '/'}>
       <div className="dwc-app">
         <Routes>
           {/* Main Homepage Route */}

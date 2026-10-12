@@ -46,15 +46,20 @@ export function TherapyCard({
     }
 
     try {
+      sessionStorage.setItem('dwc_therapy_return_pending', 'true');
       sessionStorage.setItem('dwc_therapy_scroll_data', JSON.stringify(scrollData));
     } catch (_) {}
 
     navigate(route, { state: { therapyScrollData: scrollData } });
   };
 
+  const fullHref = `${import.meta.env.BASE_URL.replace(/\/+$/, '')}${route}`;
+
   return (
     <a
-      href={route}
+      href={fullHref}
+      data-card-id={id}
+      data-slug={slug}
       onClick={handleClick}
       className={`therapy-card therapy-card--${size} therapy-card--${id} ${isDark ? 'therapy-card--dark' : ''}`}
       aria-label={`Explore ${title} dedicated service page`}
